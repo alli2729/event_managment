@@ -30,4 +30,6 @@ class UrlRepository {
   static Uri getEventsByMakerId({required int makerId}) {
     return Uri.parse('$_baseUrl$_events?makerId=$makerId');
   }
+
+  static Uri addEvent = Uri.parse('$_baseUrl$_events');
 }

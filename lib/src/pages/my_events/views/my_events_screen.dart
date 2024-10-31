@@ -8,14 +8,25 @@ class MyEventsScreen extends GetView<MyEventsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(
-        () => ListView.separated(
-          itemCount: controller.myEvents.length,
-          itemBuilder: (_, index) => EventWidget(
-            event: controller.myEvents[index],
+      appBar: AppBar(title: const Text('My Events')),
+      body: Column(
+        children: [
+          Expanded(
+            child: Obx(
+              () => ListView.separated(
+                itemCount: controller.myEvents.length,
+                itemBuilder: (_, index) => EventWidget(
+                  event: controller.myEvents[index],
+                ),
+                separatorBuilder: (_, __) => const Divider(),
+              ),
+            ),
           ),
-          separatorBuilder: (_, __) => const Divider(),
-        ),
+          ElevatedButton(
+            onPressed: controller.addEvent,
+            child: const Text('Add Event'),
+          )
+        ],
       ),
     );
   }

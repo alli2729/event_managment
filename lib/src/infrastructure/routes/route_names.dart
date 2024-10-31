@@ -7,4 +7,6 @@ class RouteNames {
   static String register = '${RoutePath.login}${RoutePath.register}';
   static String events = RoutePath.events;
   static String myEvents = '${RoutePath.events}${RoutePath.myEvents}';
+  static String addEvent =
+      '${RoutePath.events}${RoutePath.myEvents}${RoutePath.addEvent}';
 }
