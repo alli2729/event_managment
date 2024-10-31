@@ -31,10 +31,13 @@ class EventsController extends GetxController {
   }
 
   Future<void> onMyEvents() async {
-    Get.toNamed(
+    final result = await Get.toNamed(
       RouteNames.myEvents,
       parameters: {"makerId": "$userId"},
     );
+    if (result == null) {
+      getAllEvents();
+    }
   }
 
   @override
