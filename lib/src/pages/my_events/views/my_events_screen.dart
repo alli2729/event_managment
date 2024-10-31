@@ -17,9 +17,12 @@ class MyEventsScreen extends GetView<MyEventsController> {
                 itemCount: controller.myEvents.length,
                 itemBuilder: (_, index) => EventWidget(
                   event: controller.myEvents[index],
-                  onRemove: () {},
-                  onEdit: () =>
-                      controller.onEdit(eventId: controller.myEvents[index].id),
+                  onRemove: () => controller.onRemove(
+                    eventId: controller.myEvents[index].id,
+                  ),
+                  onEdit: () => controller.onEdit(
+                    eventId: controller.myEvents[index].id,
+                  ),
                 ),
                 separatorBuilder: (_, __) => const Divider(),
               ),

@@ -43,6 +43,7 @@ class AddEventController extends GetxController {
       dateTime: dateTime,
       capacity: int.parse(capacityController.text),
       price: double.parse(priceController.text),
+      attendent: 0,
     );
 
     final result = await _repository.addEventByDto(dto: dto);

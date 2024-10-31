@@ -45,8 +45,22 @@ class MyEventsController extends GetxController {
     }
   }
 
-  Future<void> onRemove({required int id}) async {
-    
+  Future<void> onRemove({required int eventId}) async {
+    int index = myEvents.indexWhere((event) => event.id == eventId);
+    if (myEvents[index].attendent != 0) {
+      Utils.showFailSnackBar(message: 'cant delete non empty events !');
+      return;
+    }
+    final result = await _repository.deleteEventById(eventId: eventId);
+    result.fold(
+      (exception) {
+        Utils.showFailSnackBar(message: exception);
+      },
+      (_) {
+        myEvents.removeAt(index);
+        Utils.showSuccessSnackBar(message: 'Successfully deleted');
+      },
+    );
   }
 
   @override

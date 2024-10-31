@@ -22,4 +22,17 @@ class MyEventsRepository {
       return Left(e.toString());
     }
   }
+
+  Future<Either<String, bool>> deleteEventById({required int eventId}) async {
+    try {
+      final url = UrlRepository.deleteEventById(eventId: eventId);
+      final http.Response response = await http.delete(url);
+      if (response.statusCode != 200) {
+        return const Left('cant delete this event at this time');
+      }
+      return const Right(true);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

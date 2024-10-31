@@ -8,6 +8,7 @@ class EventModel {
   DateTime dateTime;
   int capacity;
   double price;
+  int? attendent = 0;
 
   EventModel({
     required this.id,
@@ -17,6 +18,7 @@ class EventModel {
     required this.dateTime,
     required this.capacity,
     required this.price,
+    this.attendent,
   });
 
   factory EventModel.fromJason(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class EventModel {
       dateTime: DateTime.parse(json["dateTime"]),
       capacity: json["capacity"],
       price: json["price"],
+      attendent: json["attendent"],
     );
   }
 }
