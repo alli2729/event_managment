@@ -9,7 +9,15 @@ class EventsScreen extends GetView<EventsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('All Events')),
+      appBar: AppBar(
+        title: const Text('All Events'),
+        actions: [
+          TextButton(
+            onPressed: controller.onLogout,
+            child: const Text('Logout'),
+          )
+        ],
+      ),
       body: Column(
         children: [
           Expanded(

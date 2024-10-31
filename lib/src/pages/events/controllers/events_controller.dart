@@ -40,6 +40,10 @@ class EventsController extends GetxController {
     }
   }
 
+  void onLogout() {
+    Get.offAndToNamed(RouteNames.login);
+  }
+
   @override
   void onInit() {
     super.onInit();
