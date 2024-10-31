@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import '../../models/event_model.dart';
 
 class EventWidget extends StatelessWidget {
-  const EventWidget({super.key, required this.event});
+  const EventWidget({
+    super.key,
+    required this.event,
+    required this.onEdit,
+    required this.onRemove,
+  });
 
   final EventModel event;
+  final void Function() onEdit;
+  final void Function() onRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +25,13 @@ class EventWidget extends StatelessWidget {
         const SizedBox(width: 10),
         Text(event.description),
         const SizedBox(width: 10),
-        Text(event.dateTime.toString()),
+        Text(event.dateTime.year.toString()),
         const SizedBox(width: 10),
         Text(event.capacity.toString()),
+        const Spacer(),
+        IconButton(onPressed: onEdit, icon: const Icon(Icons.edit)),
+        const SizedBox(width: 10),
+        IconButton(onPressed: onRemove, icon: const Icon(Icons.delete))
       ],
     );
   }

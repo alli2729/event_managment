@@ -1,15 +1,15 @@
 import '../../../infrastructure/common/date_values.dart';
-import '../controllers/add_event_controller.dart';
+import '../controllers/edit_event_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddEventScreen extends GetView<AddEventController> {
-  const AddEventScreen({super.key});
+class EditEventScreen extends GetView<EditEventController> {
+  const EditEventScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Event')),
+      appBar: AppBar(title: const Text('Edit Event')),
       body: Form(
         key: controller.addFormKey,
         child: Column(
@@ -54,8 +54,8 @@ class AddEventScreen extends GetView<AddEventController> {
               ),
             ),
             ElevatedButton(
-              onPressed: controller.onAddEvent,
-              child: const Text('Add Event'),
+              onPressed: controller.onEdit,
+              child: const Text('Edit Event'),
             ),
           ],
         ),

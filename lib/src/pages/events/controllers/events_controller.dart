@@ -26,7 +26,7 @@ class EventsController extends GetxController {
     final result = await _repository.getAllEvents();
     result.fold(
       (exception) => Utils.showFailSnackBar(message: exception),
-      (eventModels) => events.addAll(eventModels),
+      (eventModels) => events.value = eventModels,
     );
   }
 

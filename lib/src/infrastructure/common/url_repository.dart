@@ -32,4 +32,8 @@ class UrlRepository {
   }
 
   static Uri addEvent = Uri.parse('$_baseUrl$_events');
+
+  static Uri getEventById({required int eventId}) {
+    return Uri.parse('$_baseUrl$_events/$eventId');
+  }
 }

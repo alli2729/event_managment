@@ -18,7 +18,7 @@ class EventWidget extends StatelessWidget {
         const SizedBox(width: 10),
         Text(event.description),
         const SizedBox(width: 10),
-        Text(event.dateTime.toString()),
+        Text(event.dateTime.year.toString()),
         const SizedBox(width: 10),
         Text(event.capacity.toString()),
       ],

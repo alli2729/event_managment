@@ -33,6 +33,22 @@ class MyEventsController extends GetxController {
     }
   }
 
+  Future<void> onEdit({required int eventId}) async {
+    final result = await Get.toNamed(
+      RouteNames.editEvent,
+      parameters: {"makerId": "$makerId", "eventId": "$eventId"},
+    );
+
+    if (result != null) {
+      int index = myEvents.indexWhere((event) => event.id == eventId);
+      myEvents[index] = EventModel.fromJason(result);
+    }
+  }
+
+  Future<void> onRemove({required int id}) async {
+    
+  }
+
   @override
   void onInit() {
     super.onInit();
