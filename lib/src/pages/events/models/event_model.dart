@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 class EventModel {
   int id;
   int makerId;
@@ -9,6 +12,8 @@ class EventModel {
   int capacity;
   double price;
   int? attendent = 0;
+  String? imageBase64 = '';
+  Uint8List? image;
 
   EventModel({
     required this.id,
@@ -19,7 +24,10 @@ class EventModel {
     required this.capacity,
     required this.price,
     this.attendent,
-  });
+    this.imageBase64,
+  }) {
+    image = base64Decode(imageBase64!);
+  }
 
   factory EventModel.fromJason(Map<String, dynamic> json) {
     return EventModel(
@@ -31,6 +39,7 @@ class EventModel {
       capacity: json["capacity"],
       price: json["price"],
       attendent: json["attendent"],
+      imageBase64: json["image"],
     );
   }
 }

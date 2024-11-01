@@ -17,6 +17,12 @@ class EventWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        CircleAvatar(
+          child: (event.image!.isNotEmpty)
+              ? Image.memory(event.image!)
+              : const Icon(Icons.person),
+        ),
+        const SizedBox(width: 10),
         Text(event.id.toString()),
         const SizedBox(width: 10),
         Text(event.makerId.toString()),

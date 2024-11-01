@@ -2,7 +2,10 @@ import '../../models/event_model.dart';
 import 'package:flutter/material.dart';
 
 class EventWidget extends StatelessWidget {
-  const EventWidget({super.key, required this.event});
+  const EventWidget({
+    super.key,
+    required this.event,
+  });
 
   final EventModel event;
 
@@ -10,6 +13,11 @@ class EventWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        CircleAvatar(
+          child: (event.image!.isNotEmpty)
+              ? Image.memory(event.image!)
+              : const Icon(Icons.person),
+        ),
         Text(event.id.toString()),
         const SizedBox(width: 10),
         Text(event.makerId.toString()),

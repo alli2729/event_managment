@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:typed_data';
 import '../../../infrastructure/common/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +22,9 @@ class AddEventController extends GetxController {
   RxString day = '01'.obs;
   RxString month = '01'.obs;
   RxString year = '2022'.obs;
+
+  Rxn<Uint8List> image = Rxn();
+  String imageBase64 = '';
 
   // functions
   void selectDay(String? selectedDay) => day.value = selectedDay!;
@@ -44,6 +49,7 @@ class AddEventController extends GetxController {
       capacity: int.parse(capacityController.text),
       price: double.parse(priceController.text),
       attendent: 0,
+      imageBase64: imageBase64,
     );
 
     final result = await _repository.addEventByDto(dto: dto);
@@ -53,6 +59,19 @@ class AddEventController extends GetxController {
       },
       (eventJson) {
         Get.back(result: eventJson);
+      },
+    );
+  }
+
+  Future<void> onPicture() async {
+    final result = await _repository.pickImage();
+    result.fold(
+      (left) {
+        if (left) Utils.showFailSnackBar(message: 'Faild');
+      },
+      (imageBase64) {
+        image.value = base64Decode(imageBase64);
+        this.imageBase64 = imageBase64;
       },
     );
   }

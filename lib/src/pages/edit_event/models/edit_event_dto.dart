@@ -8,6 +8,7 @@ class EditEventDto {
   int capacity;
   double price;
   int attendent;
+  String? imageBase64 = '';
 
   EditEventDto({
     required this.makerId,
@@ -17,6 +18,7 @@ class EditEventDto {
     required this.capacity,
     required this.price,
     required this.attendent,
+    this.imageBase64,
   });
 
   Map<String, dynamic> toJason() => {
@@ -27,5 +29,6 @@ class EditEventDto {
         "capacity": capacity,
         "price": price,
         "attendent": attendent,
+        "image": imageBase64,
       };
 }

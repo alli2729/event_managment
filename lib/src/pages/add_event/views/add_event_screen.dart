@@ -53,6 +53,17 @@ class AddEventScreen extends GetView<AddEventController> {
                 ],
               ),
             ),
+            IconButton(
+              onPressed: controller.onPicture,
+              icon: const Icon(Icons.photo),
+            ),
+            const SizedBox(height: 24),
+            Obx(
+              () => (controller.image.value == null)
+                  ? const Text('no image')
+                  : Image.memory(controller.image.value!),
+            ),
+            const SizedBox(height: 24),
             ElevatedButton(
               onPressed: controller.onAddEvent,
               child: const Text('Add Event'),

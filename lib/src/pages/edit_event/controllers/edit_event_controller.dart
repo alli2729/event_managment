@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../infrastructure/common/utils.dart';
@@ -23,6 +25,9 @@ class EditEventController extends GetxController {
   RxString month = '01'.obs;
   RxString year = '2024'.obs;
 
+  Rxn<Uint8List> image = Rxn();
+  String? imageBase64 = '';
+
   EventModel event = EventModel(
     id: 0,
     makerId: 0,
@@ -31,6 +36,7 @@ class EditEventController extends GetxController {
     dateTime: DateTime.parse('2022-01-01'),
     capacity: 0,
     price: 0,
+    imageBase64: '',
   );
 
   // functions
@@ -46,6 +52,10 @@ class EditEventController extends GetxController {
       },
       (eventJson) {
         event = eventJson;
+        imageBase64 = event.imageBase64;
+        if (event.imageBase64!.isNotEmpty) {
+          image.value = base64Decode(event.imageBase64!);
+        }
         fillControllers();
       },
     );
@@ -79,6 +89,7 @@ class EditEventController extends GetxController {
       capacity: int.parse(capacityController.text),
       price: double.parse(priceController.text),
       attendent: 0,
+      imageBase64: imageBase64,
     );
 
     final result = await _repository.editEventByDto(dto: dto, eventId: eventId);
@@ -88,6 +99,19 @@ class EditEventController extends GetxController {
       },
       (eventJson) {
         Get.back(result: eventJson);
+      },
+    );
+  }
+
+  Future<void> onPicture() async {
+    final result = await _repository.pickImage();
+    result.fold(
+      (exception) {
+        if (exception) Utils.showFailSnackBar(message: 'Faild');
+      },
+      (imageBase64) {
+        image.value = base64Decode(imageBase64);
+        this.imageBase64 = imageBase64;
       },
     );
   }

@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:either_dart/either.dart';
+import 'package:file_picker/file_picker.dart';
 import '../models/event_model.dart';
 import '../models/edit_event_dto.dart';
 import '../../../infrastructure/common/url_repository.dart';
@@ -42,5 +44,21 @@ class EditEventRepository {
     } catch (e) {
       return Left(e.toString());
     }
+  }
+
+  Future<Either<bool, String>> pickImage() async {
+    Uint8List? imageData;
+    // Using FilePicker for web-compatible file selection
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+    );
+
+    if (result != null && result.files.single.bytes != null) {
+      imageData = result.files.single.bytes;
+      // Convert image to base64
+      return Right(base64Encode(imageData!));
+    }
+    return const Left(false);
   }
 }

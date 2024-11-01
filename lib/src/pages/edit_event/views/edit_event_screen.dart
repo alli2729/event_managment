@@ -53,6 +53,17 @@ class EditEventScreen extends GetView<EditEventController> {
                 ],
               ),
             ),
+            const SizedBox(height: 24),
+            IconButton(
+              onPressed: controller.onPicture,
+              icon: const Icon(Icons.photo),
+            ),
+            Obx(
+              () => (controller.image.value == null)
+                  ? const Text('no image')
+                  : Image.memory(controller.image.value!),
+            ),
+            const SizedBox(height: 24),
             ElevatedButton(
               onPressed: controller.onEdit,
               child: const Text('Edit Event'),
