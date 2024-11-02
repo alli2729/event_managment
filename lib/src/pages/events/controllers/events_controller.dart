@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../../../../event_managment.dart';
 import '../models/event_model.dart';
@@ -12,6 +13,7 @@ class EventsController extends GetxController {
   // Variables
   final _repository = EventsRepository();
   final RxList<EventModel> events = RxList();
+  final searchController = TextEditingController();
 
   // Functions --------------------------------------------------
   Future<void> getUserById() async {
@@ -51,6 +53,20 @@ class EventsController extends GetxController {
     );
 
     getAllEvents();
+  }
+
+  Future<void> onSearch(String title) async {
+    if (title.isEmpty) getAllEvents();
+
+    final result = await _repository.searchByTitle(title: title);
+    result.fold(
+      (left) {
+        Utils.showFailSnackBar(message: 'Cant search right now');
+      },
+      (searchedEvents) {
+        events.value = searchedEvents;
+      },
+    );
   }
 
   @override

@@ -34,4 +34,21 @@ class EventsRepository {
       return Left(e.toString());
     }
   }
+
+  Future<Either<String, List<EventModel>>> searchByTitle({
+    required String title,
+  }) async {
+    try {
+      List<EventModel> searchedEvents = [];
+      final url = UrlRepository.searchEventByTitle(title: title);
+      final response = await http.get(url);
+      final List<dynamic> result = json.decode(response.body);
+      for (Map<String, dynamic> event in result) {
+        searchedEvents.add(EventModel.fromJason(event));
+      }
+      return Right(searchedEvents);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

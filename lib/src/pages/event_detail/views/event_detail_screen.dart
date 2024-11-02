@@ -1,4 +1,4 @@
-import 'widgets/buy_counter.dart';
+import '../../../infrastructure/components/buy_counter.dart';
 import '../controllers/event_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +43,8 @@ class EventDetailScreen extends GetView<EventDetailController> {
                   : const Text('This Event is Filled'),
               const SizedBox(height: 12),
               ElevatedButton(
-                onPressed: controller.onBuyEvent,
+                onPressed:
+                    (controller.notFilled) ? controller.onBuyEvent : null,
                 child: const Text('Buy Event'),
               ),
             ],

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import '../../../infrastructure/common/utils.dart';
 import '../../../infrastructure/routes/route_names.dart';
 import '../repositories/my_events_repository.dart';
@@ -12,6 +13,7 @@ class MyEventsController extends GetxController {
   // variables
   final _repository = MyEventsRepository();
   RxList<EventModel> myEvents = RxList();
+  final searchController = TextEditingController();
 
   // functions
   Future<void> getMyEvents() async {
@@ -59,6 +61,24 @@ class MyEventsController extends GetxController {
       (_) {
         myEvents.removeAt(index);
         Utils.showSuccessSnackBar(message: 'Successfully deleted');
+      },
+    );
+  }
+
+  Future<void> onSearch(String title) async {
+    if (title.isEmpty) getMyEvents();
+
+    final result = await _repository.searchByTitle(
+      title: title,
+      makerId: makerId,
+    );
+
+    result.fold(
+      (left) {
+        Utils.showFailSnackBar(message: 'Cant search right now');
+      },
+      (searchedEvents) {
+        myEvents.value = searchedEvents;
       },
     );
   }

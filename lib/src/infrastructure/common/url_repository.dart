@@ -40,4 +40,15 @@ class UrlRepository {
   static Uri deleteEventById({required int eventId}) {
     return Uri.parse('$_baseUrl$_events/$eventId');
   }
+
+  static Uri searchEventByTitle({required String title}) {
+    return Uri.parse('$_baseUrl$_events/?title_like=$title');
+  }
+
+  static Uri searchEventByTitleAndMakerId({
+    required String title,
+    required int makerId,
+  }) {
+    return Uri.parse('$_baseUrl$_events/?makerId=$makerId&title_like=$title');
+  }
 }

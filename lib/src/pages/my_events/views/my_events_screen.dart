@@ -11,6 +11,16 @@ class MyEventsScreen extends GetView<MyEventsController> {
       appBar: AppBar(title: const Text('My Events')),
       body: Column(
         children: [
+          Row(
+            children: [
+              Expanded(child: _searchBar()),
+              const SizedBox(width: 12),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.menu),
+              ),
+            ],
+          ),
           Expanded(
             child: Obx(
               () => ListView.separated(
@@ -33,6 +43,20 @@ class MyEventsScreen extends GetView<MyEventsController> {
             child: const Text('Add Event'),
           )
         ],
+      ),
+    );
+  }
+
+  Widget _searchBar() {
+    return TextField(
+      onChanged: controller.onSearch,
+      controller: controller.searchController,
+      decoration: InputDecoration(
+        hintText: 'Search',
+        prefixIcon: const Icon(Icons.search),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
     );
   }
