@@ -130,12 +130,10 @@ class EventsController extends GetxController {
     priceLimits = Rx(RangeValues(min, max));
   }
 
-  RxBool get filtered {
-    if (isLimited.value || isExpired.value || isFilled.value || isSort.value) {
-      return true.obs;
-    }
-    return false.obs;
-  }
+  RxBool get filtered =>
+      (isLimited.value || isExpired.value || isFilled.value || isSort.value)
+          ? true.obs
+          : false.obs;
 
   @override
   void onInit() {
