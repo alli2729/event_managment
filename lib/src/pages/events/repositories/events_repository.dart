@@ -35,12 +35,16 @@ class EventsRepository {
     }
   }
 
-  Future<Either<String, List<EventModel>>> searchByTitle({
+  Future<Either<String, List<EventModel>>> searchByParameters({
     required String title,
+    required String params,
   }) async {
     try {
       List<EventModel> searchedEvents = [];
-      final url = UrlRepository.searchEventByTitle(title: title);
+      final url = UrlRepository.searchEventByParams(
+        title: title,
+        params: params,
+      );
       final response = await http.get(url);
       final List<dynamic> result = json.decode(response.body);
       for (Map<String, dynamic> event in result) {

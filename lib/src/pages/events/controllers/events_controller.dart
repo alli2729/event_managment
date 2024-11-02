@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../../../../event_managment.dart';
@@ -14,6 +15,9 @@ class EventsController extends GetxController {
   final _repository = EventsRepository();
   final RxList<EventModel> events = RxList();
   final searchController = TextEditingController();
+  RxBool isFilled = false.obs;
+  RxBool isExpired = false.obs;
+  RxBool isSort = false.obs;
 
   // Functions --------------------------------------------------
   Future<void> getUserById() async {
@@ -56,17 +60,45 @@ class EventsController extends GetxController {
   }
 
   Future<void> onSearch(String title) async {
-    if (title.isEmpty) getAllEvents();
+    if (title.isEmpty && parameters.isEmpty) getAllEvents();
 
-    final result = await _repository.searchByTitle(title: title);
-    result.fold(
-      (left) {
-        Utils.showFailSnackBar(message: 'Cant search right now');
-      },
-      (searchedEvents) {
-        events.value = searchedEvents;
-      },
+    final result = await _repository.searchByParameters(
+      title: title,
+      params: parameters,
     );
+
+    result.fold(
+      (_) => Utils.showFailSnackBar(message: 'Cant search right now'),
+      (searchedEvents) => events.value = searchedEvents,
+    );
+  }
+
+  void showDialog(Widget dialog) async {
+    final result = await Get.dialog(dialog);
+    if (result != null) {
+      onSearch(searchController.text);
+    }
+  }
+
+  String get parameters {
+    String parm = '';
+    if (isFilled.value) parm = '$parm&filled_ne=true';
+
+    if (isExpired.value) {
+      final time = DateTime.now();
+      parm = '$parm&dateTime_gte=${time.year}-${time.month}-${time.day}';
+    }
+
+    if (isSort.value) parm = '$parm&_sort=dateTime&_order=desc';
+
+    return parm;
+  }
+
+  void onResetFilters() {
+    isFilled.value = false;
+    isExpired.value = false;
+    isSort.value = false;
+    Get.back(result: true);
   }
 
   @override

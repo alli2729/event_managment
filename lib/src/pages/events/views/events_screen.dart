@@ -25,7 +25,7 @@ class EventsScreen extends GetView<EventsController> {
               Expanded(child: _searchBar()),
               const SizedBox(width: 12),
               IconButton(
-                onPressed: () {},
+                onPressed: () => controller.showDialog(dialog),
                 icon: const Icon(Icons.menu),
               ),
             ],
@@ -61,6 +61,45 @@ class EventsScreen extends GetView<EventsController> {
         prefixIcon: const Icon(Icons.search),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+
+  Widget get dialog {
+    return Dialog.fullscreen(
+      child: Obx(
+        () => Column(
+          children: [
+            const Text('Price limitation'),
+            CheckboxListTile(
+              value: controller.isFilled.value,
+              onChanged: (v) => controller.isFilled.toggle(),
+              title: const Text('not Filled'),
+            ),
+            CheckboxListTile(
+              value: controller.isExpired.value,
+              onChanged: (v) => controller.isExpired.toggle(),
+              title: const Text('not Expired'),
+            ),
+            CheckboxListTile(
+              value: controller.isSort.value,
+              onChanged: (v) => controller.isSort.toggle(),
+              title: const Text('Sort By Date'),
+            ),
+            IconButton(
+              onPressed: Get.back,
+              icon: const Icon(Icons.cancel),
+            ),
+            ElevatedButton(
+              onPressed: () => Get.back(result: true),
+              child: const Text('Filter'),
+            ),
+            ElevatedButton(
+              onPressed: controller.onResetFilters,
+              child: const Text('Reset Filters'),
+            )
+          ],
         ),
       ),
     );

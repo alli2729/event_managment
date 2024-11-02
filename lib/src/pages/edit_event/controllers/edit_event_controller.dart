@@ -37,6 +37,7 @@ class EditEventController extends GetxController {
     capacity: 0,
     price: 0,
     imageBase64: '',
+    filled: false,
   );
 
   // functions
@@ -88,8 +89,9 @@ class EditEventController extends GetxController {
       dateTime: dateTime,
       capacity: int.parse(capacityController.text),
       price: double.parse(priceController.text),
-      attendent: 0,
+      attendent: event.attendent!,
       imageBase64: imageBase64,
+      filled: event.filled,
     );
 
     final result = await _repository.editEventByDto(dto: dto, eventId: eventId);

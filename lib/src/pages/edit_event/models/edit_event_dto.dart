@@ -9,6 +9,7 @@ class EditEventDto {
   double price;
   int attendent;
   String? imageBase64 = '';
+  bool filled;
 
   EditEventDto({
     required this.makerId,
@@ -18,6 +19,7 @@ class EditEventDto {
     required this.capacity,
     required this.price,
     required this.attendent,
+    required this.filled,
     this.imageBase64,
   });
 
@@ -30,5 +32,6 @@ class EditEventDto {
         "price": price,
         "attendent": attendent,
         "image": imageBase64,
+        "filled": filled,
       };
 }

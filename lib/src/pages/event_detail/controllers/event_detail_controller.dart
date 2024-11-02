@@ -24,6 +24,7 @@ class EventDetailController extends GetxController {
     price: 0,
     imageBase64: '',
     attendent: 0,
+    filled: false,
   ));
 
   Rxn<Uint8List> image = Rxn();
@@ -52,8 +53,12 @@ class EventDetailController extends GetxController {
 
   Future<void> onBuyEvent() async {
     int sendAttendent = event.value.attendent! + buyValue;
+    bool filled = false;
+    if (sendAttendent == event.value.capacity) filled = true;
+
     final BuyEventDto dto = BuyEventDto(
       attendent: sendAttendent,
+      filled: filled,
     );
 
     final result = await _repository.buyEvent(dto: dto, eventId: eventId);

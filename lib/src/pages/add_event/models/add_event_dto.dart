@@ -9,6 +9,7 @@ class AddEventDto {
   double price;
   int attendent;
   String? imageBase64 = '';
+  bool filled = false;
 
   AddEventDto({
     required this.makerId,
@@ -30,5 +31,6 @@ class AddEventDto {
         "price": price,
         "attendent": attendent,
         "image": imageBase64,
+        "filled": filled,
       };
 }

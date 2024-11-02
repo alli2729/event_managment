@@ -14,6 +14,7 @@ class EventModel {
   int? attendent = 0;
   String? imageBase64 = '';
   Uint8List? image;
+  bool filled;
 
   EventModel({
     required this.id,
@@ -23,6 +24,7 @@ class EventModel {
     required this.dateTime,
     required this.capacity,
     required this.price,
+    required this.filled,
     this.attendent,
     this.imageBase64,
   }) {
@@ -40,6 +42,7 @@ class EventModel {
       price: json["price"],
       attendent: json["attendent"],
       imageBase64: json["image"],
+      filled: json["filled"],
     );
   }
 }
