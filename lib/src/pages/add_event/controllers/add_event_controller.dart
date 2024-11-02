@@ -76,6 +76,11 @@ class AddEventController extends GetxController {
     );
   }
 
+  void onClear() {
+    image.value = null;
+    imageBase64 = '';
+  }
+
   //validation
   String? validate(String? value) {
     if (value == null || value.isEmpty) return 'required';

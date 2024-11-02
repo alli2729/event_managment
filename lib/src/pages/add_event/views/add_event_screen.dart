@@ -58,6 +58,11 @@ class AddEventScreen extends GetView<AddEventController> {
               icon: const Icon(Icons.photo),
             ),
             const SizedBox(height: 24),
+            IconButton(
+              onPressed: controller.onClear,
+              icon: const Icon(Icons.clear),
+            ),
+            const SizedBox(height: 24),
             Obx(
               () => (controller.image.value == null)
                   ? const Text('no image')
