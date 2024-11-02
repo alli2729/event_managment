@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../../../../event_managment.dart';
 import '../models/event_model.dart';
@@ -18,6 +17,11 @@ class EventsController extends GetxController {
   RxBool isFilled = false.obs;
   RxBool isExpired = false.obs;
   RxBool isSort = false.obs;
+  RxBool isLimited = false.obs;
+
+  Rx<RangeValues> priceLimits = Rx(const RangeValues(0, 1));
+  double max = 1;
+  double min = 0;
 
   // Functions --------------------------------------------------
   Future<void> getUserById() async {
@@ -32,7 +36,10 @@ class EventsController extends GetxController {
     final result = await _repository.getAllEvents();
     result.fold(
       (exception) => Utils.showFailSnackBar(message: exception),
-      (eventModels) => events.value = eventModels,
+      (eventModels) {
+        events.value = eventModels;
+        calculateMinMax();
+      },
     );
   }
 
@@ -91,6 +98,11 @@ class EventsController extends GetxController {
 
     if (isSort.value) parm = '$parm&_sort=dateTime&_order=desc';
 
+    if (isLimited.value) {
+      parm =
+          '$parm&price_gte=${priceLimits.value.start}&price_lte=${priceLimits.value.end}';
+    }
+
     return parm;
   }
 
@@ -99,6 +111,29 @@ class EventsController extends GetxController {
     isExpired.value = false;
     isSort.value = false;
     Get.back(result: true);
+  }
+
+  void onPriceChanged(v) => priceLimits.value = v;
+
+  void calculateMinMax() {
+    if (events.isEmpty) return;
+
+    double max = 0;
+    double min = double.infinity;
+    for (var event in events) {
+      if (event.price > max) max = event.price;
+      if (event.price < min) min = event.price;
+    }
+    this.max = max;
+    this.min = min;
+    priceLimits = Rx(RangeValues(min, max));
+  }
+
+  RxBool get filtered {
+    if (isLimited.value || isExpired.value || isFilled.value || isSort.value) {
+      return true.obs;
+    }
+    return false.obs;
   }
 
   @override

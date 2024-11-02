@@ -24,9 +24,16 @@ class EventsScreen extends GetView<EventsController> {
             children: [
               Expanded(child: _searchBar()),
               const SizedBox(width: 12),
-              IconButton(
-                onPressed: () => controller.showDialog(dialog),
-                icon: const Icon(Icons.menu),
+              Obx(
+                () => Badge(
+                  alignment: const Alignment(0.5, -0.6),
+                  smallSize: 10,
+                  isLabelVisible: controller.filtered.value,
+                  child: IconButton(
+                    onPressed: () => controller.showDialog(dialog),
+                    icon: const Icon(Icons.menu),
+                  ),
+                ),
               ),
             ],
           ),
@@ -71,7 +78,22 @@ class EventsScreen extends GetView<EventsController> {
       child: Obx(
         () => Column(
           children: [
-            const Text('Price limitation'),
+            CheckboxListTile(
+              value: controller.isLimited.value,
+              onChanged: (v) => controller.isLimited.toggle(),
+              title: const Text('Price Limitaition'),
+            ),
+            RangeSlider(
+              divisions: 500,
+              min: controller.min,
+              max: controller.max,
+              values: controller.priceLimits.value,
+              onChanged: (controller.isLimited.value)
+                  ? controller.onPriceChanged
+                  : null,
+            ),
+            Text(
+                'from ${controller.priceLimits.value.start} to ${controller.priceLimits.value.end}'),
             CheckboxListTile(
               value: controller.isFilled.value,
               onChanged: (v) => controller.isFilled.toggle(),
