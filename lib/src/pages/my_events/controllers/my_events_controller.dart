@@ -14,6 +14,14 @@ class MyEventsController extends GetxController {
   final _repository = MyEventsRepository();
   RxList<EventModel> myEvents = RxList();
   final searchController = TextEditingController();
+  RxBool isFilled = false.obs;
+  RxBool isExpired = false.obs;
+  RxBool isSort = false.obs;
+  RxBool isLimited = false.obs;
+
+  Rx<RangeValues> priceLimits = Rx(const RangeValues(0, 1));
+  double max = 1;
+  double min = 0;
 
   // functions
   Future<void> getMyEvents() async {
@@ -21,7 +29,10 @@ class MyEventsController extends GetxController {
 
     result.fold(
       (exception) => Utils.showFailSnackBar(message: exception),
-      (eventModels) => myEvents.addAll(eventModels),
+      (eventModels) {
+        myEvents.value = eventModels;
+        calculateMinMax();
+      },
     );
   }
 
@@ -68,9 +79,10 @@ class MyEventsController extends GetxController {
   Future<void> onSearch(String title) async {
     if (title.isEmpty) getMyEvents();
 
-    final result = await _repository.searchByTitle(
+    final result = await _repository.searchByParameters(
       title: title,
       makerId: makerId,
+      params: parameters,
     );
 
     result.fold(
@@ -82,6 +94,60 @@ class MyEventsController extends GetxController {
       },
     );
   }
+
+  void showDialog(Widget dialog) async {
+    final result = await Get.dialog(dialog);
+    if (result != null) {
+      onSearch(searchController.text);
+    }
+  }
+
+  String get parameters {
+    String parm = '';
+    if (isFilled.value) parm = '$parm&filled_ne=true';
+
+    if (isExpired.value) {
+      final time = DateTime.now();
+      parm = '$parm&dateTime_gte=${time.year}-${time.month}-${time.day}';
+    }
+
+    if (isLimited.value) {
+      parm =
+          '$parm&price_gte=${priceLimits.value.start}&price_lte=${priceLimits.value.end}';
+    }
+
+    if (isSort.value) parm = '$parm&_sort=dateTime&_order=desc';
+    return parm;
+  }
+
+  void onResetFilters() {
+    isFilled.value = false;
+    isExpired.value = false;
+    isSort.value = false;
+    isLimited.value = false;
+    Get.back(result: true);
+  }
+
+  void onPriceChanged(v) => priceLimits.value = v;
+
+  void calculateMinMax() {
+    if (myEvents.isEmpty) return;
+
+    double max = 0;
+    double min = double.infinity;
+    for (var event in myEvents) {
+      if (event.price > max) max = event.price;
+      if (event.price < min) min = event.price;
+    }
+    this.max = max;
+    this.min = min;
+    priceLimits = Rx(RangeValues(min, max));
+  }
+
+  RxBool get filtered =>
+      (isLimited.value || isExpired.value || isFilled.value || isSort.value)
+          ? true.obs
+          : false.obs;
 
   @override
   void onInit() {
