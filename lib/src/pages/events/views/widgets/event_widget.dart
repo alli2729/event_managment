@@ -5,9 +5,11 @@ class EventWidget extends StatelessWidget {
   const EventWidget({
     super.key,
     required this.event,
+    required this.onView,
   });
 
   final EventModel event;
+  final void Function() onView;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,13 @@ class EventWidget extends StatelessWidget {
         Text(event.dateTime.year.toString()),
         const SizedBox(width: 10),
         Text(event.capacity.toString()),
+        const SizedBox(width: 10),
+        Text('att: ${event.attendent.toString()}'),
+        const Spacer(),
+        IconButton(
+          onPressed: onView,
+          icon: const Icon(Icons.event),
+        ),
       ],
     );
   }

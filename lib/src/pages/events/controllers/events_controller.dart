@@ -44,6 +44,15 @@ class EventsController extends GetxController {
     Get.offAndToNamed(RouteNames.login);
   }
 
+  Future<void> onViewEvent(int eventId) async {
+    await Get.toNamed(
+      RouteNames.eventDetail,
+      parameters: {"eventId": "$eventId"},
+    );
+
+    getAllEvents();
+  }
+
   @override
   void onInit() {
     super.onInit();

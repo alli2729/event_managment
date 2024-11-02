@@ -1,3 +1,5 @@
+import '../../pages/event_detail/common/event_detail_bindings.dart';
+import '../../pages/event_detail/views/event_detail_screen.dart';
 import '../../pages/add_event/common/add_event_bindings.dart';
 import '../../pages/add_event/views/add_event_screen.dart';
 import '../../pages/edit_event/common/edit_event_bindings.dart';
@@ -39,6 +41,11 @@ class RoutePages {
       page: () => const EventsScreen(),
       binding: EventsBindings(),
       children: [
+        GetPage(
+          name: RoutePath.eventDetail,
+          page: () => const EventDetailScreen(),
+          binding: EventDetailBindings(),
+        ),
         GetPage(
           name: RoutePath.myEvents,
           page: () => const MyEventsScreen(),

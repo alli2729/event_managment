@@ -11,4 +11,5 @@ class RouteNames {
       '${RoutePath.events}${RoutePath.myEvents}${RoutePath.addEvent}';
   static String editEvent =
       '${RoutePath.events}${RoutePath.myEvents}${RoutePath.editEvent}';
+  static String eventDetail = '${RoutePath.events}${RoutePath.eventDetail}';
 }

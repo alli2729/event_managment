@@ -7,4 +7,5 @@ class RoutePath {
   static const String myEvents = "/my-events";
   static const String addEvent = "/add-event";
   static const String editEvent = "/edit-event";
+  static const String eventDetail = "/event-detail";
 }

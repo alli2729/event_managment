@@ -26,6 +26,8 @@ class EventsScreen extends GetView<EventsController> {
                 itemCount: controller.events.length,
                 itemBuilder: (_, index) => EventWidget(
                   event: controller.events[index],
+                  onView: () =>
+                      controller.onViewEvent(controller.events[index].id),
                 ),
                 separatorBuilder: (_, __) => const Divider(),
               ),
