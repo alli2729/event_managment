@@ -110,6 +110,7 @@ class EventsController extends GetxController {
     isFilled.value = false;
     isExpired.value = false;
     isSort.value = false;
+    isLimited.value = false;
     Get.back(result: true);
   }
 
