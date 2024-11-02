@@ -34,10 +34,7 @@ class _BuyCounterState extends State<BuyCounter> {
           icon: const Icon(Icons.remove),
         ),
         const SizedBox(width: 12),
-        ColoredBox(
-          color: Colors.yellow,
-          child: Text('$_currentValue'),
-        ),
+        Text('$_currentValue'),
         const SizedBox(width: 12),
         IconButton(
           onPressed: _increment,
