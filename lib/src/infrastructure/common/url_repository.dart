@@ -49,6 +49,10 @@ class UrlRepository {
     return Uri.parse('$_baseUrl$_events/?title_like=$title${params ?? ''}');
   }
 
+  static Uri getEventsByParameters({required String params}) {
+    return Uri.parse('$_baseUrl$_events?$params');
+  }
+
   static Uri searchEventByParametersAndMakerId({
     required String title,
     required int makerId,

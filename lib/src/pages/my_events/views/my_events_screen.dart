@@ -80,8 +80,7 @@ class MyEventsScreen extends GetView<MyEventsController> {
                   ? controller.onPriceChanged
                   : null,
             ),
-            Text(
-                'from ${controller.priceLimits.value.start} to ${controller.priceLimits.value.end}'),
+            Text('from ${controller.minPrice} to ${controller.maxPrice}'),
             CheckboxListTile(
               value: controller.isFilled.value,
               onChanged: (v) => controller.isFilled.toggle(),

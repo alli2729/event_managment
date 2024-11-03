@@ -13,8 +13,8 @@ class UserModel {
     required this.gender,
     required this.username,
     required this.password,
-    required this.bookmarked,
     required this.id,
+    required this.bookmarked,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {

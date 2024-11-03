@@ -4,6 +4,7 @@ class RegisterUserDto {
   String gender;
   String username;
   String password;
+  List bookmarked;
 
   RegisterUserDto({
     required this.firstName,
@@ -11,6 +12,7 @@ class RegisterUserDto {
     required this.gender,
     required this.username,
     required this.password,
+    required this.bookmarked,
   });
 
   Map<String, dynamic> toJson() {
@@ -20,6 +22,7 @@ class RegisterUserDto {
       "gender": gender,
       "username": username,
       "password": password,
+      "bookmarked": bookmarked,
     };
   }
 }

@@ -43,16 +43,28 @@ class EventsScreen extends GetView<EventsController> {
                 itemCount: controller.events.length,
                 itemBuilder: (_, index) => EventWidget(
                   event: controller.events[index],
+                  bookmarked: controller.bookmarkedEvents,
                   onView: () =>
                       controller.onViewEvent(controller.events[index].id),
+                  onBookmark: () =>
+                      controller.onBookmark(controller.events[index].id),
                 ),
                 separatorBuilder: (_, __) => const Divider(),
               ),
             ),
           ),
-          ElevatedButton(
-            onPressed: controller.onMyEvents,
-            child: const Text('My Events'),
+          Row(
+            children: [
+              ElevatedButton(
+                onPressed: controller.onMyEvents,
+                child: const Text('My Events'),
+              ),
+              const SizedBox(width: 12),
+              ElevatedButton(
+                onPressed: controller.onBookmarks,
+                child: const Text('Bookmarks'),
+              ),
+            ],
           ),
         ],
       ),
@@ -92,8 +104,7 @@ class EventsScreen extends GetView<EventsController> {
                   ? controller.onPriceChanged
                   : null,
             ),
-            Text(
-                'from ${controller.priceLimits.value.start} to ${controller.priceLimits.value.end}'),
+            Text('from ${controller.minPrice} to ${controller.maxPrice}'),
             CheckboxListTile(
               value: controller.isFilled.value,
               onChanged: (v) => controller.isFilled.toggle(),

@@ -1,3 +1,5 @@
+import '../../pages/bookmark_event/common/bookmark_event_binding.dart';
+import '../../pages/bookmark_event/views/bookmark_event_screen.dart';
 import '../../pages/event_detail/common/event_detail_bindings.dart';
 import '../../pages/event_detail/views/event_detail_screen.dart';
 import '../../pages/add_event/common/add_event_bindings.dart';
@@ -45,6 +47,11 @@ class RoutePages {
           name: RoutePath.eventDetail,
           page: () => const EventDetailScreen(),
           binding: EventDetailBindings(),
+        ),
+        GetPage(
+          name: RoutePath.bookmark,
+          page: () => const BookmarkEventScreen(),
+          binding: BookmarkEventBinding(),
         ),
         GetPage(
           name: RoutePath.myEvents,

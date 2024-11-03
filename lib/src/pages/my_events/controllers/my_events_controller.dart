@@ -112,8 +112,7 @@ class MyEventsController extends GetxController {
     }
 
     if (isLimited.value) {
-      parm =
-          '$parm&price_gte=${priceLimits.value.start}&price_lte=${priceLimits.value.end}';
+      parm = '$parm&price_gte=$minPrice&price_lte=$maxPrice';
     }
 
     if (isSort.value) parm = '$parm&_sort=dateTime&_order=desc';
@@ -144,10 +143,14 @@ class MyEventsController extends GetxController {
     priceLimits = Rx(RangeValues(min, max));
   }
 
+  // getters
   RxBool get filtered =>
       (isLimited.value || isExpired.value || isFilled.value || isSort.value)
           ? true.obs
           : false.obs;
+
+  double get minPrice => priceLimits.value.start.floorToDouble();
+  double get maxPrice => priceLimits.value.end.floorToDouble();
 
   @override
   void onInit() {

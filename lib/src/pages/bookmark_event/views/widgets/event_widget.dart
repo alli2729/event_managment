@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import '../../models/event_model.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +11,9 @@ class EventWidget extends StatelessWidget {
   });
 
   final EventModel event;
-  final RxList bookmarked;
   final void Function() onView;
   final void Function() onBookmark;
+  final List<EventModel> bookmarked;
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +48,9 @@ class EventWidget extends StatelessWidget {
             Text('${event.attendent} / ${event.capacity}'),
           ],
         ),
-        Obx(
-          () => IconButton(
-            onPressed: onBookmark,
-            icon: (isBookmarked)
-                ? const Icon(Icons.bookmark, color: Colors.red)
-                : const Icon(Icons.bookmark_outline),
-          ),
+        IconButton(
+          onPressed: onBookmark,
+          icon: const Icon(Icons.bookmark, color: Colors.red),
         ),
       ],
     );
@@ -80,6 +75,11 @@ class EventWidget extends StatelessWidget {
   }
 
   bool get isBookmarked {
-    return (bookmarked.contains(event.id));
+    for (var bookmark in bookmarked) {
+      if (bookmark.id == event.id) {
+        return true;
+      }
+    }
+    return false;
   }
 }

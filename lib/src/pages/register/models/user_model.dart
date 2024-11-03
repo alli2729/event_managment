@@ -5,6 +5,7 @@ class UserModel {
   String username;
   String password;
   int id;
+  List bookmarked;
 
   UserModel({
     required this.firstName,
@@ -12,6 +13,7 @@ class UserModel {
     required this.gender,
     required this.username,
     required this.password,
+    required this.bookmarked,
     required this.id,
   });
 
@@ -23,6 +25,7 @@ class UserModel {
       gender: json["gender"],
       username: json["username"],
       password: json["password"],
+      bookmarked: json["bookmarked"],
     );
   }
 

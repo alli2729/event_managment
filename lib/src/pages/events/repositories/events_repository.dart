@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:either_dart/either.dart';
+import '../models/events_user_dto.dart';
 import 'package:http/http.dart' as http;
 import '../models/event_model.dart';
 import '../models/user_model.dart';
@@ -51,6 +52,26 @@ class EventsRepository {
         searchedEvents.add(EventModel.fromJason(event));
       }
       return Right(searchedEvents);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, bool>> editBookmarked({
+    required EventsUserDto dto,
+    required int userId,
+  }) async {
+    try {
+      final url = UrlRepository.userById(id: userId);
+      final response = await http.patch(
+        url,
+        body: json.encode(dto.toJson()),
+        headers: {"Content-Type": "application/json"},
+      );
+      if (response.statusCode != 200) {
+        return const Left('Cant add this event to bookmarks');
+      }
+      return const Right(true);
     } catch (e) {
       return Left(e.toString());
     }

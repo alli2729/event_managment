@@ -47,6 +47,7 @@ class RegisterController extends GetxController {
       gender: selectedGender.value!,
       username: usernameController.text,
       password: passwordController.text,
+      bookmarked: [],
     );
 
     final result = await _repository.registerByDto(dto: dto);

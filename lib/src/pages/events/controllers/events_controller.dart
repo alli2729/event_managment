@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../event_managment.dart';
+import '../../../infrastructure/routes/route_names.dart';
+import '../models/events_user_dto.dart';
 import '../models/event_model.dart';
 import '../../../infrastructure/common/utils.dart';
 import '../repositories/events_repository.dart';
@@ -13,6 +14,7 @@ class EventsController extends GetxController {
   // Variables
   final _repository = EventsRepository();
   final RxList<EventModel> events = RxList();
+  final RxList bookmarkedEvents = RxList();
   final searchController = TextEditingController();
   RxBool isFilled = false.obs;
   RxBool isExpired = false.obs;
@@ -28,7 +30,10 @@ class EventsController extends GetxController {
     final result = await _repository.getUserById(id: userId);
     result.fold(
       (exception) => Utils.showFailSnackBar(message: exception),
-      (_) => getAllEvents(),
+      (user) {
+        bookmarkedEvents.value = user.bookmarked;
+        getAllEvents();
+      },
     );
   }
 
@@ -66,6 +71,14 @@ class EventsController extends GetxController {
     getAllEvents();
   }
 
+  Future<void> onBookmarks() async {
+    await Get.toNamed(
+      RouteNames.bookmark,
+      parameters: {"userId": "$userId"},
+    );
+    getUserById();
+  }
+
   Future<void> onSearch(String title) async {
     if (title.isEmpty && parameters.isEmpty) getAllEvents();
 
@@ -99,8 +112,7 @@ class EventsController extends GetxController {
     if (isSort.value) parm = '$parm&_sort=dateTime&_order=desc';
 
     if (isLimited.value) {
-      parm =
-          '$parm&price_gte=${priceLimits.value.start}&price_lte=${priceLimits.value.end}';
+      parm = '$parm&price_gte=$minPrice&price_lte=$maxPrice';
     }
 
     return parm;
@@ -130,10 +142,31 @@ class EventsController extends GetxController {
     priceLimits = Rx(RangeValues(min, max));
   }
 
+  Future<void> onBookmark(int eventId) async {
+    (bookmarkedEvents.contains(eventId))
+        ? bookmarkedEvents.remove(eventId)
+        : bookmarkedEvents.add(eventId);
+
+    final EventsUserDto dto = EventsUserDto(bookmarked: bookmarkedEvents);
+    final result = await _repository.editBookmarked(dto: dto, userId: userId);
+    result.fold(
+      (exception) {
+        Utils.showFailSnackBar(message: exception);
+      },
+      (_) {
+        Utils.showSuccessSnackBar(message: 'Done !');
+      },
+    );
+  }
+
+  // getters
   RxBool get filtered =>
       (isLimited.value || isExpired.value || isFilled.value || isSort.value)
           ? true.obs
           : false.obs;
+
+  double get minPrice => priceLimits.value.start.floorToDouble();
+  double get maxPrice => priceLimits.value.end.floorToDouble();
 
   @override
   void onInit() {
