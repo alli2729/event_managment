@@ -8,7 +8,13 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // theme: ThemeData.dark(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFEAF4F4),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFFEAF4F4),
+          elevation: 0,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       initialRoute: package.RouteNames.splash,
       getPages: package.RoutePages.pages,

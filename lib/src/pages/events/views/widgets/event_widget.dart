@@ -19,67 +19,121 @@ class EventWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(12),
       onTap: onView,
-      child: Container(
-        padding: const EdgeInsets.all(8),
+      borderRadius: BorderRadius.circular(10),
+      child: DecoratedBox(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(10),
+          color: const Color(0xFFF6FFF8),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(255, 208, 222, 214),
+              spreadRadius: 1,
+              blurRadius: 1,
+            )
+          ],
         ),
-        child: _mainRow(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
+          child: Row(
+            children: [
+              _avatar(),
+              const SizedBox(width: 10),
+              title(),
+              const Spacer(),
+              priceDate(),
+              const SizedBox(width: 12),
+              iconNumber(),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  Widget _mainRow() {
-    return Row(
+  Widget _avatar() {
+    return CircleAvatar(
+      backgroundColor: const Color(0xFFEAF4F4),
+      radius: 30,
+      child: (event.image!.isNotEmpty)
+          ? ClipOval(child: Image.memory(event.image!))
+          : const Icon(Icons.event, color: Color(0xFFA4C3B2)),
+    );
+  }
+
+  Widget title() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _avatarAndTitle(),
-            Text(event.description),
-          ],
+        Text(
+          event.title,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        Column(
-          children: [
-            Text('${event.price} T', style: const TextStyle(fontSize: 16)),
-            Text(dateTime),
-            Text('${event.attendent} / ${event.capacity}'),
-          ],
+        Text(
+          event.description,
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.grey,
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget priceDate() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          '${event.price} T',
+          style: const TextStyle(
+            fontSize: 18,
+            color: Color(0xFF41C88E),
+          ),
         ),
+        const SizedBox(height: 6),
+        Text(
+          dateTime,
+          style: const TextStyle(
+            fontSize: 16,
+            color: Color(0xFFA4C3B2),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget iconNumber() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
         Obx(
-          () => IconButton(
-            onPressed: onBookmark,
-            icon: (isBookmarked)
+          () => GestureDetector(
+            onTap: onBookmark,
+            child: (isBookmarked)
                 ? const Icon(Icons.bookmark, color: Colors.red)
                 : const Icon(Icons.bookmark_outline),
           ),
         ),
+        const SizedBox(height: 12),
+        Text(
+          '${event.attendent} / ${event.capacity}',
+          style: const TextStyle(
+            fontSize: 12,
+            color: Colors.grey,
+          ),
+        )
       ],
     );
   }
 
-  Widget _avatarAndTitle() {
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: 20,
-          child: (event.image!.isNotEmpty)
-              ? Image.memory(event.image!)
-              : const Icon(Icons.person),
-        ),
-        Text(event.title, style: const TextStyle(fontSize: 24))
-      ],
-    );
-  }
+  String get dateTime =>
+      '${event.dateTime.year}/${event.dateTime.month}/${event.dateTime.day}';
 
-  String get dateTime {
-    return '${event.dateTime.year}-${event.dateTime.month}-${event.dateTime.day}';
-  }
-
-  bool get isBookmarked {
-    return (bookmarked.contains(event.id));
-  }
+  bool get isBookmarked => (bookmarked.contains(event.id));
 }
