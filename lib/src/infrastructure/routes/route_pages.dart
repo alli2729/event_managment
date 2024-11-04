@@ -1,3 +1,5 @@
+import '../../pages/settings/common/setting_bindings.dart';
+import '../../pages/settings/views/setting_screen.dart';
 import '../../pages/bookmark_event/common/bookmark_event_binding.dart';
 import '../../pages/bookmark_event/views/bookmark_event_screen.dart';
 import '../../pages/event_detail/common/event_detail_bindings.dart';
@@ -43,6 +45,11 @@ class RoutePages {
       page: () => const EventsScreen(),
       binding: EventsBindings(),
       children: [
+        GetPage(
+          name: RoutePath.settings,
+          page: () => const SettingScreen(),
+          binding: SettingBindings(),
+        ),
         GetPage(
           name: RoutePath.eventDetail,
           page: () => const EventDetailScreen(),

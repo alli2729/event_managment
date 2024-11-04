@@ -58,8 +58,8 @@ class EventsController extends GetxController {
     }
   }
 
-  void onLogout() {
-    Get.offAndToNamed(RouteNames.login);
+  Future<void> onSetting() async {
+    await Get.toNamed(RouteNames.settings);
   }
 
   Future<void> onViewEvent(int eventId) async {

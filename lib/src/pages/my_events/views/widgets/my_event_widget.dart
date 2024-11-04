@@ -26,7 +26,7 @@ class MyEventWidget extends StatelessWidget {
             color: const Color(0xFFF6FFF8),
             boxShadow: const [
               BoxShadow(
-                color: Color.fromARGB(255, 208, 222, 214),
+                color: Color(0xFFD0DED6),
                 spreadRadius: 1,
                 blurRadius: 1,
               )
@@ -114,11 +114,6 @@ class MyEventWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        GestureDetector(
-          onTap: onEdit,
-          child: const Icon(Icons.bookmark, color: Colors.red),
-        ),
-        const SizedBox(height: 12),
         Text(
           '${event.attendent} / ${event.capacity}',
           style: const TextStyle(

@@ -45,7 +45,7 @@ class EventsScreen extends GetView<EventsController> {
               MyDrawerButton(
                 title: 'Settings',
                 icon: Icons.settings_outlined,
-                onTap: controller.onLogout,
+                onTap: controller.onSetting,
               ),
             ],
           ),
@@ -137,58 +137,54 @@ class EventsScreen extends GetView<EventsController> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
         child: Obx(
-          () => SizedBox(
-            height: 350,
-            width: 400,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: Get.back,
-                      icon: const Icon(Icons.arrow_back),
-                    ),
-                    const SizedBox(width: 6),
-                    const Text('Back', style: TextStyle(fontSize: 18)),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                DialogItem(
-                  isActive: controller.isLimited.value,
-                  onChanged: (v) => controller.isLimited.toggle(),
-                  title: 'Price Limitaition',
-                ),
-                _slider(),
-                Text('from ${controller.minPrice} to ${controller.maxPrice}'),
-                const SizedBox(height: 6),
-                DialogItem(
-                  isActive: controller.isFilled.value,
-                  onChanged: (v) => controller.isFilled.toggle(),
-                  title: 'not Filled',
-                ),
-                const SizedBox(height: 6),
-                DialogItem(
-                  isActive: controller.isExpired.value,
-                  onChanged: (v) => controller.isExpired.toggle(),
-                  title: 'not Expired',
-                ),
-                const SizedBox(height: 6),
-                DialogItem(
-                  isActive: controller.isSort.value,
-                  onChanged: (v) => controller.isSort.toggle(),
-                  title: 'Sort By Date',
-                ),
-                const Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    _resetButton(),
-                    const SizedBox(width: 6),
-                    _fillterButton(),
-                  ],
-                )
-              ],
-            ),
+          () => Column(
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: Get.back,
+                    icon: const Icon(Icons.arrow_back),
+                  ),
+                  const SizedBox(width: 6),
+                  const Text('Back', style: TextStyle(fontSize: 18)),
+                ],
+              ),
+              const SizedBox(height: 12),
+              DialogItem(
+                isActive: controller.isLimited.value,
+                onChanged: (v) => controller.isLimited.toggle(),
+                title: 'Price Limitaition',
+              ),
+              _slider(),
+              Text('from ${controller.minPrice} to ${controller.maxPrice}'),
+              const SizedBox(height: 6),
+              DialogItem(
+                isActive: controller.isFilled.value,
+                onChanged: (v) => controller.isFilled.toggle(),
+                title: 'not Filled',
+              ),
+              const SizedBox(height: 6),
+              DialogItem(
+                isActive: controller.isExpired.value,
+                onChanged: (v) => controller.isExpired.toggle(),
+                title: 'not Expired',
+              ),
+              const SizedBox(height: 6),
+              DialogItem(
+                isActive: controller.isSort.value,
+                onChanged: (v) => controller.isSort.toggle(),
+                title: 'Sort By Date',
+              ),
+              const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  _resetButton(),
+                  const SizedBox(width: 6),
+                  _fillterButton(),
+                ],
+              )
+            ],
           ),
         ),
       ),

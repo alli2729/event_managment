@@ -9,4 +9,5 @@ class RoutePath {
   static const String editEvent = "/edit-event";
   static const String eventDetail = "/event-detail";
   static const String bookmark = "/bookmarks";
+  static const String settings = "/settings";
 }

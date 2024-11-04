@@ -31,14 +31,20 @@ class _BuyCounterState extends State<BuyCounter> {
       children: [
         IconButton(
           onPressed: _decrement,
-          icon: const Icon(Icons.remove),
+          icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        const SizedBox(width: 12),
-        Text('$_currentValue'),
-        const SizedBox(width: 12),
+        const SizedBox(width: 6),
+        Text(
+          '$_currentValue',
+          style: const TextStyle(
+            fontSize: 20,
+            color: Color(0xFF2D5845),
+          ),
+        ),
+        const SizedBox(width: 6),
         IconButton(
           onPressed: _increment,
-          icon: const Icon(Icons.add),
+          icon: const Icon(Icons.arrow_forward_ios),
         ),
       ],
     );

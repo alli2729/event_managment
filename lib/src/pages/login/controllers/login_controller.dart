@@ -11,6 +11,7 @@ class LoginController {
   final _repository = LoginRepository();
 
   final RxBool isRemember = false.obs;
+  final RxBool isVisible = false.obs;
 
   void rememberToggle(bool? value) {
     isRemember.value = value ?? false;

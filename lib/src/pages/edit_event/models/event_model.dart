@@ -39,7 +39,7 @@ class EventModel {
       description: json["description"],
       dateTime: DateTime.parse(json["dateTime"]),
       capacity: json["capacity"],
-      price: json["price"],
+      price: double.parse('${json["price"]}'),
       attendent: json["attendent"],
       imageBase64: json["image"],
       filled: json["filled"],

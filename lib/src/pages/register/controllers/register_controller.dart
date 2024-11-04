@@ -14,6 +14,7 @@ class RegisterController extends GetxController {
   final _repository = RegisterRepository();
 
   RxnString selectedGender = RxnString();
+  RxBool isVisible = false.obs;
 
   void selectGender(String? gender) {
     selectedGender.value = gender!;

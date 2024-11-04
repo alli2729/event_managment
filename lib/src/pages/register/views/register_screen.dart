@@ -7,58 +7,198 @@ class RegisterScreen extends GetView<RegisterController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Form(
-        key: controller.registerFormKey,
-        child: Column(
-          children: [
-            TextFormField(
-              validator: controller.validate,
-              controller: controller.firstNameController,
-            ),
-            TextFormField(
-              validator: controller.validate,
-              controller: controller.lastNameController,
-            ),
-            TextFormField(
-              validator: controller.validate,
-              controller: controller.usernameController,
-            ),
-            TextFormField(
-              validator: controller.validate,
-              controller: controller.passwordController,
-            ),
-            TextFormField(
-              validator: controller.validate,
-              controller: controller.repeatPasswordController,
-            ),
-            Obx(
-              () => Row(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Register')),
+        body: Form(
+          key: controller.registerFormKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  const Text("Male"),
-                  Radio<String>(
-                    value: 'male',
-                    groupValue: controller.selectedGender.value,
-                    onChanged: controller.selectGender,
-                  ),
-                  const Text("Female"),
-                  Radio<String>(
-                    value: 'female',
-                    groupValue: controller.selectedGender.value,
-                    onChanged: controller.selectGender,
-                  ),
+                  _names(),
+                  const SizedBox(height: 16),
+                  _username(),
+                  const SizedBox(height: 16),
+                  _password(),
+                  const SizedBox(height: 16),
+                  _repeatPassword(),
+                  const SizedBox(height: 16),
+                  _genders(),
+                  const SizedBox(height: 16),
+                  _registerButton(),
+                  const SizedBox(height: 36),
+                  _login(),
                 ],
               ),
             ),
-            ElevatedButton(
-              onPressed: controller.onRegister,
-              child: const Text('Register'),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _login() {
+    return Row(
+      children: [
+        const Text('already have an account? ', style: TextStyle(fontSize: 14)),
+        GestureDetector(
+          onTap: controller.onLogin,
+          child: const Text(
+            'Login now',
+            style: TextStyle(
+              fontSize: 16,
+              color: Color(0xFF2B4D3E),
             ),
-            ElevatedButton(
-              onPressed: controller.onLogin,
-              child: const Text('back to login'),
-            ),
-          ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _registerButton() {
+    return GestureDetector(
+      onTap: controller.onRegister,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        alignment: Alignment.center,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: const Color(0xFF2B4D3E),
+        ),
+        child: const Text(
+          'Register',
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _genders() {
+    return Obx(
+      () => Row(
+        children: [
+          const Text("Male"),
+          Radio<String>(
+            activeColor: const Color(0xFF2B4D3E),
+            value: 'male',
+            groupValue: controller.selectedGender.value,
+            onChanged: controller.selectGender,
+          ),
+          const Text("Female"),
+          Radio<String>(
+            activeColor: const Color(0xFF2B4D3E),
+            value: 'female',
+            groupValue: controller.selectedGender.value,
+            onChanged: controller.selectGender,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _names() {
+    return Row(
+      children: [
+        Flexible(child: _firstName()),
+        const SizedBox(width: 16),
+        Flexible(child: _lastName()),
+      ],
+    );
+  }
+
+  Widget _repeatPassword() {
+    return Obx(
+      () => TextFormField(
+        validator: controller.validate,
+        controller: controller.repeatPasswordController,
+        obscureText: controller.isVisible.value,
+        decoration: InputDecoration(
+          suffixIcon: IconButton(
+            onPressed: controller.isVisible.toggle,
+            icon: (controller.isVisible.value)
+                ? const Icon(Icons.visibility)
+                : const Icon(Icons.visibility_off),
+          ),
+          prefixIcon: const Icon(Icons.key_outlined),
+          hintText: 'repeat Password',
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _password() {
+    return Obx(
+      () => TextFormField(
+        validator: controller.validate,
+        controller: controller.passwordController,
+        obscureText: controller.isVisible.value,
+        decoration: InputDecoration(
+          suffixIcon: IconButton(
+            onPressed: controller.isVisible.toggle,
+            icon: (controller.isVisible.value)
+                ? const Icon(Icons.visibility)
+                : const Icon(Icons.visibility_off),
+          ),
+          prefixIcon: const Icon(Icons.key_outlined),
+          labelText: 'Password',
+          hintText: 'Password',
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _username() {
+    return TextFormField(
+      validator: controller.validate,
+      controller: controller.usernameController,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.person),
+        labelText: 'Username',
+        hintText: 'Username',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+
+  Widget _lastName() {
+    return TextFormField(
+      validator: controller.validate,
+      controller: controller.lastNameController,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.person_4_outlined),
+        labelText: 'Lastname',
+        hintText: 'Lastname',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+
+  Widget _firstName() {
+    return TextFormField(
+      validator: controller.validate,
+      controller: controller.firstNameController,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.person_4_outlined),
+        labelText: 'Firstname',
+        hintText: 'Firstname',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
     );

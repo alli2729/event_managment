@@ -32,6 +32,7 @@ class EventsRepository {
 
       return Right(events);
     } catch (e) {
+      print(e.toString());
       return Left(e.toString());
     }
   }

@@ -1,83 +1,176 @@
+import 'package:flutter/services.dart';
 import '../../../infrastructure/common/date_values.dart';
 import '../controllers/edit_event_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'widgets/drop_button.dart';
 
 class EditEventScreen extends GetView<EditEventController> {
   const EditEventScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Edit Event')),
-      body: Form(
-        key: controller.addFormKey,
-        child: Column(
-          children: [
-            TextFormField(
-              controller: controller.titleController,
-              validator: controller.validate,
-            ),
-            TextFormField(
-              controller: controller.descriptionController,
-              validator: controller.validate,
-            ),
-            TextFormField(
-              controller: controller.priceController,
-              validator: controller.validate,
-            ),
-            TextFormField(
-              controller: controller.capacityController,
-              validator: controller.validate,
-            ),
-            Obx(
-              () => Row(
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: _fab(),
+        appBar: AppBar(title: const Text('Edit Event')),
+        body: Form(
+          key: controller.addFormKey,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
                 children: [
-                  DropdownButton<String>(
-                    value: controller.day.value,
-                    items: DateValues.days,
-                    onChanged: controller.selectDay,
-                  ),
-                  const SizedBox(width: 10),
-                  DropdownButton(
-                    value: controller.month.value,
-                    items: DateValues.months,
-                    onChanged: controller.selectMonth,
-                  ),
-                  const SizedBox(width: 10),
-                  DropdownButton(
-                    value: controller.year.value,
-                    items: DateValues.years,
-                    onChanged: controller.selectYear,
-                  ),
+                  Obx(() => _image()),
+                  const SizedBox(height: 24),
+                  _title(),
+                  const SizedBox(height: 12),
+                  _description(),
+                  const SizedBox(height: 12),
+                  _price(),
+                  const SizedBox(height: 12),
+                  _capacity(),
+                  const SizedBox(height: 12),
+                  Obx(() => _date()),
+                  const SizedBox(height: 12),
                 ],
               ),
             ),
-            const SizedBox(height: 24),
-            IconButton(
-              onPressed: controller.onPicture,
-              icon: const Icon(Icons.photo),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _fab() => FloatingActionButton(
+        backgroundColor: const Color(0xFF2B4D3E),
+        shape: const CircleBorder(),
+        onPressed: controller.onEdit,
+        child: const Icon(Icons.check, color: Colors.white),
+      );
+
+  Widget _image() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        (controller.image.value != null)
+            ? IconButton(
+                onPressed: controller.onClear,
+                icon: const Icon(Icons.clear),
+              )
+            : const SizedBox(),
+        GestureDetector(
+          onTap: controller.onPicture,
+          child: CircleAvatar(
+            backgroundColor: const Color(0xFF2B4D3E),
+            radius: 40,
+            child: ClipOval(
+              child: (controller.image.value == null)
+                  ? const Icon(Icons.edit, color: Colors.white)
+                  : Image.memory(controller.image.value!),
             ),
-            const SizedBox(height: 24),
-            IconButton(
-              onPressed: controller.onClear,
-              icon: const Icon(Icons.clear),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _date() {
+    return SizedBox(
+      width: double.infinity,
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: DropButton(
+              value: controller.day.value,
+              items: DateValues.days,
+              onChanged: controller.selectDay,
             ),
-            SizedBox(
-              height: 100,
-              width: 100,
-              child: Obx(
-                () => (controller.image.value == null)
-                    ? const Text('no image')
-                    : Image.memory(controller.image.value!),
-              ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            flex: 1,
+            child: DropButton(
+              value: controller.month.value,
+              items: DateValues.months,
+              onChanged: controller.selectMonth,
             ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: controller.onEdit,
-              child: const Text('Edit Event'),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            flex: 1,
+            child: DropButton(
+              value: controller.year.value,
+              items: DateValues.years,
+              onChanged: controller.selectYear,
             ),
-          ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _capacity() {
+    return TextFormField(
+      controller: controller.capacityController,
+      validator: controller.validate,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.reduce_capacity),
+        labelText: 'Capacity',
+        hintText: 'Capacity',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+
+  Widget _price() {
+    return TextFormField(
+      controller: controller.priceController,
+      validator: controller.validate,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.price_change),
+        labelText: 'Price',
+        hintText: 'Price',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+
+  Widget _description() {
+    return TextFormField(
+      controller: controller.descriptionController,
+      validator: controller.validate,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.description),
+        labelText: 'Description',
+        hintText: 'Description',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+
+  Widget _title() {
+    return TextFormField(
+      controller: controller.titleController,
+      validator: controller.validate,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.title),
+        labelText: 'Title',
+        hintText: 'Title',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
     );
