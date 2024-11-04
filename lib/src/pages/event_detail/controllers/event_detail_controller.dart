@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:get/get.dart';
 import '../models/buy_event_dto.dart';
-import '../../../infrastructure/common/utils.dart';
+import '../../../infrastructure/utils/utils.dart';
 import '../models/event_model.dart';
 import '../repositories/event_detail_repository.dart';
 

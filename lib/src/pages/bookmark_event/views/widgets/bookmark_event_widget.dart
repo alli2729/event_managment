@@ -40,7 +40,7 @@ class BookmarkEventWidget extends StatelessWidget {
               children: [
                 _avatar(),
                 const SizedBox(width: 10),
-                title(),
+                title(context),
                 const Spacer(),
                 priceDate(),
                 const SizedBox(width: 12),
@@ -63,26 +63,31 @@ class BookmarkEventWidget extends StatelessWidget {
     );
   }
 
-  Widget title() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          event.title,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+  Widget title(BuildContext context) {
+    return SizedBox(
+      width: (pageWidth(context) / 2.5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            event.title,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        Text(
-          event.description,
-          style: const TextStyle(
-            fontSize: 16,
-            color: Colors.grey,
-          ),
-        )
-      ],
+          Text(
+            event.description,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 16,
+              color: Colors.grey,
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -130,6 +135,10 @@ class BookmarkEventWidget extends StatelessWidget {
         )
       ],
     );
+  }
+
+  double pageWidth(BuildContext context) {
+    return MediaQuery.sizeOf(context).width;
   }
 
   String get dateTime =>

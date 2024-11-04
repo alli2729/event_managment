@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../infrastructure/common/utils.dart';
+import '../../../infrastructure/utils/utils.dart';
 import '../../../infrastructure/routes/route_names.dart';
 import '../repositories/my_events_repository.dart';
 import 'package:get/get.dart';

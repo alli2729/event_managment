@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../infrastructure/common/utils.dart';
+import '../../../infrastructure/utils/utils.dart';
 import '../models/edit_event_dto.dart';
 import '../models/event_model.dart';
 import '../repositories/edit_event_repository.dart';

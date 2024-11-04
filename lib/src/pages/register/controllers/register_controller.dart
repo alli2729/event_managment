@@ -1,4 +1,4 @@
-import '../../../infrastructure/common/utils.dart';
+import '../../../infrastructure/utils/utils.dart';
 import '../models/register_user_dto.dart';
 import '../repositories/register_repository.dart';
 import 'package:flutter/material.dart';

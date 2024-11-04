@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import '../../../infrastructure/common/utils.dart';
+import '../../../infrastructure/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../models/add_event_dto.dart';

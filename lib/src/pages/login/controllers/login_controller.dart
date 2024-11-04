@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../infrastructure/common/utils.dart';
+import '../../../infrastructure/utils/utils.dart';
 import '../../../infrastructure/routes/route_names.dart';
 import '../repositories/login_repository.dart';
 

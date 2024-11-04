@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../../infrastructure/routes/route_names.dart';
 import '../models/events_user_dto.dart';
 import '../models/event_model.dart';
-import '../../../infrastructure/common/utils.dart';
+import '../../../infrastructure/utils/utils.dart';
 import '../repositories/events_repository.dart';
 
 class EventsController extends GetxController {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../models/bookmark_user_dto.dart';
 import '../models/event_model.dart';
-import '../../../infrastructure/common/utils.dart';
+import '../../../infrastructure/utils/utils.dart';
 import '../repositories/bookmark_event_repository.dart';
 
 class BookmarkEventController extends GetxController {
