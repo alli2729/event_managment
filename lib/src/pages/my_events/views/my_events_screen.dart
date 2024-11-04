@@ -12,14 +12,46 @@ class MyEventsScreen extends GetView<MyEventsController> {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: _fab(),
-        body: CustomScrollView(
-          slivers: [
-            _sliverAppBar(),
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
-            _events(),
-          ],
-        ),
+        body: Obx(() => _pageContent()),
       ),
+    );
+  }
+
+  Widget _pageContent() {
+    if (controller.isLoading.value) {
+      return _loading();
+    }
+    if (controller.isRetry.value) {
+      return _retry();
+    }
+    return _body();
+  }
+
+  Widget _retry() {
+    return Center(
+      child: IconButton(
+        onPressed: controller.getMyEvents,
+        icon: const Icon(Icons.replay_circle_filled_outlined),
+        color: const Color(0xFF2B4D3E),
+      ),
+    );
+  }
+
+  Widget _loading() {
+    return const Center(
+      child: CircularProgressIndicator(
+        color: Color(0xFF2B4D3E),
+      ),
+    );
+  }
+
+  Widget _body() {
+    return CustomScrollView(
+      slivers: [
+        _sliverAppBar(),
+        const SliverToBoxAdapter(child: SizedBox(height: 20)),
+        _events(),
+      ],
     );
   }
 
@@ -34,17 +66,19 @@ class MyEventsScreen extends GetView<MyEventsController> {
 
   Widget _events() {
     return Obx(
-      () => SliverList.separated(
-        itemCount: controller.myEvents.length,
-        itemBuilder: (_, index) => MyEventWidget(
-          event: controller.myEvents[index],
-          onRemove: () =>
-              controller.onRemove(eventId: controller.myEvents[index].id),
-          onEdit: () =>
-              controller.onEdit(eventId: controller.myEvents[index].id),
-        ),
-        separatorBuilder: (_, __) => const SizedBox(height: 12),
-      ),
+      () => (controller.isSearch.value)
+          ? SliverToBoxAdapter(child: _loading())
+          : SliverList.separated(
+              itemCount: controller.myEvents.length,
+              itemBuilder: (_, index) => MyEventWidget(
+                event: controller.myEvents[index],
+                onRemove: () =>
+                    controller.onRemove(eventId: controller.myEvents[index].id),
+                onEdit: () =>
+                    controller.onEdit(eventId: controller.myEvents[index].id),
+              ),
+              separatorBuilder: (_, __) => const SizedBox(height: 12),
+            ),
     );
   }
 

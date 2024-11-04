@@ -8,10 +8,12 @@ class LoginRepository {
     required String username,
     required String password,
   }) async {
+    int? statuscode;
     try {
       final url = UrlRepository.loginByUsername(username: username);
 
       final http.Response response = await http.get(url);
+      statuscode = response.statusCode;
       final List<dynamic> result = json.decode(response.body);
 
       if (result.isEmpty) return const Left('User Not Found');
@@ -22,7 +24,7 @@ class LoginRepository {
 
       return Right(result.first);
     } catch (e) {
-      return Left(e.toString());
+      return Left('somthing went wrong : $statuscode');
     }
   }
 }

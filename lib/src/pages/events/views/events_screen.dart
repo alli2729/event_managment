@@ -13,14 +13,46 @@ class EventsScreen extends GetView<EventsController> {
     return SafeArea(
       child: Scaffold(
         endDrawer: _drawer(),
-        body: CustomScrollView(
-          slivers: [
-            _sliverAppBar(),
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
-            _events(),
-          ],
-        ),
+        body: Obx(() => _pageContent()),
       ),
+    );
+  }
+
+  Widget _pageContent() {
+    if (controller.isLoading.value) {
+      return _loading();
+    }
+    if (controller.isRetry.value) {
+      return _retry();
+    }
+    return _body();
+  }
+
+  Widget _retry() {
+    return Center(
+      child: IconButton(
+        onPressed: controller.getUserById,
+        icon: const Icon(Icons.replay_circle_filled_outlined),
+        color: const Color(0xFF2B4D3E),
+      ),
+    );
+  }
+
+  Widget _loading() {
+    return const Center(
+      child: CircularProgressIndicator(
+        color: Color(0xFF2B4D3E),
+      ),
+    );
+  }
+
+  Widget _body() {
+    return CustomScrollView(
+      slivers: [
+        _sliverAppBar(),
+        const SliverToBoxAdapter(child: SizedBox(height: 20)),
+        _events(),
+      ],
     );
   }
 
@@ -54,16 +86,20 @@ class EventsScreen extends GetView<EventsController> {
 
   Widget _events() {
     return Obx(
-      () => SliverList.separated(
-        itemCount: controller.events.length,
-        itemBuilder: (_, index) => EventWidget(
-          event: controller.events[index],
-          bookmarked: controller.bookmarkedEvents,
-          onView: () => controller.onViewEvent(controller.events[index].id),
-          onBookmark: () => controller.onBookmark(controller.events[index].id),
-        ),
-        separatorBuilder: (_, __) => const SizedBox(height: 12),
-      ),
+      () => (controller.isSearch.value)
+          ? SliverToBoxAdapter(child: _loading())
+          : SliverList.separated(
+              itemCount: controller.events.length,
+              itemBuilder: (_, index) => EventWidget(
+                event: controller.events[index],
+                bookmarked: controller.bookmarkedEvents,
+                onView: () =>
+                    controller.onViewEvent(controller.events[index].id),
+                onBookmark: () =>
+                    controller.onBookmark(controller.events[index].id),
+              ),
+              separatorBuilder: (_, __) => const SizedBox(height: 12),
+            ),
     );
   }
 

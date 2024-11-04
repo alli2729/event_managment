@@ -26,6 +26,8 @@ class AddEventController extends GetxController {
   Rxn<Uint8List> image = Rxn();
   String imageBase64 = '';
 
+  RxBool isLoading = false.obs;
+
   // functions
   void selectDay(String? selectedDay) => day.value = selectedDay!;
   void selectMonth(String? selectedMonth) => month.value = selectedMonth!;
@@ -41,6 +43,8 @@ class AddEventController extends GetxController {
       return;
     }
 
+    isLoading.value = true;
+
     final AddEventDto dto = AddEventDto(
       makerId: makerId,
       title: titleController.text,
@@ -55,9 +59,11 @@ class AddEventController extends GetxController {
     final result = await _repository.addEventByDto(dto: dto);
     result.fold(
       (exception) {
+        isLoading.value = false;
         Utils.showFailSnackBar(message: exception);
       },
       (eventJson) {
+        isLoading.value = false;
         Get.back(result: eventJson);
       },
     );

@@ -15,6 +15,7 @@ class RegisterController extends GetxController {
 
   RxnString selectedGender = RxnString();
   RxBool isVisible = false.obs;
+  RxBool isLoading = false.obs;
 
   void selectGender(String? gender) {
     selectedGender.value = gender!;
@@ -26,6 +27,7 @@ class RegisterController extends GetxController {
 
   Future<void> checkUserExist() async {
     if (!isFormValidate()) return;
+    isLoading.value = true;
 
     final result = await _repository.chekUserExist(
       username: usernameController.text,
@@ -34,6 +36,7 @@ class RegisterController extends GetxController {
     result.fold(
       (exception) {
         Utils.showFailSnackBar(message: exception);
+        isLoading.value = false;
       },
       (notExist) {
         registerByDto();
@@ -56,8 +59,10 @@ class RegisterController extends GetxController {
     result.fold(
       (exception) {
         Utils.showFailSnackBar(message: exception);
+        isLoading.value = false;
       },
       (success) {
+        isLoading.value = false;
         Get.back(result: {
           "username": usernameController.text,
           "password": passwordController.text,

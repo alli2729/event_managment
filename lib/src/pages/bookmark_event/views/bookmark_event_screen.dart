@@ -11,31 +11,65 @@ class BookmarkEventScreen extends GetView<BookmarkEventController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            _sliverAppBar(),
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
-            _events(),
-          ],
-        ),
+        body: Obx(() => _pageContent()),
       ),
+    );
+  }
+
+  Widget _pageContent() {
+    if (controller.isLoading.value) {
+      return _loading();
+    }
+    if (controller.isRetry.value) {
+      return _retry();
+    }
+    return _body();
+  }
+
+  Widget _retry() {
+    return Center(
+      child: IconButton(
+        onPressed: controller.getUser,
+        icon: const Icon(Icons.replay_circle_filled_outlined),
+        color: const Color(0xFF2B4D3E),
+      ),
+    );
+  }
+
+  Widget _loading() {
+    return const Center(
+      child: CircularProgressIndicator(
+        color: Color(0xFF2B4D3E),
+      ),
+    );
+  }
+
+  Widget _body() {
+    return CustomScrollView(
+      slivers: [
+        _sliverAppBar(),
+        const SliverToBoxAdapter(child: SizedBox(height: 20)),
+        _events(),
+      ],
     );
   }
 
   Widget _events() {
     return Obx(
-      () => SliverList.separated(
-        itemCount: controller.bookmarkedEvents.length,
-        itemBuilder: (_, index) => BookmarkEventWidget(
-          event: controller.bookmarkedEvents[index],
-          bookmarked: controller.bookmarkedEvents,
-          onBookmark: () => controller.onBookmark(
-            eventId: controller.bookmarkedEvents[index].id,
-          ),
-          onView: () {},
-        ),
-        separatorBuilder: (_, __) => const SizedBox(height: 12),
-      ),
+      () => (controller.isSearch.value)
+          ? SliverToBoxAdapter(child: _loading())
+          : SliverList.separated(
+              itemCount: controller.bookmarkedEvents.length,
+              itemBuilder: (_, index) => BookmarkEventWidget(
+                event: controller.bookmarkedEvents[index],
+                bookmarked: controller.bookmarkedEvents,
+                onBookmark: () => controller.onBookmark(
+                  eventId: controller.bookmarkedEvents[index].id,
+                ),
+                onView: () {},
+              ),
+              separatorBuilder: (_, __) => const SizedBox(height: 12),
+            ),
     );
   }
 
@@ -224,5 +258,4 @@ class BookmarkEventScreen extends GetView<BookmarkEventController> {
       ),
     );
   }
-
 }

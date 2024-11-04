@@ -28,6 +28,9 @@ class EditEventController extends GetxController {
   Rxn<Uint8List> image = Rxn();
   String? imageBase64 = '';
 
+  RxBool isLoading = false.obs;
+  RxBool isFetching = false.obs;
+
   EventModel event = EventModel(
     id: 0,
     makerId: 0,
@@ -46,9 +49,11 @@ class EditEventController extends GetxController {
   void selectYear(String? selectedYear) => year.value = selectedYear!;
 
   Future<void> getEvent() async {
+    isFetching.value = true;
     final result = await _repository.getEventById(eventId: eventId);
     result.fold(
       (exception) {
+        isFetching.value = false;
         Utils.showFailSnackBar(message: exception);
       },
       (eventJson) {
@@ -70,6 +75,7 @@ class EditEventController extends GetxController {
     day.value = twoDigit(event.dateTime.day.toString());
     month.value = twoDigit(event.dateTime.month.toString());
     year.value = event.dateTime.year.toString();
+    isFetching.value = false;
   }
 
   Future<void> onEdit() async {
@@ -81,6 +87,8 @@ class EditEventController extends GetxController {
       Utils.showFailSnackBar(message: 'date must be after today');
       return;
     }
+
+    isLoading.value = true;
 
     final EditEventDto dto = EditEventDto(
       makerId: makerId,
@@ -97,9 +105,11 @@ class EditEventController extends GetxController {
     final result = await _repository.editEventByDto(dto: dto, eventId: eventId);
     result.fold(
       (exception) {
+        isLoading.value = false;
         Utils.showFailSnackBar(message: exception);
       },
       (eventJson) {
+        isLoading.value = false;
         Get.back(result: eventJson);
       },
     );

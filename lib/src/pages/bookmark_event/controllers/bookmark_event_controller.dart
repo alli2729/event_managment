@@ -21,19 +21,31 @@ class BookmarkEventController extends GetxController {
   RxBool isExpired = false.obs;
   RxBool isSort = false.obs;
   RxBool isLimited = false.obs;
+  RxBool isLoading = false.obs;
+  RxBool isSearch = false.obs;
+  RxBool isRetry = false.obs;
+
   Rx<RangeValues> priceLimits = Rx(const RangeValues(0, 1));
   double max = 1;
   double min = 0;
 
   // functions
   Future<void> getUser() async {
+    isRetry.value = false;
+    isSearch.value = true;
     final result = await _repository.getUser(userId: userId);
     result.fold(
       (left) {
+        isLoading.value = false;
+        isSearch.value = false;
+        isRetry.value = true;
         Utils.showFailSnackBar(message: left);
       },
       (bookmarkedList) {
         if (bookmarkedList.isEmpty) {
+          isRetry.value = false;
+          isLoading.value = false;
+          isSearch.value = false;
           return;
         }
         bookmarkedIds = bookmarkedList;
@@ -53,6 +65,9 @@ class BookmarkEventController extends GetxController {
     final result = await _repository.getBookmarked(params: params);
     result.fold(
       (left) {
+        isLoading.value = false;
+        isSearch.value = false;
+        isRetry.value = true;
         Utils.showFailSnackBar(message: left);
       },
       (eventsList) {
@@ -78,6 +93,7 @@ class BookmarkEventController extends GetxController {
   }
 
   Future<void> onSearch(String title) async {
+    isSearch.value = true;
     if (title.isEmpty) getBookmarked();
 
     String search = '$params$parameters';
@@ -89,9 +105,11 @@ class BookmarkEventController extends GetxController {
 
     result.fold(
       (left) {
+        isSearch.value = false;
         Utils.showFailSnackBar(message: 'Cant search right now');
       },
       (searchedEvents) {
+        isSearch.value = false;
         bookmarkedEvents.value = searchedEvents;
       },
     );
@@ -133,7 +151,12 @@ class BookmarkEventController extends GetxController {
   void onPriceChanged(v) => priceLimits.value = v;
 
   void calculateMinMax() {
-    if (bookmarkedEvents.isEmpty) return;
+    if (bookmarkedEvents.isEmpty) {
+      isLoading.value = false;
+      isRetry.value = false;
+      isSearch.value = false;
+      return;
+    }
 
     double max = 0;
     double min = double.infinity;
@@ -144,6 +167,9 @@ class BookmarkEventController extends GetxController {
     this.max = max;
     this.min = min;
     priceLimits = Rx(RangeValues(min, max));
+    isLoading.value = false;
+    isRetry.value = false;
+    isSearch.value = false;
   }
 
   // getters
@@ -158,6 +184,13 @@ class BookmarkEventController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    isLoading.value = true;
     getUser();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    searchController.dispose();
   }
 }

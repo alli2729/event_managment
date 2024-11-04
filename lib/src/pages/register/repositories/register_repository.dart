@@ -7,6 +7,7 @@ import '../models/register_user_dto.dart';
 class RegisterRepository {
   Future<Either<String, bool>> registerByDto(
       {required RegisterUserDto dto}) async {
+    int? statuscode;
     try {
       final url = UrlRepository.users;
       final http.Response response = await http.post(
@@ -14,20 +15,22 @@ class RegisterRepository {
         body: json.encode(dto.toJson()),
         headers: {"Content-Type": "application/json"},
       );
-
-      if (response.statusCode != 201) return const Left('Error');
+      statuscode = response.statusCode;
+      if (statuscode != 201) return const Left('Error');
 
       // final result = json.decode(response.body);
       return const Right(true);
     } catch (e) {
-      return Left(e.toString());
+      return Left('somthing went wrong: $statuscode');
     }
   }
 
   Future<Either<String, bool>> chekUserExist({required String username}) async {
+    int? statuscode;
     try {
       final url = UrlRepository.userByUsername(username: username);
       final http.Response response = await http.get(url);
+      statuscode = response.statusCode;
       final List<dynamic> result = json.decode(response.body);
 
       if (result.isNotEmpty) {
@@ -36,7 +39,7 @@ class RegisterRepository {
 
       return const Right(true);
     } catch (e) {
-      return Left(e.toString());
+      return Left('somthing went wrong: $statuscode');
     }
   }
 }

@@ -32,12 +32,26 @@ class EventDetailController extends GetxController {
 
   int buyValue = 1;
 
+  RxBool isLoading = false.obs;
+  RxBool isRetry = false.obs;
+  RxBool isBuying = false.obs;
+
   // functions
   Future<void> getEventById() async {
+    isLoading.value = true;
+    isRetry.value = false;
+
     final result = await _repository.getEventById(eventId: eventId);
     result.fold(
-      (exception) => Utils.showFailSnackBar(message: exception),
+      (exception) {
+        isLoading.value = false;
+        isRetry.value = true;
+        Utils.showFailSnackBar(message: exception);
+      },
       (event) {
+        isLoading.value = false;
+        isLoading.value = false;
+
         this.event.value = event;
         imageBase64 = event.imageBase64!;
         if (imageBase64.isNotEmpty) {
@@ -52,6 +66,8 @@ class EventDetailController extends GetxController {
   }
 
   Future<void> onBuyEvent() async {
+    isBuying.value = true;
+
     int sendAttendent = event.value.attendent! + buyValue;
     bool filled = false;
     if (sendAttendent == event.value.capacity) filled = true;
@@ -64,9 +80,11 @@ class EventDetailController extends GetxController {
     final result = await _repository.buyEvent(dto: dto, eventId: eventId);
     result.fold(
       (exception) {
+        isBuying.value = false;
         Utils.showFailSnackBar(message: exception);
       },
       (_) {
+        isBuying.value = false;
         Get.back();
       },
     );

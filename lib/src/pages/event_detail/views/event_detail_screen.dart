@@ -10,20 +10,55 @@ class EventDetailScreen extends GetView<EventDetailController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomSheet: Obx(() => _bottomSheet()),
-        appBar: AppBar(title: const Text('Event Detail')),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _titleImage(),
-              const SizedBox(height: 16),
-              _box(),
-            ],
-          ),
+        bottomSheet: Obx(
+          () =>
+              (controller.isLoading.value) ? const SizedBox() : _bottomSheet(),
         ),
+        appBar: AppBar(title: const Text('Event Detail')),
+        body: Obx(() => _pageContent()),
+      ),
+    );
+  }
+
+  Widget _pageContent() {
+    if (controller.isLoading.value) {
+      return _loading();
+    }
+    if (controller.isRetry.value) {
+      return _retry();
+    }
+    return _body();
+  }
+
+  Widget _retry() {
+    return Center(
+      child: IconButton(
+        onPressed: controller.getEventById,
+        icon: const Icon(Icons.replay_circle_filled_outlined),
+        color: const Color(0xFF2B4D3E),
+      ),
+    );
+  }
+
+  Widget _loading() {
+    return const Center(
+      child: CircularProgressIndicator(
+        color: Color(0xFF2B4D3E),
+      ),
+    );
+  }
+
+  Widget _body() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _titleImage(),
+          const SizedBox(height: 16),
+          _box(),
+        ],
       ),
     );
   }
@@ -92,20 +127,27 @@ class EventDetailScreen extends GetView<EventDetailController> {
 
   Widget _buyButton() {
     return GestureDetector(
-      onTap: controller.onBuyEvent,
+      onTap: (controller.isBuying.value) ? null : controller.onBuyEvent,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
           color: const Color(0xFF2D5845),
         ),
-        child: const Text(
-          'Buy',
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-          ),
-        ),
+        child: (controller.isBuying.value)
+            ? Transform.scale(
+                scale: 0.5,
+                child: const CircularProgressIndicator(
+                  color: Colors.white,
+                ),
+              )
+            : const Text(
+                'Buy',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
       ),
     );
   }

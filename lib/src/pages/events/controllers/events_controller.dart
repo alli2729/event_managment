@@ -20,6 +20,9 @@ class EventsController extends GetxController {
   RxBool isExpired = false.obs;
   RxBool isSort = false.obs;
   RxBool isLimited = false.obs;
+  RxBool isLoading = false.obs;
+  RxBool isRetry = false.obs;
+  RxBool isSearch = false.obs;
 
   Rx<RangeValues> priceLimits = Rx(const RangeValues(0, 1));
   double max = 1;
@@ -27,9 +30,15 @@ class EventsController extends GetxController {
 
   // Functions --------------------------------------------------
   Future<void> getUserById() async {
+    isLoading.value = true;
+    isRetry.value = false;
     final result = await _repository.getUserById(id: userId);
     result.fold(
-      (exception) => Utils.showFailSnackBar(message: exception),
+      (exception) {
+        isLoading.value = false;
+        isRetry.value = true;
+        Utils.showFailSnackBar(message: exception);
+      },
       (user) {
         bookmarkedEvents.value = user.bookmarked;
         getAllEvents();
@@ -38,9 +47,15 @@ class EventsController extends GetxController {
   }
 
   Future<void> getAllEvents() async {
+    isSearch.value = true;
     final result = await _repository.getAllEvents();
     result.fold(
-      (exception) => Utils.showFailSnackBar(message: exception),
+      (exception) {
+        isLoading.value = false;
+        isRetry.value = true;
+        isSearch.value = false;
+        Utils.showFailSnackBar(message: exception);
+      },
       (eventModels) {
         events.value = eventModels;
         calculateMinMax();
@@ -80,6 +95,7 @@ class EventsController extends GetxController {
   }
 
   Future<void> onSearch(String title) async {
+    isSearch.value = true;
     if (title.isEmpty && parameters.isEmpty) getAllEvents();
 
     final result = await _repository.searchByParameters(
@@ -88,8 +104,14 @@ class EventsController extends GetxController {
     );
 
     result.fold(
-      (_) => Utils.showFailSnackBar(message: 'Cant search right now'),
-      (searchedEvents) => events.value = searchedEvents,
+      (_) {
+        isSearch.value = false;
+        Utils.showFailSnackBar(message: 'Cant search right now');
+      },
+      (searchedEvents) {
+        isSearch.value = false;
+        return events.value = searchedEvents;
+      },
     );
   }
 
@@ -129,7 +151,11 @@ class EventsController extends GetxController {
   void onPriceChanged(v) => priceLimits.value = v;
 
   void calculateMinMax() {
-    if (events.isEmpty) return;
+    if (events.isEmpty) {
+      isLoading.value = false;
+      isRetry.value = false;
+      return;
+    }
 
     double max = 0;
     double min = double.infinity;
@@ -140,6 +166,9 @@ class EventsController extends GetxController {
     this.max = max;
     this.min = min;
     priceLimits = Rx(RangeValues(min, max));
+    isLoading.value = false;
+    isRetry.value = false;
+    isSearch.value = false;
   }
 
   Future<void> onBookmark(int eventId) async {
@@ -172,5 +201,11 @@ class EventsController extends GetxController {
   void onInit() {
     super.onInit();
     getUserById();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    searchController.dispose();
   }
 }

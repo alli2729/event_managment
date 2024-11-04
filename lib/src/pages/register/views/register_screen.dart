@@ -9,7 +9,7 @@ class RegisterScreen extends GetView<RegisterController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text('Register')),
+        appBar: _appBar(),
         body: Form(
           key: controller.registerFormKey,
           child: Padding(
@@ -43,13 +43,15 @@ class RegisterScreen extends GetView<RegisterController> {
     return Row(
       children: [
         const Text('already have an account? ', style: TextStyle(fontSize: 14)),
-        GestureDetector(
-          onTap: controller.onLogin,
-          child: const Text(
-            'Login now',
-            style: TextStyle(
-              fontSize: 16,
-              color: Color(0xFF2B4D3E),
+        Obx(
+          () => GestureDetector(
+            onTap: (controller.isLoading.value) ? null : controller.onLogin,
+            child: const Text(
+              'Login now',
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF2B4D3E),
+              ),
             ),
           ),
         ),
@@ -58,21 +60,25 @@ class RegisterScreen extends GetView<RegisterController> {
   }
 
   Widget _registerButton() {
-    return GestureDetector(
-      onTap: controller.onRegister,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        alignment: Alignment.center,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: const Color(0xFF2B4D3E),
-        ),
-        child: const Text(
-          'Register',
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.white,
+    return Obx(
+      () => GestureDetector(
+        onTap: (controller.isLoading.value) ? null : controller.onRegister,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          alignment: Alignment.center,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: (controller.isLoading.value)
+                ? const Color(0xFF5C6D66)
+                : const Color(0xFF2B4D3E),
+          ),
+          child: const Text(
+            'Register',
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
@@ -200,6 +206,16 @@ class RegisterScreen extends GetView<RegisterController> {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
+      ),
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      title: const Text('Register'),
+      leading: IconButton(
+        onPressed: (controller.isLoading.value) ? null : controller.onLogin,
+        icon: const Icon(Icons.arrow_back),
       ),
     );
   }

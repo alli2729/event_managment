@@ -40,13 +40,15 @@ class LoginScreen extends GetView<LoginController> {
     return Row(
       children: [
         const Text('dont have an account? ', style: TextStyle(fontSize: 14)),
-        GestureDetector(
-          onTap: controller.onRegister,
-          child: const Text(
-            'Register now',
-            style: TextStyle(
-              fontSize: 16,
-              color: Color(0xFF2B4D3E),
+        Obx(
+          () => GestureDetector(
+            onTap: (controller.isLoading.value) ? null : controller.onRegister,
+            child: const Text(
+              'Register now',
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF2B4D3E),
+              ),
             ),
           ),
         ),
@@ -56,20 +58,24 @@ class LoginScreen extends GetView<LoginController> {
 
   Widget _loginButton() {
     return GestureDetector(
-      onTap: controller.onLogin,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        alignment: Alignment.center,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: const Color(0xFF2B4D3E),
-        ),
-        child: const Text(
-          'Login',
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.white,
+      onTap: (controller.isLoading.value) ? null : controller.onLogin,
+      child: Obx(
+        () => Container(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          alignment: Alignment.center,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: (controller.isLoading.value)
+                ? const Color(0xFF5C6D66)
+                : const Color(0xFF2B4D3E),
+          ),
+          child: const Text(
+            'Login',
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+            ),
           ),
         ),
       ),

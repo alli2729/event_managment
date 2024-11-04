@@ -18,6 +18,9 @@ class MyEventsController extends GetxController {
   RxBool isExpired = false.obs;
   RxBool isSort = false.obs;
   RxBool isLimited = false.obs;
+  RxBool isLoading = false.obs;
+  RxBool isSearch = false.obs;
+  RxBool isRetry = false.obs;
 
   Rx<RangeValues> priceLimits = Rx(const RangeValues(0, 1));
   double max = 1;
@@ -25,10 +28,18 @@ class MyEventsController extends GetxController {
 
   // functions
   Future<void> getMyEvents() async {
+    // isLoading.value = true;
+    isRetry.value = false;
+    isSearch.value = true;
     final result = await _repository.getEventsByMakerId(makerId: makerId);
 
     result.fold(
-      (exception) => Utils.showFailSnackBar(message: exception),
+      (exception) {
+        isLoading.value = false;
+        isSearch.value = false;
+        isRetry.value = true;
+        Utils.showFailSnackBar(message: exception);
+      },
       (eventModels) {
         myEvents.value = eventModels;
         calculateMinMax();
@@ -77,6 +88,7 @@ class MyEventsController extends GetxController {
   }
 
   Future<void> onSearch(String title) async {
+    isSearch.value = true;
     if (title.isEmpty) getMyEvents();
 
     final result = await _repository.searchByParameters(
@@ -87,9 +99,11 @@ class MyEventsController extends GetxController {
 
     result.fold(
       (left) {
+        isSearch.value = false;
         Utils.showFailSnackBar(message: 'Cant search right now');
       },
       (searchedEvents) {
+        isSearch.value = false;
         myEvents.value = searchedEvents;
       },
     );
@@ -130,7 +144,12 @@ class MyEventsController extends GetxController {
   void onPriceChanged(v) => priceLimits.value = v;
 
   void calculateMinMax() {
-    if (myEvents.isEmpty) return;
+    if (myEvents.isEmpty) {
+      isLoading.value = false;
+      isRetry.value = false;
+      isSearch.value = false;
+      return;
+    }
 
     double max = 0;
     double min = double.infinity;
@@ -141,6 +160,9 @@ class MyEventsController extends GetxController {
     this.max = max;
     this.min = min;
     priceLimits = Rx(RangeValues(min, max));
+    isLoading.value = false;
+    isRetry.value = false;
+    isSearch.value = false;
   }
 
   // getters
@@ -155,6 +177,13 @@ class MyEventsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    isLoading.value = true;
     getMyEvents();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    searchController.dispose();
   }
 }

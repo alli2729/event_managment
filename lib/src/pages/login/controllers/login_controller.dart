@@ -12,6 +12,7 @@ class LoginController {
 
   final RxBool isRemember = false.obs;
   final RxBool isVisible = false.obs;
+  final RxBool isLoading = false.obs;
 
   void rememberToggle(bool? value) {
     isRemember.value = value ?? false;
@@ -21,6 +22,7 @@ class LoginController {
 
   Future<void> onLogin() async {
     if (!formValidation()) return;
+    isLoading.value = true;
 
     final result = await _repository.login(
       username: userController.text,
@@ -30,9 +32,11 @@ class LoginController {
     result.fold(
       (exception) {
         Utils.showFailSnackBar(message: exception);
+        isLoading.value = false;
       },
       (user) {
-        // got user info at server
+        isLoading.value = false;
+        // got user info from server
         Get.offNamed(
           RouteNames.events,
           parameters: {"userId": '${user["id"]}'},
@@ -51,10 +55,8 @@ class LoginController {
 
   //* Validations ----------------------------------------------------
 
-  bool formValidation() {
-    if (!(formKey.currentState?.validate() ?? false)) return false;
-    return true;
-  }
+  bool formValidation() =>
+      (!(formKey.currentState?.validate() ?? false)) ? false : true;
 
   String? validate(String? value) {
     if (value == null || value.isEmpty) return 'required';
