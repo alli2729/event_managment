@@ -1,4 +1,5 @@
 import 'widgets/dialog_item.dart';
+import 'widgets/my_drawer_button.dart';
 import 'widgets/event_widget.dart';
 import '../controllers/events_controller.dart';
 import 'package:flutter/material.dart';
@@ -11,35 +12,96 @@ class EventsScreen extends GetView<EventsController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomSheet: _bottomSheet(),
-        body: RefreshIndicator(
-          color: const Color(0xFF6B9080),
-          onRefresh: () => controller.getAllEvents(),
-          child: Column(
-            children: [
-              _appBar(),
-              Expanded(child: _events()),
-            ],
-          ),
+        endDrawer: _drawer(),
+        body: CustomScrollView(
+          slivers: [
+            _sliverAppBar(),
+            const SliverToBoxAdapter(child: SizedBox(height: 20)),
+            _events(),
+          ],
         ),
       ),
     );
   }
 
-  Widget _bottomSheet() {
+  Widget _drawer() => Container(
+        width: 250,
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          child: Column(
+            children: [
+              MyDrawerButton(
+                title: 'My Events',
+                icon: Icons.event_outlined,
+                onTap: controller.onMyEvents,
+              ),
+              MyDrawerButton(
+                title: 'Bookmarks',
+                icon: Icons.bookmark_added_outlined,
+                onTap: controller.onBookmarks,
+              ),
+              const Spacer(),
+              MyDrawerButton(
+                title: 'Settings',
+                icon: Icons.settings_outlined,
+                onTap: controller.onLogout,
+              ),
+            ],
+          ),
+        ),
+      );
+
+  Widget _events() {
+    return Obx(
+      () => SliverList.separated(
+        itemCount: controller.events.length,
+        itemBuilder: (_, index) => EventWidget(
+          event: controller.events[index],
+          bookmarked: controller.bookmarkedEvents,
+          onView: () => controller.onViewEvent(controller.events[index].id),
+          onBookmark: () => controller.onBookmark(controller.events[index].id),
+        ),
+        separatorBuilder: (_, __) => const SizedBox(height: 12),
+      ),
+    );
+  }
+
+  Widget _sliverAppBar() {
+    return SliverAppBar(
+      snap: false,
+      floating: true,
+      toolbarHeight: 50,
+      surfaceTintColor: const Color(0xFFEAF4F4),
+      backgroundColor: const Color(0xFFEAF4F4),
+      flexibleSpace: FlexibleSpaceBar(
+        background: _appBar(),
+      ),
+    );
+  }
+
+  Widget _appBar() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
+          const Text(
+            'Events',
+            style: TextStyle(
+              fontSize: 24,
+              color: Color(0xFF1F322A),
+            ),
+          ),
+          const SizedBox(width: 16),
           Expanded(child: _searchBar()),
-          const SizedBox(width: 12),
-          Obx(() => _openDialog()),
+          const SizedBox(width: 36),
+          // Obx(() => _openDialog()),
         ],
       ),
     );
   }
 
-  Widget _openDialog() {
+  Widget _dialogButton() {
     return Badge(
       alignment: const Alignment(0.5, -0.6),
       smallSize: 10,
@@ -59,63 +121,11 @@ class EventsScreen extends GetView<EventsController> {
         hintText: 'Search',
         isDense: true,
         contentPadding: const EdgeInsets.all(8),
+        suffixIcon: Obx(() => _dialogButton()),
         prefixIcon: const Icon(Icons.search),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-      ),
-    );
-  }
-
-  Widget _events() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 60),
-      child: Obx(
-        () => ListView.separated(
-          itemCount: controller.events.length,
-          itemBuilder: (_, index) => EventWidget(
-            event: controller.events[index],
-            bookmarked: controller.bookmarkedEvents,
-            onView: () => controller.onViewEvent(controller.events[index].id),
-            onBookmark: () =>
-                controller.onBookmark(controller.events[index].id),
-          ),
-          separatorBuilder: (_, __) => const SizedBox(height: 12),
-        ),
-      ),
-    );
-  }
-
-  Widget _appBar() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Text(
-            'Events',
-            style: TextStyle(
-              fontSize: 24,
-              color: Color(0xFF1F322A),
-            ),
-          ),
-          const Spacer(),
-          IconButton(
-            onPressed: controller.onMyEvents,
-            icon: const Icon(Icons.event_outlined),
-            tooltip: 'My Events',
-          ),
-          IconButton(
-            onPressed: controller.onBookmarks,
-            icon: const Icon(Icons.bookmark_added_outlined),
-            tooltip: 'Bookmarks',
-          ),
-          IconButton(
-            onPressed: controller.onLogout,
-            icon: const Icon(Icons.settings_outlined),
-            tooltip: 'Setting',
-          ),
-        ],
       ),
     );
   }

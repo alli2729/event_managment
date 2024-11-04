@@ -1,28 +1,25 @@
-import 'package:get/get.dart';
 import '../../models/event_model.dart';
 import 'package:flutter/material.dart';
 
-class EventWidget extends StatelessWidget {
-  const EventWidget({
+class MyEventWidget extends StatelessWidget {
+  const MyEventWidget({
     super.key,
     required this.event,
-    required this.onView,
-    required this.onBookmark,
-    required this.bookmarked,
+    required this.onRemove,
+    required this.onEdit,
   });
 
   final EventModel event;
-  final RxList bookmarked;
-  final void Function() onView;
-  final void Function() onBookmark;
+  final void Function() onRemove;
+  final void Function() onEdit;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 22),
       child: InkWell(
-        onTap: onView,
         borderRadius: BorderRadius.circular(10),
+        onTap: onEdit,
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -39,13 +36,15 @@ class EventWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
             child: Row(
               children: [
+                _editRemove(),
+                const SizedBox(width: 12),
                 _avatar(),
                 const SizedBox(width: 10),
-                title(),
+                _title(),
                 const Spacer(),
-                priceDate(),
+                _priceDate(),
                 const SizedBox(width: 12),
-                iconNumber(),
+                _iconNumber(),
               ],
             ),
           ),
@@ -64,7 +63,7 @@ class EventWidget extends StatelessWidget {
     );
   }
 
-  Widget title() {
+  Widget _title() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,7 +86,7 @@ class EventWidget extends StatelessWidget {
     );
   }
 
-  Widget priceDate() {
+  Widget _priceDate() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -110,18 +109,14 @@ class EventWidget extends StatelessWidget {
     );
   }
 
-  Widget iconNumber() {
+  Widget _iconNumber() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Obx(
-          () => GestureDetector(
-            onTap: onBookmark,
-            child: (isBookmarked)
-                ? const Icon(Icons.bookmark, color: Colors.red)
-                : const Icon(Icons.bookmark_outline),
-          ),
+        GestureDetector(
+          onTap: onEdit,
+          child: const Icon(Icons.bookmark, color: Colors.red),
         ),
         const SizedBox(height: 12),
         Text(
@@ -135,8 +130,22 @@ class EventWidget extends StatelessWidget {
     );
   }
 
+  Widget _editRemove() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        IconButton(
+          onPressed: onRemove,
+          icon: const Icon(
+            Icons.cancel,
+            color: Colors.red,
+          ),
+        ),
+      ],
+    );
+  }
+
   String get dateTime =>
       '${event.dateTime.year}/${event.dateTime.month}/${event.dateTime.day}';
-
-  bool get isBookmarked => (bookmarked.contains(event.id));
 }

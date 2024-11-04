@@ -27,7 +27,6 @@ class BookmarkEventController extends GetxController {
 
   // functions
   Future<void> getUser() async {
-    print('Hello');
     final result = await _repository.getUser(userId: userId);
     result.fold(
       (left) {

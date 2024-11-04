@@ -1,9 +1,8 @@
-import 'package:get/get.dart';
 import '../../models/event_model.dart';
 import 'package:flutter/material.dart';
 
-class EventWidget extends StatelessWidget {
-  const EventWidget({
+class BookmarkEventWidget extends StatelessWidget {
+  const BookmarkEventWidget({
     super.key,
     required this.event,
     required this.onView,
@@ -12,9 +11,9 @@ class EventWidget extends StatelessWidget {
   });
 
   final EventModel event;
-  final RxList bookmarked;
   final void Function() onView;
   final void Function() onBookmark;
+  final List<EventModel> bookmarked;
 
   @override
   Widget build(BuildContext context) {
@@ -115,13 +114,11 @@ class EventWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Obx(
-          () => GestureDetector(
-            onTap: onBookmark,
-            child: (isBookmarked)
-                ? const Icon(Icons.bookmark, color: Colors.red)
-                : const Icon(Icons.bookmark_outline),
-          ),
+        GestureDetector(
+          onTap: onBookmark,
+          child: (isBookmarked)
+              ? const Icon(Icons.bookmark, color: Colors.red)
+              : const Icon(Icons.bookmark_outline),
         ),
         const SizedBox(height: 12),
         Text(
@@ -138,5 +135,12 @@ class EventWidget extends StatelessWidget {
   String get dateTime =>
       '${event.dateTime.year}/${event.dateTime.month}/${event.dateTime.day}';
 
-  bool get isBookmarked => (bookmarked.contains(event.id));
+  bool get isBookmarked {
+    for (var bookmark in bookmarked) {
+      if (bookmark.id == event.id) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
