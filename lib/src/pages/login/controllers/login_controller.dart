@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../generated/locales.g.dart';
 import '../../../infrastructure/utils/utils.dart';
 import '../../../infrastructure/routes/route_names.dart';
 import '../repositories/login_repository.dart';
@@ -30,8 +31,8 @@ class LoginController {
     );
 
     result.fold(
-      (exception) {
-        Utils.showFailSnackBar(message: exception);
+      (number) {
+        Utils.showFailSnackBar(message: exception(number));
         isLoading.value = false;
       },
       (user) {
@@ -59,7 +60,25 @@ class LoginController {
       (!(formKey.currentState?.validate() ?? false)) ? false : true;
 
   String? validate(String? value) {
-    if (value == null || value.isEmpty) return 'required';
+    if (value == null || value.isEmpty) {
+      return LocaleKeys.event_managment_app_login_page_required.tr;
+    }
+    if (value.contains(' ')) {
+      return LocaleKeys.event_managment_app_login_page_no_space.tr;
+    }
     return null;
+  }
+
+  String exception(int number) {
+    switch (number) {
+      case 1:
+        return LocaleKeys.event_managment_app_login_page_user_not_found.tr;
+      case 2:
+        return LocaleKeys.event_managment_app_login_page_password_incorrect.tr;
+      case 3:
+        return LocaleKeys.event_managment_app_login_page_somthing_went_wrong.tr;
+      default:
+        return '';
+    }
   }
 }

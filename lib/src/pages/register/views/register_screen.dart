@@ -1,3 +1,4 @@
+import '../../../../generated/locales.g.dart';
 import '../controllers/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,13 +43,16 @@ class RegisterScreen extends GetView<RegisterController> {
   Widget _login() {
     return Row(
       children: [
-        const Text('already have an account? ', style: TextStyle(fontSize: 14)),
+        Text(
+          LocaleKeys.event_managment_app_register_page_already_have_acc.tr,
+          style: const TextStyle(fontSize: 14),
+        ),
         Obx(
           () => GestureDetector(
             onTap: (controller.isLoading.value) ? null : controller.onLogin,
-            child: const Text(
-              'Login now',
-              style: TextStyle(
+            child: Text(
+              LocaleKeys.event_managment_app_register_page_login_now.tr,
+              style: const TextStyle(
                 fontSize: 16,
                 color: Color(0xFF2B4D3E),
               ),
@@ -73,9 +77,9 @@ class RegisterScreen extends GetView<RegisterController> {
                 ? const Color(0xFF5C6D66)
                 : const Color(0xFF2B4D3E),
           ),
-          child: const Text(
-            'Register',
-            style: TextStyle(
+          child: Text(
+            LocaleKeys.event_managment_app_register_page_register.tr,
+            style: const TextStyle(
               fontSize: 20,
               color: Colors.white,
             ),
@@ -89,14 +93,14 @@ class RegisterScreen extends GetView<RegisterController> {
     return Obx(
       () => Row(
         children: [
-          const Text("Male"),
+          Text(LocaleKeys.event_managment_app_register_page_male.tr),
           Radio<String>(
             activeColor: const Color(0xFF2B4D3E),
             value: 'male',
             groupValue: controller.selectedGender.value,
             onChanged: controller.selectGender,
           ),
-          const Text("Female"),
+          Text(LocaleKeys.event_managment_app_register_page_female.tr),
           Radio<String>(
             activeColor: const Color(0xFF2B4D3E),
             value: 'female',
@@ -132,7 +136,8 @@ class RegisterScreen extends GetView<RegisterController> {
                 : const Icon(Icons.visibility_off),
           ),
           prefixIcon: const Icon(Icons.key_outlined),
-          hintText: 'repeat Password',
+          hintText:
+              LocaleKeys.event_managment_app_register_page_repeat_password.tr,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -144,7 +149,7 @@ class RegisterScreen extends GetView<RegisterController> {
   Widget _password() {
     return Obx(
       () => TextFormField(
-        validator: controller.validate,
+        validator: controller.passValidate,
         controller: controller.passwordController,
         obscureText: controller.isVisible.value,
         decoration: InputDecoration(
@@ -155,8 +160,8 @@ class RegisterScreen extends GetView<RegisterController> {
                 : const Icon(Icons.visibility_off),
           ),
           prefixIcon: const Icon(Icons.key_outlined),
-          labelText: 'Password',
-          hintText: 'Password',
+          labelText: LocaleKeys.event_managment_app_register_page_password.tr,
+          hintText: LocaleKeys.event_managment_app_register_page_password.tr,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -167,12 +172,12 @@ class RegisterScreen extends GetView<RegisterController> {
 
   Widget _username() {
     return TextFormField(
-      validator: controller.validate,
+      validator: controller.userValidate,
       controller: controller.usernameController,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.person),
-        labelText: 'Username',
-        hintText: 'Username',
+        labelText: LocaleKeys.event_managment_app_register_page_username.tr,
+        hintText: LocaleKeys.event_managment_app_register_page_username.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -186,8 +191,8 @@ class RegisterScreen extends GetView<RegisterController> {
       controller: controller.lastNameController,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.person_4_outlined),
-        labelText: 'Lastname',
-        hintText: 'Lastname',
+        labelText: LocaleKeys.event_managment_app_register_page_lastname.tr,
+        hintText: LocaleKeys.event_managment_app_register_page_lastname.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -201,8 +206,8 @@ class RegisterScreen extends GetView<RegisterController> {
       controller: controller.firstNameController,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.person_4_outlined),
-        labelText: 'Firstname',
-        hintText: 'Firstname',
+        labelText: LocaleKeys.event_managment_app_register_page_firstname.tr,
+        hintText: LocaleKeys.event_managment_app_register_page_firstname.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -212,7 +217,7 @@ class RegisterScreen extends GetView<RegisterController> {
 
   AppBar _appBar() {
     return AppBar(
-      title: const Text('Register'),
+      title: Text(LocaleKeys.event_managment_app_register_page_register.tr),
       leading: IconButton(
         onPressed: (controller.isLoading.value) ? null : controller.onLogin,
         icon: const Icon(Icons.arrow_back),

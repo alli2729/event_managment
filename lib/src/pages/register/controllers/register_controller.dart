@@ -1,3 +1,4 @@
+import '../../../../generated/locales.g.dart';
 import '../../../infrastructure/utils/utils.dart';
 import '../models/register_user_dto.dart';
 import '../repositories/register_repository.dart';
@@ -34,8 +35,8 @@ class RegisterController extends GetxController {
     );
 
     result.fold(
-      (exception) {
-        Utils.showFailSnackBar(message: exception);
+      (code) {
+        Utils.showFailSnackBar(message: exception(code));
         isLoading.value = false;
       },
       (notExist) {
@@ -57,8 +58,8 @@ class RegisterController extends GetxController {
     final result = await _repository.registerByDto(dto: dto);
 
     result.fold(
-      (exception) {
-        Utils.showFailSnackBar(message: exception);
+      (code) {
+        Utils.showFailSnackBar(message: exception(code));
         isLoading.value = false;
       },
       (success) {
@@ -81,12 +82,16 @@ class RegisterController extends GetxController {
     if (!(registerFormKey.currentState?.validate() ?? false)) return false;
 
     if (passwordController.text != repeatPasswordController.text) {
-      Utils.showFailSnackBar(message: 'Password is not match');
+      Utils.showFailSnackBar(
+          message: LocaleKeys
+              .event_managment_app_register_page_password_not_match.tr);
       return false;
     }
 
     if (selectedGender.value == null) {
-      Utils.showFailSnackBar(message: 'Please Choose Your Gender');
+      Utils.showFailSnackBar(
+          message:
+              LocaleKeys.event_managment_app_register_page_choose_gender.tr);
       return false;
     }
 
@@ -94,7 +99,29 @@ class RegisterController extends GetxController {
   }
 
   String? validate(String? value) {
-    if (value == null || value.isEmpty) return 'required';
+    if (value == null || value.isEmpty) {
+      return LocaleKeys.event_managment_app_register_page_required.tr;
+    }
+    return null;
+  }
+
+  String? userValidate(String? value) {
+    if (value == null || value.length < 6) {
+      return LocaleKeys.event_managment_app_register_page_longer_than_6.tr;
+    }
+    if (value.contains(' ')) {
+      return LocaleKeys.event_managment_app_register_page_no_space.tr;
+    }
+    return null;
+  }
+
+  String? passValidate(String? value) {
+    if (value == null || value.length < 8) {
+      return LocaleKeys.event_managment_app_register_page_longer_than_8.tr;
+    }
+    if (value.contains(' ')) {
+      return LocaleKeys.event_managment_app_register_page_no_space.tr;
+    }
     return null;
   }
 
@@ -106,5 +133,20 @@ class RegisterController extends GetxController {
     usernameController.dispose();
     passwordController.dispose();
     repeatPasswordController.dispose();
+  }
+
+  String exception(int code) {
+    switch (code) {
+      case 1:
+        return LocaleKeys.event_managment_app_register_page_error.tr;
+      case 2:
+        return LocaleKeys
+            .event_managment_app_register_page_somthing_went_wrong.tr;
+      case 3:
+        return LocaleKeys
+            .event_managment_app_register_page_username_already_taken.tr;
+      default:
+        return '';
+    }
   }
 }

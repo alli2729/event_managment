@@ -1,3 +1,4 @@
+import '../../../../generated/locales.g.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
@@ -16,7 +17,7 @@ class LoginScreen extends GetView<LoginController> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const Text('LOGIN', style: TextStyle(fontSize: 48)),
+                  _loginText(),
                   const SizedBox(height: 48),
                   _username(),
                   const SizedBox(height: 16),
@@ -36,16 +37,26 @@ class LoginScreen extends GetView<LoginController> {
     );
   }
 
+  Widget _loginText() {
+    return Text(
+      LocaleKeys.event_managment_app_login_page_login.tr,
+      style: const TextStyle(fontSize: 48),
+    );
+  }
+
   Widget _register() {
     return Row(
       children: [
-        const Text('dont have an account? ', style: TextStyle(fontSize: 14)),
+        Text(
+          LocaleKeys.event_managment_app_login_page_dont_have_account.tr,
+          style: const TextStyle(fontSize: 14),
+        ),
         Obx(
           () => GestureDetector(
             onTap: (controller.isLoading.value) ? null : controller.onRegister,
-            child: const Text(
-              'Register now',
-              style: TextStyle(
+            child: Text(
+              LocaleKeys.event_managment_app_login_page_register_now.tr,
+              style: const TextStyle(
                 fontSize: 16,
                 color: Color(0xFF2B4D3E),
               ),
@@ -70,9 +81,9 @@ class LoginScreen extends GetView<LoginController> {
                 ? const Color(0xFF5C6D66)
                 : const Color(0xFF2B4D3E),
           ),
-          child: const Text(
-            'Login',
-            style: TextStyle(
+          child: Text(
+            LocaleKeys.event_managment_app_login_page_login.tr,
+            style: const TextStyle(
               fontSize: 20,
               color: Colors.white,
             ),
@@ -92,7 +103,10 @@ class LoginScreen extends GetView<LoginController> {
             onChanged: controller.rememberToggle,
           ),
         ),
-        const Text('remember me', style: TextStyle(fontSize: 16)),
+        Text(
+          LocaleKeys.event_managment_app_login_page_remember_me.tr,
+          style: const TextStyle(fontSize: 16),
+        ),
       ],
     );
   }
@@ -103,8 +117,8 @@ class LoginScreen extends GetView<LoginController> {
       validator: controller.validate,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.person),
-        labelText: 'Username',
-        hintText: 'Username',
+        labelText: LocaleKeys.event_managment_app_login_page_username.tr,
+        hintText: LocaleKeys.event_managment_app_login_page_username.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -126,8 +140,8 @@ class LoginScreen extends GetView<LoginController> {
                 : const Icon(Icons.visibility_off),
           ),
           prefixIcon: const Icon(Icons.key_outlined),
-          labelText: 'Password',
-          hintText: 'Password',
+          labelText: LocaleKeys.event_managment_app_login_page_password.tr,
+          hintText: LocaleKeys.event_managment_app_login_page_password.tr,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),

@@ -1,0 +1,38 @@
+{
+  "event_managment_app": {
+    "login_page" : {
+      "login": "وارد شوید",
+      "dont_have_account": "حساب کاربری ندارید؟ ",
+      "register_now": "هم اکنون ثبت نام کنید",
+      "remember_me": "مرا به خاطر بسپار",
+      "username": "نام کاربری",
+      "password": "رمز عبور",
+      "required": "ضروری است",
+      "no_space": "نمی تواند حاوی فاصله باشد"    ,
+      "user_not_found" : "کاربر یافت نشد",
+      "password_incorrect" : "رمز عبور اشتباه می باشد",
+      "somthing_went_wrong" : "مشکلی پیش آمده"
+   },
+    "register_page": {
+      "already_have_acc": "آیا حساب کاربری دارید؟ ",
+      "login_now": "اکنون وارد شوید",
+      "register": "ثبت نام",
+      "male": "مرد",
+      "female": "زن",
+      "repeat_password": "تکرار رمز عبور",
+      "username": "نام کاربری",
+      "password": "رمز عبور",
+      "lastname": "نام خانوادگی",
+      "firstname": "نام",
+      "passwor_not_match" : "رمز عبور همخوانی ندارد",
+      "choose_gender" : "لطفا جنسیت خود را انتخاب کنید",
+      "required" : "ضروری است",
+      "longer_than_6" : "باید طولانی تر از 6 حرف باشد",
+      "longer_than_8" : "باید طولانی تر از 8 حرف باشد",
+      "no_space" : "نمی تواند حاوی فاصله باشد",
+      "error" : "ارور",
+      "somthing_went_wrong" : "مشکلی پیش آمدی",
+      "username_already_taken" : "این نام کاربری در دسترس نمی باشد"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "event_managment_app": {
+    "login_page" : {
+      "login" : "Login",
+      "dont_have_account" : "dont have an account? ",
+      "register_now" : "Register now",
+      "remember_me" : "remember me",
+      "username" : "Username",
+      "password" : "Password",
+      "required" : "required",
+      "no_space" : "cant contain space",
+      "user_not_found" : "User Not Found",
+      "password_incorrect" : "Password incorrect",
+      "somthing_went_wrong" : "somthing went wrong"
+    },
+    "register_page" : {
+      "already_have_acc" : "already have an account? ",
+      "login_now" : "Login now",
+      "register" : "Register",
+      "male" : "Male",
+      "female" : "Female",
+      "repeat_password" : "repeat Password",
+      "username" : "Username",
+      "password" : "Password",
+      "lastname" : "Lastname",
+      "firstname" : "Firstname",
+      "password_not_match" : "Password is not match",
+      "choose_gender" : "Please Choose Your Gender",
+      "required" : "required",
+      "longer_than_6" : "must be longer than 6 characters",
+      "longer_than_8" : "must be longer than 8 characters",
+      "no_space" : "cant contain space",
+      "error" : "Error",
+      "somthing_went_wrong" : "somthing went wrong",
+      "username_already_taken" : "username is already taken"
+    }
+  }
+}
