@@ -115,7 +115,7 @@ class MyEventWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          '${event.attendent} / ${event.capacity}',
+          '${event.attendees} / ${event.capacity}',
           style: const TextStyle(
             fontSize: 12,
             color: Colors.grey,

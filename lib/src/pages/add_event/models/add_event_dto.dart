@@ -7,7 +7,7 @@ class AddEventDto {
   String dateTime;
   int capacity;
   double price;
-  int attendent;
+  int attendees;
   String? imageBase64 = '';
   bool filled = false;
 
@@ -18,7 +18,7 @@ class AddEventDto {
     required this.dateTime,
     required this.capacity,
     required this.price,
-    required this.attendent,
+    required this.attendees,
     this.imageBase64,
   });
 
@@ -29,7 +29,7 @@ class AddEventDto {
         "dateTime": dateTime,
         "capacity": capacity,
         "price": price,
-        "attendent": attendent,
+        "attendees": attendees,
         "image": imageBase64,
         "filled": filled,
       };

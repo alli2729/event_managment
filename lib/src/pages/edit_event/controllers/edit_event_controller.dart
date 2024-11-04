@@ -97,7 +97,7 @@ class EditEventController extends GetxController {
       dateTime: dateTime,
       capacity: int.parse(capacityController.text),
       price: double.parse(priceController.text),
-      attendent: event.attendent!,
+      attendees: event.attendees!,
       imageBase64: imageBase64,
       filled: event.filled,
     );

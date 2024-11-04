@@ -11,7 +11,7 @@ class EventModel {
   DateTime dateTime;
   int capacity;
   double price;
-  int? attendent = 0;
+  int? attendees = 0;
   String? imageBase64 = '';
   Uint8List? image;
   bool filled;
@@ -25,7 +25,7 @@ class EventModel {
     required this.capacity,
     required this.price,
     required this.filled,
-    this.attendent,
+    this.attendees,
     this.imageBase64,
   }) {
     image = base64Decode(imageBase64!);
@@ -40,7 +40,7 @@ class EventModel {
       dateTime: DateTime.parse(json["dateTime"]),
       capacity: json["capacity"],
       price: double.parse('${json["price"]}'),
-      attendent: json["attendent"],
+      attendees: json["attendees"],
       imageBase64: json["image"],
       filled: json["filled"],
     );

@@ -52,7 +52,7 @@ class AddEventController extends GetxController {
       dateTime: dateTime,
       capacity: int.parse(capacityController.text),
       price: double.parse(priceController.text),
-      attendent: 0,
+      attendees: 0,
       imageBase64: imageBase64,
     );
 

@@ -71,7 +71,7 @@ class MyEventsController extends GetxController {
 
   Future<void> onRemove({required int eventId}) async {
     int index = myEvents.indexWhere((event) => event.id == eventId);
-    if (myEvents[index].attendent != 0) {
+    if (myEvents[index].attendees != 0) {
       Utils.showFailSnackBar(message: 'cant delete non empty events !');
       return;
     }

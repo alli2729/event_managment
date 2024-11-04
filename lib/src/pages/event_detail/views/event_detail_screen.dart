@@ -189,7 +189,7 @@ class EventDetailScreen extends GetView<EventDetailController> {
   }
 
   String get _cap =>
-      '${controller.event.value.attendent} / ${controller.event.value.capacity}';
+      '${controller.event.value.attendees} / ${controller.event.value.capacity}';
   String get _description => controller.event.value.description;
   String get _title => controller.event.value.title;
   String get _price => controller.event.value.price.toString();

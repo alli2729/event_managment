@@ -1,14 +1,14 @@
 class BuyEventDto {
-  int attendent;
+  int attendees;
   bool? filled;
 
   BuyEventDto({
-    required this.attendent,
+    required this.attendees,
     this.filled,
   });
 
   Map<String, dynamic> toJason() => {
-        "attendent": attendent,
+        "attendees": attendees,
         "filled": filled,
       };
 }

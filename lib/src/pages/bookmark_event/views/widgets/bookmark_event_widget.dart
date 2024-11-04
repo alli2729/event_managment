@@ -122,7 +122,7 @@ class BookmarkEventWidget extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          '${event.attendent} / ${event.capacity}',
+          '${event.attendees} / ${event.capacity}',
           style: const TextStyle(
             fontSize: 12,
             color: Colors.grey,

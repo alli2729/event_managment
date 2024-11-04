@@ -23,7 +23,7 @@ class EventDetailController extends GetxController {
     capacity: 0,
     price: 0,
     imageBase64: '',
-    attendent: 0,
+    attendees: 0,
     filled: false,
   ));
 
@@ -68,12 +68,12 @@ class EventDetailController extends GetxController {
   Future<void> onBuyEvent() async {
     isBuying.value = true;
 
-    int sendAttendent = event.value.attendent! + buyValue;
+    int sendattendees = event.value.attendees! + buyValue;
     bool filled = false;
-    if (sendAttendent == event.value.capacity) filled = true;
+    if (sendattendees == event.value.capacity) filled = true;
 
     final BuyEventDto dto = BuyEventDto(
-      attendent: sendAttendent,
+      attendees: sendattendees,
       filled: filled,
     );
 
@@ -90,8 +90,8 @@ class EventDetailController extends GetxController {
     );
   }
 
-  int get maxValue => event.value.capacity - event.value.attendent!;
-  bool get notFilled => event.value.capacity != event.value.attendent!;
+  int get maxValue => event.value.capacity - event.value.attendees!;
+  bool get notFilled => event.value.capacity != event.value.attendees!;
 
   @override
   void onInit() {
