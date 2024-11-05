@@ -113,6 +113,24 @@
         "date_error" : "selected date must be after today",
         "failed" : "Failed",
         "required" : "required"
+      },
+      "bookmark_page" : {
+        "bookmarks" : "Bookmarks",
+        "search" : "Search",
+        "back" : "Back",
+        "price_limit" : "Price Limitaition",
+        "from" : "from",
+        "to" : "to",
+        "not_filled" : "not Filled",
+        "not_expired" : "not Expired",
+        "sort_by_date" : "Sort By Date",
+        "filter" : "Filter",
+        "reset" : "Reset",
+        "t" : "T",
+        "cant_unbook" : "Cant unBook this event",
+        "somthing_went_wrong" : "somthing went wrong",
+        "done" : "Done !",
+        "cant_search" : "Cant search right now"
       }
   }
 }

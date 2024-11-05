@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+import '../../../../../generated/locales.g.dart';
 import '../../models/event_model.dart';
 import 'package:flutter/material.dart';
 
@@ -96,7 +98,7 @@ class BookmarkEventWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '${event.price} T',
+          '${event.price} ${LocaleKeys.event_managment_app_bookmark_page_t.tr}',
           style: const TextStyle(
             fontSize: 18,
             color: Color(0xFF41C88E),

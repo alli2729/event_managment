@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:either_dart/either.dart';
+import '../../../../generated/locales.g.dart';
 import '../models/bookmark_user_dto.dart';
 import 'package:http/http.dart' as http;
 import '../models/event_model.dart';
@@ -19,7 +20,9 @@ class BookmarkEventRepository {
       }
       return Right(bookmarked);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_bookmark_page_somthing_went_wrong,
+      );
     }
   }
 
@@ -36,7 +39,9 @@ class BookmarkEventRepository {
       }
       return Right(bookmarkedEvents);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_bookmark_page_somthing_went_wrong,
+      );
     }
   }
 
@@ -53,11 +58,15 @@ class BookmarkEventRepository {
       );
 
       if (response.statusCode != 200) {
-        return const Left('Cant unBook this event');
+        return const Left(
+          LocaleKeys.event_managment_app_bookmark_page_cant_unbook,
+        );
       }
       return const Right(true);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_bookmark_page_somthing_went_wrong,
+      );
     }
   }
 
@@ -78,7 +87,9 @@ class BookmarkEventRepository {
       }
       return Right(searchedEvents);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_bookmark_page_somthing_went_wrong,
+      );
     }
   }
 }

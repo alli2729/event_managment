@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../generated/locales.g.dart';
 import '../models/bookmark_user_dto.dart';
 import '../models/event_model.dart';
 import '../../../infrastructure/utils/utils.dart';
@@ -35,11 +36,11 @@ class BookmarkEventController extends GetxController {
     isSearch.value = true;
     final result = await _repository.getUser(userId: userId);
     result.fold(
-      (left) {
+      (exception) {
         isLoading.value = false;
         isSearch.value = false;
         isRetry.value = true;
-        Utils.showFailSnackBar(message: left);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (bookmarkedList) {
         if (bookmarkedList.isEmpty) {
@@ -64,11 +65,11 @@ class BookmarkEventController extends GetxController {
   Future<void> getBookmarked() async {
     final result = await _repository.getBookmarked(params: params);
     result.fold(
-      (left) {
+      (exception) {
         isLoading.value = false;
         isSearch.value = false;
         isRetry.value = true;
-        Utils.showFailSnackBar(message: left);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (eventsList) {
         bookmarkedEvents.value = eventsList;
@@ -83,10 +84,12 @@ class BookmarkEventController extends GetxController {
     final result = await _repository.editBookmarks(userId: userId, dto: dto);
     result.fold(
       (exception) {
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (_) {
-        Utils.showSuccessSnackBar(message: 'Done !');
+        Utils.showSuccessSnackBar(
+          message: LocaleKeys.event_managment_app_bookmark_page_done.tr,
+        );
         bookmarkedEvents.removeWhere((element) => element.id == eventId);
       },
     );
@@ -106,7 +109,9 @@ class BookmarkEventController extends GetxController {
     result.fold(
       (left) {
         isSearch.value = false;
-        Utils.showFailSnackBar(message: 'Cant search right now');
+        Utils.showFailSnackBar(
+          message: LocaleKeys.event_managment_app_bookmark_page_cant_search.tr,
+        );
       },
       (searchedEvents) {
         isSearch.value = false;

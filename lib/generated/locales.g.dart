@@ -207,6 +207,38 @@ class LocaleKeys {
       'event_managment_app_edit_event_page_failed';
   static const event_managment_app_edit_event_page_required =
       'event_managment_app_edit_event_page_required';
+  static const event_managment_app_bookmark_page_bookmarks =
+      'event_managment_app_bookmark_page_bookmarks';
+  static const event_managment_app_bookmark_page_search =
+      'event_managment_app_bookmark_page_search';
+  static const event_managment_app_bookmark_page_back =
+      'event_managment_app_bookmark_page_back';
+  static const event_managment_app_bookmark_page_price_limit =
+      'event_managment_app_bookmark_page_price_limit';
+  static const event_managment_app_bookmark_page_from =
+      'event_managment_app_bookmark_page_from';
+  static const event_managment_app_bookmark_page_to =
+      'event_managment_app_bookmark_page_to';
+  static const event_managment_app_bookmark_page_not_filled =
+      'event_managment_app_bookmark_page_not_filled';
+  static const event_managment_app_bookmark_page_not_expired =
+      'event_managment_app_bookmark_page_not_expired';
+  static const event_managment_app_bookmark_page_sort_by_date =
+      'event_managment_app_bookmark_page_sort_by_date';
+  static const event_managment_app_bookmark_page_filter =
+      'event_managment_app_bookmark_page_filter';
+  static const event_managment_app_bookmark_page_reset =
+      'event_managment_app_bookmark_page_reset';
+  static const event_managment_app_bookmark_page_t =
+      'event_managment_app_bookmark_page_t';
+  static const event_managment_app_bookmark_page_cant_unbook =
+      'event_managment_app_bookmark_page_cant_unbook';
+  static const event_managment_app_bookmark_page_somthing_went_wrong =
+      'event_managment_app_bookmark_page_somthing_went_wrong';
+  static const event_managment_app_bookmark_page_done =
+      'event_managment_app_bookmark_page_done';
+  static const event_managment_app_bookmark_page_cant_search =
+      'event_managment_app_bookmark_page_cant_search';
 }
 
 class Locales {
@@ -331,6 +363,23 @@ class Locales {
         'selected date must be after today',
     'event_managment_app_edit_event_page_failed': 'Failed',
     'event_managment_app_edit_event_page_required': 'required',
+    'event_managment_app_bookmark_page_bookmarks': 'Bookmarks',
+    'event_managment_app_bookmark_page_search': 'Search',
+    'event_managment_app_bookmark_page_back': 'Back',
+    'event_managment_app_bookmark_page_price_limit': 'Price Limitaition',
+    'event_managment_app_bookmark_page_from': 'from',
+    'event_managment_app_bookmark_page_to': 'to',
+    'event_managment_app_bookmark_page_not_filled': 'not Filled',
+    'event_managment_app_bookmark_page_not_expired': 'not Expired',
+    'event_managment_app_bookmark_page_sort_by_date': 'Sort By Date',
+    'event_managment_app_bookmark_page_filter': 'Filter',
+    'event_managment_app_bookmark_page_reset': 'Reset',
+    'event_managment_app_bookmark_page_t': 'T',
+    'event_managment_app_bookmark_page_cant_unbook': 'Cant unBook this event',
+    'event_managment_app_bookmark_page_somthing_went_wrong':
+        'somthing went wrong',
+    'event_managment_app_bookmark_page_done': 'Done !',
+    'event_managment_app_bookmark_page_cant_search': 'Cant search right now',
   };
   static const fa_IR = {
     'event_managment_app_login_page_login': 'وارد شوید',
@@ -449,5 +498,23 @@ class Locales {
         'تاریخ انتخابی باید از امروز گذشته باشد',
     'event_managment_app_edit_event_page_failed': 'خطا',
     'event_managment_app_edit_event_page_required': 'ضروری است',
+    'event_managment_app_bookmark_page_bookmarks': 'نشان شده ها',
+    'event_managment_app_bookmark_page_search': 'جست و جو',
+    'event_managment_app_bookmark_page_back': 'برگشت',
+    'event_managment_app_bookmark_page_price_limit': 'محدوده قیمت',
+    'event_managment_app_bookmark_page_from': 'از',
+    'event_managment_app_bookmark_page_to': 'تا',
+    'event_managment_app_bookmark_page_not_filled': 'دارای ظرفیت',
+    'event_managment_app_bookmark_page_not_expired': 'منقضی نشده',
+    'event_managment_app_bookmark_page_sort_by_date': 'مرتب سازی بر اساس تاریخ',
+    'event_managment_app_bookmark_page_filter': 'فیلتر',
+    'event_managment_app_bookmark_page_reset': 'پاک کردن',
+    'event_managment_app_bookmark_page_t': 'ت',
+    'event_managment_app_bookmark_page_cant_unbook':
+        'نمی توانید نشان این رویداد را حذف کنید',
+    'event_managment_app_bookmark_page_somthing_went_wrong': 'مشکلی پیش آمده',
+    'event_managment_app_bookmark_page_done': 'انجام شد !',
+    'event_managment_app_bookmark_page_cant_search':
+        'نمی توانید در این لحضه جست و جو کنید',
   };
 }
