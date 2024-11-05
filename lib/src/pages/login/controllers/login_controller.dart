@@ -54,6 +54,12 @@ class LoginController {
     }
   }
 
+  void onChangeLanguage() {
+    (Get.locale == const Locale('en', 'US'))
+        ? Get.updateLocale(const Locale('fa', 'IR'))
+        : Get.updateLocale(const Locale('en', "US"));
+  }
+
   //* Validations ----------------------------------------------------
 
   bool formValidation() =>

@@ -17,6 +17,7 @@ class LoginScreen extends GetView<LoginController> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  _lang(),
                   _loginText(),
                   _image(context),
                   const SizedBox(height: 48),
@@ -34,6 +35,16 @@ class LoginScreen extends GetView<LoginController> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _lang() {
+    return GestureDetector(
+      onTap: controller.onChangeLanguage,
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Text(LocaleKeys.event_managment_app_login_page_lang.tr),
       ),
     );
   }

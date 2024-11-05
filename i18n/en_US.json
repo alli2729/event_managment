@@ -1,7 +1,11 @@
 {
   "event_managment_app": {
+    "splash_screen" :{
+      "try_again" : "Couldn't Connect to Server , Try Again"
+    },
     "login_page" : {
       "login" : "Login",
+      "lang" : "فارسی",
       "dont_have_account" : "dont have an account? ",
       "register_now" : "Register now",
       "remember_me" : "remember me",

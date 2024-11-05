@@ -6,6 +6,8 @@ class UrlRepository {
   static const String _users = '/users';
   static const String _events = '/events';
 
+  static Uri base = Uri.parse(_baseUrl);
+
   // login
   static Uri loginByUsername({
     required String username,

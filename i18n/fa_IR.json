@@ -1,7 +1,11 @@
 {
   "event_managment_app": {
+    "splash_screen" :{
+      "try_again" : "اتصالی برقرار نشد ، لطفا مجددا تلاش کنید"
+    },
     "login_page" : {
       "login": "وارد شوید",
+      "lang" : "English",
       "dont_have_account": "حساب کاربری ندارید؟ ",
       "register_now": "هم اکنون ثبت نام کنید",
       "remember_me": "مرا به خاطر بسپار",

@@ -7,22 +7,28 @@ class SplashView extends GetView<SplashController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.wait();
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/loading.png',
-                package: 'event_managment',
-                width: pageWidth(context),
-              ),
-              const CircularProgressIndicator(
-                color: Color(0xFF2B4D3E),
-              ),
-            ],
+          child: Obx(
+            () => Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/loading.png',
+                  package: 'event_managment',
+                  width: pageWidth(context),
+                ),
+                (controller.isFailed.value)
+                    ? IconButton(
+                        onPressed: controller.checkServer,
+                        icon: const Icon(Icons.replay_circle_filled_outlined),
+                      )
+                    : const CircularProgressIndicator(
+                        color: Color(0xFF2B4D3E),
+                      ),
+              ],
+            ),
           ),
         ),
       ),

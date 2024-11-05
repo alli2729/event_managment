@@ -11,8 +11,12 @@ class AppTranslation {
 
 class LocaleKeys {
   LocaleKeys._();
+  static const event_managment_app_splash_screen_try_again =
+      'event_managment_app_splash_screen_try_again';
   static const event_managment_app_login_page_login =
       'event_managment_app_login_page_login';
+  static const event_managment_app_login_page_lang =
+      'event_managment_app_login_page_lang';
   static const event_managment_app_login_page_dont_have_account =
       'event_managment_app_login_page_dont_have_account';
   static const event_managment_app_login_page_register_now =
@@ -243,7 +247,10 @@ class LocaleKeys {
 
 class Locales {
   static const en_US = {
+    'event_managment_app_splash_screen_try_again':
+        'Cant Connect to Server , Try Again',
     'event_managment_app_login_page_login': 'Login',
+    'event_managment_app_login_page_lang': 'فارسی',
     'event_managment_app_login_page_dont_have_account':
         'dont have an account? ',
     'event_managment_app_login_page_register_now': 'Register now',
@@ -382,7 +389,10 @@ class Locales {
     'event_managment_app_bookmark_page_cant_search': 'Cant search right now',
   };
   static const fa_IR = {
+    'event_managment_app_splash_screen_try_again':
+        'اتصالی برقرار نشد ، لطفا مجددا تلاش کنید',
     'event_managment_app_login_page_login': 'وارد شوید',
+    'event_managment_app_login_page_lang': 'English',
     'event_managment_app_login_page_dont_have_account': 'حساب کاربری ندارید؟ ',
     'event_managment_app_login_page_register_now': 'هم اکنون ثبت نام کنید',
     'event_managment_app_login_page_remember_me': 'مرا به خاطر بسپار',
