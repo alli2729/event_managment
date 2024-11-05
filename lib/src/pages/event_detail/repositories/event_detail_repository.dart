@@ -1,4 +1,5 @@
 import 'dart:convert';
+import '../../../../generated/locales.g.dart';
 import '../models/buy_event_dto.dart';
 import 'package:http/http.dart' as http;
 import 'package:either_dart/either.dart';
@@ -16,7 +17,9 @@ class EventDetailRepository {
       final Map<String, dynamic> event = json.decode(response.body);
       return Right(EventModel.fromJason(event));
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_detail_page_somthing_went_wrong,
+      );
     }
   }
 
@@ -32,10 +35,16 @@ class EventDetailRepository {
         headers: {"Content-Type": "application/json"},
       );
 
-      if (response.statusCode != 200) return const Left('Cant Buy Event');
+      if (response.statusCode != 200) {
+        return const Left(
+          LocaleKeys.event_managment_app_detail_page_cant_buy,
+        );
+      }
       return const Right(true);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_detail_page_somthing_went_wrong,
+      );
     }
   }
 }

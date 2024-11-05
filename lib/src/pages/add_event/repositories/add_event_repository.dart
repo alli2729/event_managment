@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:either_dart/either.dart';
+import 'package:event_managment/generated/locales.g.dart';
 import 'package:file_picker/file_picker.dart';
 import '../../../infrastructure/common/url_repository.dart';
 import '../models/add_event_dto.dart';
@@ -18,13 +19,17 @@ class AddEventRepository {
       );
 
       if (response.statusCode != 201) {
-        return const Left('cant add event at this time');
+        return const Left(
+          LocaleKeys.event_managment_app_add_event_page_cant_add,
+        );
       }
 
       final result = json.decode(response.body);
       return Right(result);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_add_event_page_somthing_went_wrong,
+      );
     }
   }
 

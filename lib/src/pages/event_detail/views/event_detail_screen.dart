@@ -1,3 +1,4 @@
+import '../../../../generated/locales.g.dart';
 import '../../../infrastructure/components/buy_counter.dart';
 import '../controllers/event_detail_controller.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,10 @@ class EventDetailScreen extends GetView<EventDetailController> {
           () =>
               (controller.isLoading.value) ? const SizedBox() : _bottomSheet(),
         ),
-        appBar: AppBar(title: const Text('Event Detail')),
+        appBar: AppBar(
+            title: Text(
+          LocaleKeys.event_managment_app_detail_page_event_detail.tr,
+        )),
         body: Obx(() => _pageContent()),
       ),
     );
@@ -81,11 +85,14 @@ class EventDetailScreen extends GetView<EventDetailController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Opening Date: $dateTime', style: const TextStyle(fontSize: 20)),
+          Text(
+            '${LocaleKeys.event_managment_app_detail_page_opening_date.tr} $dateTime',
+            style: const TextStyle(fontSize: 20),
+          ),
           const SizedBox(height: 16),
           Text(_description, style: const TextStyle(fontSize: 18)),
           const SizedBox(height: 16),
-          Text('Price: $_price Toman', style: const TextStyle(fontSize: 18)),
+          Text(_priceToman, style: const TextStyle(fontSize: 18)),
         ],
       ),
     );
@@ -117,9 +124,9 @@ class EventDetailScreen extends GetView<EventDetailController> {
           : Container(
               alignment: Alignment.center,
               width: double.infinity,
-              child: const Text(
-                'This Event is Filled',
-                style: TextStyle(fontSize: 20),
+              child: Text(
+                LocaleKeys.event_managment_app_detail_page_event_is_filled.tr,
+                style: const TextStyle(fontSize: 20),
               ),
             ),
     );
@@ -141,9 +148,9 @@ class EventDetailScreen extends GetView<EventDetailController> {
                   color: Colors.white,
                 ),
               )
-            : const Text(
-                'Buy',
-                style: TextStyle(
+            : Text(
+                LocaleKeys.event_managment_app_detail_page_buy.tr,
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
@@ -188,6 +195,8 @@ class EventDetailScreen extends GetView<EventDetailController> {
     );
   }
 
+  String get _priceToman =>
+      '${LocaleKeys.event_managment_app_detail_page_price.tr} $_price ${LocaleKeys.event_managment_app_detail_page_toman.tr}';
   String get _cap =>
       '${controller.event.value.attendees} / ${controller.event.value.capacity}';
   String get _description => controller.event.value.description;

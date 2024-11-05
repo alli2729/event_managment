@@ -33,6 +33,86 @@
       "error" : "Error",
       "somthing_went_wrong" : "somthing went wrong",
       "username_already_taken" : "username is already taken"
-    }
+    },
+    "events_page" : {
+      "my_events" : "My Events",
+      "bookmarks" : "Bookmarks",
+      "settings" : "Settings",
+      "events" : "Events",
+      "search" : "Search",
+      "back" : "Back",
+      "price_limit" : "Price Limitaition",
+      "from" : "from",
+      "to" : "to",
+      "not_filled" : "not Filled",
+      "not_expired" : "not Expired",
+      "sort_by_date" : "Sort By Date",
+      "filter" : "Filter",
+      "reset" : "Reset",
+      "t" : "T",
+      "cant_search" : "Cant search right now",
+      "done" : "Done !",
+      "somthing_went_wrong" : "somthing went wrong",
+      "cant_add_bookmark" : "Cant add this event to bookmarks"
+    },
+    "my_event_page" : {
+      "my_events" : "My Events",
+      "search" : "Search",
+      "back" : "Back",
+      "price_limit" : "Price Limitaition",
+      "from" : "from",
+      "to" : "to",
+      "not_filled" : "not Filled",
+      "not_expired" : "not Expired",
+      "sort_by_date" : "Sort By Date",
+      "filter" : "Filter",
+      "reset" : "Reset",
+      "t" : "T",
+      "cant_delet_non_empty" : "cant delete non empty events !",
+      "successfully_deleted" : "Successfully deleted",
+      "cant_search" : "Cant search right now",
+      "somthing_went_wrong" : "somthing went wrong",
+      "cant_delete_event" : "cant delete this event at this time"
+    },
+    "detail_page" : {
+      "event_detail" : "Event Detail",
+      "opening_date" : "Opening Date:",
+      "price" : "Price",
+      "toman" : "Toman",
+      "event_is_filled" : "This Event is Filled",
+      "buy" : "Buy",
+      "cant_buy" : "Cant Buy Event",
+      "somthing_went_wrong" : "somthing went wrong"
+      },
+      "settings_page" : {
+        "settings" : "Settings",
+        "change_lang" : "Change Language to Persian فارسی",
+        "logout" : "Logout"
+      },
+      "add_event_page" : {
+        "add_event" : "Add Event",
+        "capacity" : "Capacity",
+        "price" : "Price",
+        "description" : "Description",
+        "title" : "Title",
+        "somthing_went_wrong" : "somthing went wrong",
+        "cant_add" : "cant add event at this time",
+        "date_error" : "selected date must be after today",
+        "failed" : "Failed",
+        "required" : "required"
+      },
+      "edit_event_page" : {
+        "edit_event" : "Edit Event",
+        "fetching_data" : "Fetching Event Data",
+        "capacity" : "Capacity",
+        "price" : "Price",
+        "description" : "Description",
+        "title" : "Title",
+        "somthing_went_wrong" : "somthing went wrong",
+        "cant_edit" : "cant edit event at this time",
+        "date_error" : "selected date must be after today",
+        "failed" : "Failed",
+        "required" : "required"
+      }
   }
 }

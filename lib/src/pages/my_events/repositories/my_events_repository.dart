@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:either_dart/either.dart';
+import 'package:event_managment/generated/locales.g.dart';
 import 'package:http/http.dart' as http;
 import '../models/event_model.dart';
 import '../../../infrastructure/common/url_repository.dart';
@@ -19,7 +20,9 @@ class MyEventsRepository {
 
       return Right(events);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_my_event_page_somthing_went_wrong,
+      );
     }
   }
 
@@ -28,11 +31,15 @@ class MyEventsRepository {
       final url = UrlRepository.deleteEventById(eventId: eventId);
       final http.Response response = await http.delete(url);
       if (response.statusCode != 200) {
-        return const Left('cant delete this event at this time');
+        return const Left(
+          LocaleKeys.event_managment_app_my_event_page_cant_delete_event,
+        );
       }
       return const Right(true);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_my_event_page_somthing_went_wrong,
+      );
     }
   }
 
@@ -55,7 +62,9 @@ class MyEventsRepository {
       }
       return Right(searchedEvents);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_my_event_page_somthing_went_wrong,
+      );
     }
   }
 }

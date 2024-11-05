@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:either_dart/either.dart';
+import 'package:event_managment/generated/locales.g.dart';
 import '../models/events_user_dto.dart';
 import 'package:http/http.dart' as http;
 import '../models/event_model.dart';
@@ -15,7 +16,9 @@ class EventsRepository {
 
       return Right(UserModel.fromJson(result));
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_events_page_somthing_went_wrong,
+      );
     }
   }
 
@@ -32,8 +35,9 @@ class EventsRepository {
 
       return Right(events);
     } catch (e) {
-      print(e.toString());
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_events_page_somthing_went_wrong,
+      );
     }
   }
 
@@ -54,7 +58,9 @@ class EventsRepository {
       }
       return Right(searchedEvents);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_events_page_somthing_went_wrong,
+      );
     }
   }
 
@@ -70,11 +76,15 @@ class EventsRepository {
         headers: {"Content-Type": "application/json"},
       );
       if (response.statusCode != 200) {
-        return const Left('Cant add this event to bookmarks');
+        return const Left(
+          LocaleKeys.event_managment_app_events_page_cant_add_bookmark,
+        );
       }
       return const Right(true);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_events_page_somthing_went_wrong,
+      );
     }
   }
 }

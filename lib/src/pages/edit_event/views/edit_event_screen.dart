@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import '../../../../generated/locales.g.dart';
 import '../../../infrastructure/common/date_values.dart';
 import '../controllers/edit_event_controller.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,10 @@ class EditEventScreen extends GetView<EditEventController> {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: Obx(() => _fab()),
-        appBar: AppBar(title: const Text('Edit Event')),
+        appBar: AppBar(
+            title: Text(
+          LocaleKeys.event_managment_app_edit_event_page_edit_event.tr,
+        )),
         body: Form(
           key: controller.addFormKey,
           child: Obx(() => _pageContent()),
@@ -27,10 +31,11 @@ class EditEventScreen extends GetView<EditEventController> {
   }
 
   Widget _fetching() {
-    return const Center(
+    return Center(
       child: CircularProgressIndicator(
-        color: Color(0xFF2B4D3E),
-        semanticsLabel: 'Fetching Event Data',
+        color: const Color(0xFF2B4D3E),
+        semanticsLabel:
+            LocaleKeys.event_managment_app_edit_event_page_fetching_data.tr,
       ),
     );
   }
@@ -152,8 +157,8 @@ class EditEventScreen extends GetView<EditEventController> {
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.reduce_capacity),
-        labelText: 'Capacity',
-        hintText: 'Capacity',
+        labelText: LocaleKeys.event_managment_app_edit_event_page_capacity.tr,
+        hintText: LocaleKeys.event_managment_app_edit_event_page_capacity.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -170,8 +175,8 @@ class EditEventScreen extends GetView<EditEventController> {
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.price_change),
-        labelText: 'Price',
-        hintText: 'Price',
+        labelText: LocaleKeys.event_managment_app_edit_event_page_price.tr,
+        hintText: LocaleKeys.event_managment_app_edit_event_page_price.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -186,8 +191,9 @@ class EditEventScreen extends GetView<EditEventController> {
       validator: controller.validate,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.description),
-        labelText: 'Description',
-        hintText: 'Description',
+        labelText:
+            LocaleKeys.event_managment_app_edit_event_page_description.tr,
+        hintText: LocaleKeys.event_managment_app_edit_event_page_description.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -202,8 +208,8 @@ class EditEventScreen extends GetView<EditEventController> {
       validator: controller.validate,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.title),
-        labelText: 'Title',
-        hintText: 'Title',
+        labelText: LocaleKeys.event_managment_app_edit_event_page_title.tr,
+        hintText: LocaleKeys.event_managment_app_edit_event_page_title.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),

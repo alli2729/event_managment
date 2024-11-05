@@ -35,8 +35,8 @@ class RegisterController extends GetxController {
     );
 
     result.fold(
-      (code) {
-        Utils.showFailSnackBar(message: exception(code));
+      (exception) {
+        Utils.showFailSnackBar(message: exception.tr);
         isLoading.value = false;
       },
       (notExist) {
@@ -58,8 +58,8 @@ class RegisterController extends GetxController {
     final result = await _repository.registerByDto(dto: dto);
 
     result.fold(
-      (code) {
-        Utils.showFailSnackBar(message: exception(code));
+      (exception) {
+        Utils.showFailSnackBar(message: exception.tr);
         isLoading.value = false;
       },
       (success) {
@@ -133,20 +133,5 @@ class RegisterController extends GetxController {
     usernameController.dispose();
     passwordController.dispose();
     repeatPasswordController.dispose();
-  }
-
-  String exception(int code) {
-    switch (code) {
-      case 1:
-        return LocaleKeys.event_managment_app_register_page_error.tr;
-      case 2:
-        return LocaleKeys
-            .event_managment_app_register_page_somthing_went_wrong.tr;
-      case 3:
-        return LocaleKeys
-            .event_managment_app_register_page_username_already_taken.tr;
-      default:
-        return '';
-    }
   }
 }

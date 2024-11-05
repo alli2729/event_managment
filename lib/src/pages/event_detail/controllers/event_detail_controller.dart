@@ -46,7 +46,7 @@ class EventDetailController extends GetxController {
       (exception) {
         isLoading.value = false;
         isRetry.value = true;
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (event) {
         isLoading.value = false;
@@ -81,7 +81,7 @@ class EventDetailController extends GetxController {
     result.fold(
       (exception) {
         isBuying.value = false;
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (_) {
         isBuying.value = false;

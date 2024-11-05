@@ -31,8 +31,8 @@ class LoginController {
     );
 
     result.fold(
-      (number) {
-        Utils.showFailSnackBar(message: exception(number));
+      (exception) {
+        Utils.showFailSnackBar(message: exception.tr);
         isLoading.value = false;
       },
       (user) {
@@ -67,18 +67,5 @@ class LoginController {
       return LocaleKeys.event_managment_app_login_page_no_space.tr;
     }
     return null;
-  }
-
-  String exception(int number) {
-    switch (number) {
-      case 1:
-        return LocaleKeys.event_managment_app_login_page_user_not_found.tr;
-      case 2:
-        return LocaleKeys.event_managment_app_login_page_password_incorrect.tr;
-      case 3:
-        return LocaleKeys.event_managment_app_login_page_somthing_went_wrong.tr;
-      default:
-        return '';
-    }
   }
 }

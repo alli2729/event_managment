@@ -1,3 +1,4 @@
+import '../../../../../generated/locales.g.dart';
 import 'package:get/get.dart';
 import '../../models/event_model.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,7 @@ class EventWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '${event.price} T',
+          '${event.price} ${LocaleKeys.event_managment_app_events_page_t.tr}',
           style: const TextStyle(
             fontSize: 18,
             color: Color(0xFF41C88E),

@@ -71,8 +71,142 @@ class LocaleKeys {
       'event_managment_app_register_page_somthing_went_wrong';
   static const event_managment_app_register_page_username_already_taken =
       'event_managment_app_register_page_username_already_taken';
-  static const event_managment_app_register_page_passwor_not_match =
-      'event_managment_app_register_page_passwor_not_match';
+  static const event_managment_app_events_page_my_events =
+      'event_managment_app_events_page_my_events';
+  static const event_managment_app_events_page_bookmarks =
+      'event_managment_app_events_page_bookmarks';
+  static const event_managment_app_events_page_settings =
+      'event_managment_app_events_page_settings';
+  static const event_managment_app_events_page_events =
+      'event_managment_app_events_page_events';
+  static const event_managment_app_events_page_search =
+      'event_managment_app_events_page_search';
+  static const event_managment_app_events_page_back =
+      'event_managment_app_events_page_back';
+  static const event_managment_app_events_page_price_limit =
+      'event_managment_app_events_page_price_limit';
+  static const event_managment_app_events_page_from =
+      'event_managment_app_events_page_from';
+  static const event_managment_app_events_page_to =
+      'event_managment_app_events_page_to';
+  static const event_managment_app_events_page_not_filled =
+      'event_managment_app_events_page_not_filled';
+  static const event_managment_app_events_page_not_expired =
+      'event_managment_app_events_page_not_expired';
+  static const event_managment_app_events_page_sort_by_date =
+      'event_managment_app_events_page_sort_by_date';
+  static const event_managment_app_events_page_filter =
+      'event_managment_app_events_page_filter';
+  static const event_managment_app_events_page_reset =
+      'event_managment_app_events_page_reset';
+  static const event_managment_app_events_page_t =
+      'event_managment_app_events_page_t';
+  static const event_managment_app_events_page_cant_search =
+      'event_managment_app_events_page_cant_search';
+  static const event_managment_app_events_page_done =
+      'event_managment_app_events_page_done';
+  static const event_managment_app_events_page_somthing_went_wrong =
+      'event_managment_app_events_page_somthing_went_wrong';
+  static const event_managment_app_events_page_cant_add_bookmark =
+      'event_managment_app_events_page_cant_add_bookmark';
+  static const event_managment_app_my_event_page_my_events =
+      'event_managment_app_my_event_page_my_events';
+  static const event_managment_app_my_event_page_search =
+      'event_managment_app_my_event_page_search';
+  static const event_managment_app_my_event_page_back =
+      'event_managment_app_my_event_page_back';
+  static const event_managment_app_my_event_page_price_limit =
+      'event_managment_app_my_event_page_price_limit';
+  static const event_managment_app_my_event_page_from =
+      'event_managment_app_my_event_page_from';
+  static const event_managment_app_my_event_page_to =
+      'event_managment_app_my_event_page_to';
+  static const event_managment_app_my_event_page_not_filled =
+      'event_managment_app_my_event_page_not_filled';
+  static const event_managment_app_my_event_page_not_expired =
+      'event_managment_app_my_event_page_not_expired';
+  static const event_managment_app_my_event_page_sort_by_date =
+      'event_managment_app_my_event_page_sort_by_date';
+  static const event_managment_app_my_event_page_filter =
+      'event_managment_app_my_event_page_filter';
+  static const event_managment_app_my_event_page_reset =
+      'event_managment_app_my_event_page_reset';
+  static const event_managment_app_my_event_page_t =
+      'event_managment_app_my_event_page_t';
+  static const event_managment_app_my_event_page_cant_delet_non_empty =
+      'event_managment_app_my_event_page_cant_delet_non_empty';
+  static const event_managment_app_my_event_page_successfully_deleted =
+      'event_managment_app_my_event_page_successfully_deleted';
+  static const event_managment_app_my_event_page_cant_search =
+      'event_managment_app_my_event_page_cant_search';
+  static const event_managment_app_my_event_page_somthing_went_wrong =
+      'event_managment_app_my_event_page_somthing_went_wrong';
+  static const event_managment_app_my_event_page_cant_delete_event =
+      'event_managment_app_my_event_page_cant_delete_event';
+  static const event_managment_app_detail_page_event_detail =
+      'event_managment_app_detail_page_event_detail';
+  static const event_managment_app_detail_page_opening_date =
+      'event_managment_app_detail_page_opening_date';
+  static const event_managment_app_detail_page_price =
+      'event_managment_app_detail_page_price';
+  static const event_managment_app_detail_page_toman =
+      'event_managment_app_detail_page_toman';
+  static const event_managment_app_detail_page_event_is_filled =
+      'event_managment_app_detail_page_event_is_filled';
+  static const event_managment_app_detail_page_buy =
+      'event_managment_app_detail_page_buy';
+  static const event_managment_app_detail_page_cant_buy =
+      'event_managment_app_detail_page_cant_buy';
+  static const event_managment_app_detail_page_somthing_went_wrong =
+      'event_managment_app_detail_page_somthing_went_wrong';
+  static const event_managment_app_settings_page_settings =
+      'event_managment_app_settings_page_settings';
+  static const event_managment_app_settings_page_change_lang =
+      'event_managment_app_settings_page_change_lang';
+  static const event_managment_app_settings_page_logout =
+      'event_managment_app_settings_page_logout';
+  static const event_managment_app_add_event_page_add_event =
+      'event_managment_app_add_event_page_add_event';
+  static const event_managment_app_add_event_page_capacity =
+      'event_managment_app_add_event_page_capacity';
+  static const event_managment_app_add_event_page_price =
+      'event_managment_app_add_event_page_price';
+  static const event_managment_app_add_event_page_description =
+      'event_managment_app_add_event_page_description';
+  static const event_managment_app_add_event_page_title =
+      'event_managment_app_add_event_page_title';
+  static const event_managment_app_add_event_page_somthing_went_wrong =
+      'event_managment_app_add_event_page_somthing_went_wrong';
+  static const event_managment_app_add_event_page_cant_add =
+      'event_managment_app_add_event_page_cant_add';
+  static const event_managment_app_add_event_page_date_error =
+      'event_managment_app_add_event_page_date_error';
+  static const event_managment_app_add_event_page_failed =
+      'event_managment_app_add_event_page_failed';
+  static const event_managment_app_add_event_page_required =
+      'event_managment_app_add_event_page_required';
+  static const event_managment_app_edit_event_page_edit_event =
+      'event_managment_app_edit_event_page_edit_event';
+  static const event_managment_app_edit_event_page_fetching_data =
+      'event_managment_app_edit_event_page_fetching_data';
+  static const event_managment_app_edit_event_page_capacity =
+      'event_managment_app_edit_event_page_capacity';
+  static const event_managment_app_edit_event_page_price =
+      'event_managment_app_edit_event_page_price';
+  static const event_managment_app_edit_event_page_description =
+      'event_managment_app_edit_event_page_description';
+  static const event_managment_app_edit_event_page_title =
+      'event_managment_app_edit_event_page_title';
+  static const event_managment_app_edit_event_page_somthing_went_wrong =
+      'event_managment_app_edit_event_page_somthing_went_wrong';
+  static const event_managment_app_edit_event_page_cant_edit =
+      'event_managment_app_edit_event_page_cant_edit';
+  static const event_managment_app_edit_event_page_date_error =
+      'event_managment_app_edit_event_page_date_error';
+  static const event_managment_app_edit_event_page_failed =
+      'event_managment_app_edit_event_page_failed';
+  static const event_managment_app_edit_event_page_required =
+      'event_managment_app_edit_event_page_required';
 }
 
 class Locales {
@@ -115,6 +249,88 @@ class Locales {
         'somthing went wrong',
     'event_managment_app_register_page_username_already_taken':
         'username is already taken',
+    'event_managment_app_events_page_my_events': 'My Events',
+    'event_managment_app_events_page_bookmarks': 'Bookmarks',
+    'event_managment_app_events_page_settings': 'Settings',
+    'event_managment_app_events_page_events': 'Events',
+    'event_managment_app_events_page_search': 'Search',
+    'event_managment_app_events_page_back': 'Back',
+    'event_managment_app_events_page_price_limit': 'Price Limitaition',
+    'event_managment_app_events_page_from': 'from',
+    'event_managment_app_events_page_to': 'to',
+    'event_managment_app_events_page_not_filled': 'not Filled',
+    'event_managment_app_events_page_not_expired': 'not Expired',
+    'event_managment_app_events_page_sort_by_date': 'Sort By Date',
+    'event_managment_app_events_page_filter': 'Filter',
+    'event_managment_app_events_page_reset': 'Reset',
+    'event_managment_app_events_page_t': 'T',
+    'event_managment_app_events_page_cant_search': 'Cant search right now',
+    'event_managment_app_events_page_done': 'Done !',
+    'event_managment_app_events_page_somthing_went_wrong':
+        'somthing went wrong',
+    'event_managment_app_events_page_cant_add_bookmark':
+        'Cant add this event to bookmarks',
+    'event_managment_app_my_event_page_my_events': 'My Events',
+    'event_managment_app_my_event_page_search': 'Search',
+    'event_managment_app_my_event_page_back': 'Back',
+    'event_managment_app_my_event_page_price_limit': 'Price Limitaition',
+    'event_managment_app_my_event_page_from': 'from',
+    'event_managment_app_my_event_page_to': 'to',
+    'event_managment_app_my_event_page_not_filled': 'not Filled',
+    'event_managment_app_my_event_page_not_expired': 'not Expired',
+    'event_managment_app_my_event_page_sort_by_date': 'Sort By Date',
+    'event_managment_app_my_event_page_filter': 'Filter',
+    'event_managment_app_my_event_page_reset': 'Reset',
+    'event_managment_app_my_event_page_t': 'T',
+    'event_managment_app_my_event_page_cant_delet_non_empty':
+        'cant delete non empty events !',
+    'event_managment_app_my_event_page_successfully_deleted':
+        'Successfully deleted',
+    'event_managment_app_my_event_page_cant_search': 'Cant search right now',
+    'event_managment_app_my_event_page_somthing_went_wrong':
+        'somthing went wrong',
+    'event_managment_app_my_event_page_cant_delete_event':
+        'cant delete this event at this time',
+    'event_managment_app_detail_page_event_detail': 'Event Detail',
+    'event_managment_app_detail_page_opening_date': 'Opening Date:',
+    'event_managment_app_detail_page_price': 'Price',
+    'event_managment_app_detail_page_toman': 'Toman',
+    'event_managment_app_detail_page_event_is_filled': 'This Event is Filled',
+    'event_managment_app_detail_page_buy': 'Buy',
+    'event_managment_app_detail_page_cant_buy': 'Cant Buy Event',
+    'event_managment_app_detail_page_somthing_went_wrong':
+        'somthing went wrong',
+    'event_managment_app_settings_page_settings': 'Settings',
+    'event_managment_app_settings_page_change_lang':
+        'Change Language to Persian فارسی',
+    'event_managment_app_settings_page_logout': 'Logout',
+    'event_managment_app_add_event_page_add_event': 'Add Event',
+    'event_managment_app_add_event_page_capacity': 'Capacity',
+    'event_managment_app_add_event_page_price': 'Price',
+    'event_managment_app_add_event_page_description': 'Description',
+    'event_managment_app_add_event_page_title': 'Title',
+    'event_managment_app_add_event_page_somthing_went_wrong':
+        'somthing went wrong',
+    'event_managment_app_add_event_page_cant_add':
+        'cant add event at this time',
+    'event_managment_app_add_event_page_date_error':
+        'selected date must be after today',
+    'event_managment_app_add_event_page_failed': 'Failed',
+    'event_managment_app_add_event_page_required': 'required',
+    'event_managment_app_edit_event_page_edit_event': 'Edit Event',
+    'event_managment_app_edit_event_page_fetching_data': 'Fetching Event Data',
+    'event_managment_app_edit_event_page_capacity': 'Capacity',
+    'event_managment_app_edit_event_page_price': 'Price',
+    'event_managment_app_edit_event_page_description': 'Description',
+    'event_managment_app_edit_event_page_title': 'Title',
+    'event_managment_app_edit_event_page_somthing_went_wrong':
+        'somthing went wrong',
+    'event_managment_app_edit_event_page_cant_edit':
+        'cant edit event at this time',
+    'event_managment_app_edit_event_page_date_error':
+        'selected date must be after today',
+    'event_managment_app_edit_event_page_failed': 'Failed',
+    'event_managment_app_edit_event_page_required': 'required',
   };
   static const fa_IR = {
     'event_managment_app_login_page_login': 'وارد شوید',
@@ -140,7 +356,7 @@ class Locales {
     'event_managment_app_register_page_password': 'رمز عبور',
     'event_managment_app_register_page_lastname': 'نام خانوادگی',
     'event_managment_app_register_page_firstname': 'نام',
-    'event_managment_app_register_page_passwor_not_match':
+    'event_managment_app_register_page_password_not_match':
         'رمز عبور همخوانی ندارد',
     'event_managment_app_register_page_choose_gender':
         'لطفا جنسیت خود را انتخاب کنید',
@@ -151,8 +367,87 @@ class Locales {
         'باید طولانی تر از 8 حرف باشد',
     'event_managment_app_register_page_no_space': 'نمی تواند حاوی فاصله باشد',
     'event_managment_app_register_page_error': 'ارور',
-    'event_managment_app_register_page_somthing_went_wrong': 'مشکلی پیش آمدی',
+    'event_managment_app_register_page_somthing_went_wrong': 'مشکلی پیش آمده',
     'event_managment_app_register_page_username_already_taken':
         'این نام کاربری در دسترس نمی باشد',
+    'event_managment_app_events_page_my_events': 'رویدادهای من',
+    'event_managment_app_events_page_bookmarks': 'نشان شده ها',
+    'event_managment_app_events_page_settings': 'تنظیمات',
+    'event_managment_app_events_page_events': 'رویدادها',
+    'event_managment_app_events_page_search': 'جست و جو',
+    'event_managment_app_events_page_back': 'برگشت',
+    'event_managment_app_events_page_price_limit': 'محدوده قیمت',
+    'event_managment_app_events_page_from': 'از',
+    'event_managment_app_events_page_to': 'تا',
+    'event_managment_app_events_page_not_filled': 'با ظرفیت',
+    'event_managment_app_events_page_not_expired': 'منقضی نشده',
+    'event_managment_app_events_page_sort_by_date': 'مرتب سازی بر اساس تاریخ',
+    'event_managment_app_events_page_filter': 'فیلتر',
+    'event_managment_app_events_page_reset': 'پاک کردن',
+    'event_managment_app_events_page_t': 'ت',
+    'event_managment_app_events_page_cant_search':
+        'نمی توانید در این لحضه جست و جو کنید',
+    'event_managment_app_events_page_done': 'انجام شد !',
+    'event_managment_app_events_page_somthing_went_wrong': 'مشکلی پیش آمده',
+    'event_managment_app_events_page_cant_add_bookmark':
+        'نمی توانید این رویداد را به نشان ها اضافه کنید',
+    'event_managment_app_my_event_page_my_events': 'رویدادهای من',
+    'event_managment_app_my_event_page_search': 'جست و جو',
+    'event_managment_app_my_event_page_back': 'برگشت',
+    'event_managment_app_my_event_page_price_limit': 'محدوده قیمت',
+    'event_managment_app_my_event_page_from': 'از',
+    'event_managment_app_my_event_page_to': 'تا',
+    'event_managment_app_my_event_page_not_filled': 'با ظرفیت',
+    'event_managment_app_my_event_page_not_expired': 'منقضی نشده',
+    'event_managment_app_my_event_page_sort_by_date': 'مرتب سازی بر اساس تاریخ',
+    'event_managment_app_my_event_page_filter': 'فیلتر',
+    'event_managment_app_my_event_page_reset': 'پاک کردن',
+    'event_managment_app_my_event_page_t': 'ت',
+    'event_managment_app_my_event_page_cant_delet_non_empty':
+        'نمی توانید رویدادهای حاوی حاضرین را حذف کنید',
+    'event_managment_app_my_event_page_successfully_deleted':
+        'با موفقیت حذف شد',
+    'event_managment_app_my_event_page_cant_search':
+        'نمی توانید در این لحضه جست و جو کنید',
+    'event_managment_app_my_event_page_somthing_went_wrong': 'مشکلی پیش آمده',
+    'event_managment_app_my_event_page_cant_delete_event':
+        'نمی توانید در این لحظه این رویداد را حذف کنید',
+    'event_managment_app_detail_page_event_detail': 'جزئیات رویداد',
+    'event_managment_app_detail_page_opening_date': 'تاریخ برگزاری:',
+    'event_managment_app_detail_page_price': 'قیمت',
+    'event_managment_app_detail_page_toman': 'تومان',
+    'event_managment_app_detail_page_event_is_filled': 'این رویداد پر شده است',
+    'event_managment_app_detail_page_buy': 'خرید',
+    'event_managment_app_detail_page_cant_buy':
+        'نمی توانید این رویداد را خریداری کنید',
+    'event_managment_app_detail_page_somthing_went_wrong': 'مشکلی پیش آمده',
+    'event_managment_app_settings_page_settings': 'تنظیمات',
+    'event_managment_app_settings_page_change_lang': 'تغییر زبان به انگلیسی EN',
+    'event_managment_app_settings_page_logout': 'خروج از حساب کاربری',
+    'event_managment_app_add_event_page_add_event': 'اضافه کردن رویداد',
+    'event_managment_app_add_event_page_capacity': 'ظرفیت',
+    'event_managment_app_add_event_page_price': 'قیمت',
+    'event_managment_app_add_event_page_description': 'توضیحات',
+    'event_managment_app_add_event_page_title': 'عنوان',
+    'event_managment_app_add_event_page_somthing_went_wrong': 'مشکلی پیش آمده',
+    'event_managment_app_add_event_page_cant_add':
+        'نمی توانید در این لحظه رویداد اضافه کنید',
+    'event_managment_app_add_event_page_date_error':
+        'تاریخ انتخابی باید از امروز گذشته باشد',
+    'event_managment_app_add_event_page_failed': 'خطا',
+    'event_managment_app_add_event_page_required': 'ضروری است',
+    'event_managment_app_edit_event_page_edit_event': 'ویرایش رویداد',
+    'event_managment_app_edit_event_page_fetching_data': 'خواندن اطلاعات',
+    'event_managment_app_edit_event_page_capacity': 'ظرفیت',
+    'event_managment_app_edit_event_page_price': 'قیمت',
+    'event_managment_app_edit_event_page_description': 'توضیحات',
+    'event_managment_app_edit_event_page_title': 'عنوان',
+    'event_managment_app_edit_event_page_somthing_went_wrong': 'مشکلی پیش آمده',
+    'event_managment_app_edit_event_page_cant_edit':
+        'نمی توانید در این لحظه ویرایش کنید',
+    'event_managment_app_edit_event_page_date_error':
+        'تاریخ انتخابی باید از امروز گذشته باشد',
+    'event_managment_app_edit_event_page_failed': 'خطا',
+    'event_managment_app_edit_event_page_required': 'ضروری است',
   };
 }

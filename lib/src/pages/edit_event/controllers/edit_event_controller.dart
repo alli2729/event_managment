@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:event_managment/generated/locales.g.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../infrastructure/utils/utils.dart';
@@ -54,7 +55,7 @@ class EditEventController extends GetxController {
     result.fold(
       (exception) {
         isFetching.value = false;
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (eventJson) {
         event = eventJson;
@@ -84,7 +85,9 @@ class EditEventController extends GetxController {
     final String dateTime = "$year-$month-$day";
 
     if (!validDate(dateTime)) {
-      Utils.showFailSnackBar(message: 'date must be after today');
+      Utils.showFailSnackBar(
+        message: LocaleKeys.event_managment_app_edit_event_page_date_error.tr,
+      );
       return;
     }
 
@@ -106,7 +109,7 @@ class EditEventController extends GetxController {
     result.fold(
       (exception) {
         isLoading.value = false;
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (eventJson) {
         isLoading.value = false;
@@ -119,7 +122,11 @@ class EditEventController extends GetxController {
     final result = await _repository.pickImage();
     result.fold(
       (exception) {
-        if (exception) Utils.showFailSnackBar(message: 'Faild');
+        if (exception) {
+          Utils.showFailSnackBar(
+            message: LocaleKeys.event_managment_app_edit_event_page_failed.tr,
+          );
+        }
       },
       (imageBase64) {
         image.value = base64Decode(imageBase64);
@@ -135,7 +142,10 @@ class EditEventController extends GetxController {
 
   //validation
   String? validate(String? value) {
-    if (value == null || value.isEmpty) return 'required';
+    if (value == null || value.isEmpty) {
+      return LocaleKeys.event_managment_app_edit_event_page_required.tr;
+    }
+
     return null;
   }
 

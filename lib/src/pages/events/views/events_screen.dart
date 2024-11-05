@@ -1,3 +1,4 @@
+import '../../../../generated/locales.g.dart';
 import 'widgets/dialog_item.dart';
 import 'widgets/my_drawer_button.dart';
 import 'widgets/event_widget.dart';
@@ -64,18 +65,18 @@ class EventsScreen extends GetView<EventsController> {
           child: Column(
             children: [
               MyDrawerButton(
-                title: 'My Events',
+                title: LocaleKeys.event_managment_app_events_page_my_events.tr,
                 icon: Icons.event_outlined,
                 onTap: controller.onMyEvents,
               ),
               MyDrawerButton(
-                title: 'Bookmarks',
+                title: LocaleKeys.event_managment_app_events_page_bookmarks.tr,
                 icon: Icons.bookmark_added_outlined,
                 onTap: controller.onBookmarks,
               ),
               const Spacer(),
               MyDrawerButton(
-                title: 'Settings',
+                title: LocaleKeys.event_managment_app_events_page_settings.tr,
                 icon: Icons.settings_outlined,
                 onTap: controller.onSetting,
               ),
@@ -121,9 +122,9 @@ class EventsScreen extends GetView<EventsController> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
-          const Text(
-            'Events',
-            style: TextStyle(
+          Text(
+            LocaleKeys.event_managment_app_events_page_events.tr,
+            style: const TextStyle(
               fontSize: 24,
               color: Color(0xFF1F322A),
             ),
@@ -154,7 +155,7 @@ class EventsScreen extends GetView<EventsController> {
       onChanged: controller.onSearch,
       controller: controller.searchController,
       decoration: InputDecoration(
-        hintText: 'Search',
+        hintText: LocaleKeys.event_managment_app_events_page_search.tr,
         isDense: true,
         contentPadding: const EdgeInsets.all(8),
         suffixIcon: Obx(() => _dialogButton()),
@@ -182,34 +183,40 @@ class EventsScreen extends GetView<EventsController> {
                     icon: const Icon(Icons.arrow_back),
                   ),
                   const SizedBox(width: 6),
-                  const Text('Back', style: TextStyle(fontSize: 18)),
+                  Text(
+                    LocaleKeys.event_managment_app_events_page_back.tr,
+                    style: const TextStyle(fontSize: 18),
+                  ),
                 ],
               ),
               const SizedBox(height: 12),
               DialogItem(
                 isActive: controller.isLimited.value,
                 onChanged: (v) => controller.isLimited.toggle(),
-                title: 'Price Limitaition',
+                title:
+                    LocaleKeys.event_managment_app_events_page_price_limit.tr,
               ),
               _slider(),
-              Text('from ${controller.minPrice} to ${controller.maxPrice}'),
+              Text(limitation),
               const SizedBox(height: 6),
               DialogItem(
                 isActive: controller.isFilled.value,
                 onChanged: (v) => controller.isFilled.toggle(),
-                title: 'not Filled',
+                title: LocaleKeys.event_managment_app_events_page_not_filled.tr,
               ),
               const SizedBox(height: 6),
               DialogItem(
                 isActive: controller.isExpired.value,
                 onChanged: (v) => controller.isExpired.toggle(),
-                title: 'not Expired',
+                title:
+                    LocaleKeys.event_managment_app_events_page_not_expired.tr,
               ),
               const SizedBox(height: 6),
               DialogItem(
                 isActive: controller.isSort.value,
                 onChanged: (v) => controller.isSort.toggle(),
-                title: 'Sort By Date',
+                title:
+                    LocaleKeys.event_managment_app_events_page_sort_by_date.tr,
               ),
               const Spacer(),
               Row(
@@ -248,9 +255,9 @@ class EventsScreen extends GetView<EventsController> {
           borderRadius: BorderRadius.circular(8),
           color: const Color(0xFF6B9080),
         ),
-        child: const Text(
-          'Filter',
-          style: TextStyle(
+        child: Text(
+          LocaleKeys.event_managment_app_events_page_filter.tr,
+          style: const TextStyle(
             fontSize: 16,
             color: Color(0xFFF6FFF8),
           ),
@@ -268,14 +275,18 @@ class EventsScreen extends GetView<EventsController> {
           borderRadius: BorderRadius.circular(8),
           color: const Color(0xFFF48C8C),
         ),
-        child: const Text(
-          'Reset',
-          style: TextStyle(
+        child: Text(
+          LocaleKeys.event_managment_app_events_page_reset.tr,
+          style: const TextStyle(
             fontSize: 16,
             color: Color(0xFFF6FFF8),
           ),
         ),
       ),
     );
+  }
+
+  String get limitation {
+    return '${LocaleKeys.event_managment_app_events_page_from.tr} ${controller.minPrice} ${LocaleKeys.event_managment_app_events_page_to.tr} ${controller.maxPrice}';
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:either_dart/either.dart';
 import 'package:file_picker/file_picker.dart';
+import '../../../../generated/locales.g.dart';
 import '../models/event_model.dart';
 import '../models/edit_event_dto.dart';
 import '../../../infrastructure/common/url_repository.dart';
@@ -18,7 +19,9 @@ class EditEventRepository {
       final Map<String, dynamic> event = json.decode(response.body);
       return Right(EventModel.fromJason(event));
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_edit_event_page_somthing_went_wrong,
+      );
     }
   }
 
@@ -35,14 +38,18 @@ class EditEventRepository {
       );
 
       if (response.statusCode != 200) {
-        return const Left('Cant edit event at this moment');
+        return const Left(
+          LocaleKeys.event_managment_app_edit_event_page_cant_edit,
+        );
       }
 
       final Map<String, dynamic> result = json.decode(response.body);
 
       return Right(result);
     } catch (e) {
-      return Left(e.toString());
+      return const Left(
+        LocaleKeys.event_managment_app_edit_event_page_somthing_went_wrong,
+      );
     }
   }
 

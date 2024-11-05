@@ -1,3 +1,4 @@
+import '../../../../generated/locales.g.dart';
 import 'widgets/drop_button.dart';
 import 'package:flutter/services.dart';
 import '../../../infrastructure/common/date_values.dart';
@@ -13,7 +14,10 @@ class AddEventScreen extends GetView<AddEventController> {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: Obx(() => _fab()),
-        appBar: AppBar(title: const Text('Add Event')),
+        appBar: AppBar(
+            title: Text(
+          LocaleKeys.event_managment_app_add_event_page_add_event.tr,
+        )),
         body: Form(
           key: controller.addFormKey,
           child: SingleChildScrollView(
@@ -137,8 +141,8 @@ class AddEventScreen extends GetView<AddEventController> {
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.reduce_capacity),
-        labelText: 'Capacity',
-        hintText: 'Capacity',
+        labelText: LocaleKeys.event_managment_app_add_event_page_capacity.tr,
+        hintText: LocaleKeys.event_managment_app_add_event_page_capacity.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -155,8 +159,8 @@ class AddEventScreen extends GetView<AddEventController> {
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.price_change),
-        labelText: 'Price',
-        hintText: 'Price',
+        labelText: LocaleKeys.event_managment_app_add_event_page_price.tr,
+        hintText: LocaleKeys.event_managment_app_add_event_page_price.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -171,8 +175,8 @@ class AddEventScreen extends GetView<AddEventController> {
       validator: controller.validate,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.description),
-        labelText: 'Description',
-        hintText: 'Description',
+        labelText: LocaleKeys.event_managment_app_add_event_page_description.tr,
+        hintText: LocaleKeys.event_managment_app_add_event_page_description.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -187,8 +191,8 @@ class AddEventScreen extends GetView<AddEventController> {
       validator: controller.validate,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.title),
-        labelText: 'Title',
-        hintText: 'Title',
+        labelText: LocaleKeys.event_managment_app_add_event_page_title.tr,
+        hintText: LocaleKeys.event_managment_app_add_event_page_title.tr,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),

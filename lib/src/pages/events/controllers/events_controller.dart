@@ -1,3 +1,4 @@
+import '../../../../generated/locales.g.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../infrastructure/routes/route_names.dart';
@@ -37,7 +38,7 @@ class EventsController extends GetxController {
       (exception) {
         isLoading.value = false;
         isRetry.value = true;
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (user) {
         bookmarkedEvents.value = user.bookmarked;
@@ -54,7 +55,7 @@ class EventsController extends GetxController {
         isLoading.value = false;
         isRetry.value = true;
         isSearch.value = false;
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (eventModels) {
         events.value = eventModels;
@@ -106,7 +107,9 @@ class EventsController extends GetxController {
     result.fold(
       (_) {
         isSearch.value = false;
-        Utils.showFailSnackBar(message: 'Cant search right now');
+        Utils.showFailSnackBar(
+          message: LocaleKeys.event_managment_app_events_page_cant_search.tr,
+        );
       },
       (searchedEvents) {
         isSearch.value = false;
@@ -180,10 +183,12 @@ class EventsController extends GetxController {
     final result = await _repository.editBookmarked(dto: dto, userId: userId);
     result.fold(
       (exception) {
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (_) {
-        Utils.showSuccessSnackBar(message: 'Done !');
+        Utils.showSuccessSnackBar(
+          message: LocaleKeys.event_managment_app_events_page_done.tr,
+        );
       },
     );
   }

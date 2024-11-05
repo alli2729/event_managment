@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import '../../../../generated/locales.g.dart';
 import '../../../infrastructure/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,7 +40,9 @@ class AddEventController extends GetxController {
     final String dateTime = "$year-$month-$day";
 
     if (!validDate(dateTime)) {
-      Utils.showFailSnackBar(message: 'date must be after today');
+      Utils.showFailSnackBar(
+        message: LocaleKeys.event_managment_app_add_event_page_date_error.tr,
+      );
       return;
     }
 
@@ -60,7 +63,7 @@ class AddEventController extends GetxController {
     result.fold(
       (exception) {
         isLoading.value = false;
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (eventJson) {
         isLoading.value = false;
@@ -73,7 +76,11 @@ class AddEventController extends GetxController {
     final result = await _repository.pickImage();
     result.fold(
       (left) {
-        if (left) Utils.showFailSnackBar(message: 'Faild');
+        if (left) {
+          Utils.showFailSnackBar(
+            message: LocaleKeys.event_managment_app_add_event_page_failed.tr,
+          );
+        }
       },
       (imageBase64) {
         image.value = base64Decode(imageBase64);
@@ -89,7 +96,9 @@ class AddEventController extends GetxController {
 
   //validation
   String? validate(String? value) {
-    if (value == null || value.isEmpty) return 'required';
+    if (value == null || value.isEmpty) {
+      return LocaleKeys.event_managment_app_add_event_page_required.tr;
+    }
     return null;
   }
 

@@ -1,3 +1,4 @@
+import 'package:event_managment/generated/locales.g.dart';
 import 'package:flutter/material.dart';
 import '../../../infrastructure/utils/utils.dart';
 import '../../../infrastructure/routes/route_names.dart';
@@ -38,7 +39,7 @@ class MyEventsController extends GetxController {
         isLoading.value = false;
         isSearch.value = false;
         isRetry.value = true;
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (eventModels) {
         myEvents.value = eventModels;
@@ -72,17 +73,23 @@ class MyEventsController extends GetxController {
   Future<void> onRemove({required int eventId}) async {
     int index = myEvents.indexWhere((event) => event.id == eventId);
     if (myEvents[index].attendees != 0) {
-      Utils.showFailSnackBar(message: 'cant delete non empty events !');
+      Utils.showFailSnackBar(
+        message: LocaleKeys
+            .event_managment_app_my_event_page_cant_delet_non_empty.tr,
+      );
       return;
     }
     final result = await _repository.deleteEventById(eventId: eventId);
     result.fold(
       (exception) {
-        Utils.showFailSnackBar(message: exception);
+        Utils.showFailSnackBar(message: exception.tr);
       },
       (_) {
         myEvents.removeAt(index);
-        Utils.showSuccessSnackBar(message: 'Successfully deleted');
+        Utils.showSuccessSnackBar(
+          message: LocaleKeys
+              .event_managment_app_my_event_page_successfully_deleted.tr,
+        );
       },
     );
   }
@@ -100,7 +107,9 @@ class MyEventsController extends GetxController {
     result.fold(
       (left) {
         isSearch.value = false;
-        Utils.showFailSnackBar(message: 'Cant search right now');
+        Utils.showFailSnackBar(
+          message: LocaleKeys.event_managment_app_my_event_page_cant_search.tr,
+        );
       },
       (searchedEvents) {
         isSearch.value = false;
