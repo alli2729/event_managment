@@ -32,14 +32,17 @@ class EventModel {
   }
 
   factory EventModel.fromJason(Map<String, dynamic> json) {
+    final DateTime dateTime = DateTime.parse(json["dateTime"]);
+    final double price = double.parse('${json["price"]}');
+
     return EventModel(
       id: json["id"],
       makerId: json["makerId"],
       title: json["title"],
       description: json["description"],
-      dateTime: DateTime.parse(json["dateTime"]),
+      dateTime: dateTime,
       capacity: json["capacity"],
-      price: double.parse('${json["price"]}'),
+      price: price,
       attendees: json["attendees"],
       imageBase64: json["image"],
       filled: json["filled"],

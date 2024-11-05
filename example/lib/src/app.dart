@@ -8,8 +8,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // locale: const Locale('en', 'US'),
-      locale: const Locale('fa', 'IR'),
+      locale: package.LocalizationService.defaultLocale,
       translationsKeys: package.LocalizationService.keys,
       theme: package.AppTheme.theme,
       debugShowCheckedModeBanner: false,

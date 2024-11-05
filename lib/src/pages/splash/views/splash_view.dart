@@ -8,10 +8,26 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     controller.wait();
-    return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/loading.png',
+                package: 'event_managment',
+                width: pageWidth(context),
+              ),
+              const CircularProgressIndicator(
+                color: Color(0xFF2B4D3E),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
+
+  double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
 }

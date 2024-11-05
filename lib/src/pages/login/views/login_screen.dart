@@ -18,11 +18,12 @@ class LoginScreen extends GetView<LoginController> {
               child: Column(
                 children: [
                   _loginText(),
+                  _image(context),
                   const SizedBox(height: 48),
                   _username(),
                   const SizedBox(height: 16),
                   _password(),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   _rememberMe(),
                   const SizedBox(height: 16),
                   _loginButton(),
@@ -37,10 +38,18 @@ class LoginScreen extends GetView<LoginController> {
     );
   }
 
+  Widget _image(BuildContext context) {
+    return Image.asset(
+      'assets/images/login.png',
+      package: 'event_managment',
+      width: pageWidth(context) / 2,
+    );
+  }
+
   Widget _loginText() {
     return Text(
       LocaleKeys.event_managment_app_login_page_login.tr,
-      style: const TextStyle(fontSize: 48),
+      style: const TextStyle(fontSize: 34),
     );
   }
 
@@ -149,4 +158,6 @@ class LoginScreen extends GetView<LoginController> {
       ),
     );
   }
+
+  double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
 }

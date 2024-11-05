@@ -39,7 +39,7 @@ class MyEventWidget extends StatelessWidget {
             child: Row(
               children: [
                 _editRemove(),
-                const SizedBox(width: 12),
+                // const SizedBox(width: 6),
                 _avatar(),
                 const SizedBox(width: 10),
                 _title(context),
@@ -67,7 +67,7 @@ class MyEventWidget extends StatelessWidget {
 
   Widget _title(BuildContext context) {
     return SizedBox(
-      width: (pageWidth(context) / 4.5),
+      width: (pageWidth(context) / 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

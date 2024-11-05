@@ -67,7 +67,7 @@ class EventWidget extends StatelessWidget {
 
   Widget title(BuildContext context) {
     return SizedBox(
-      width: (pageWidth(context) / 2.5),
+      width: (pageWidth(context) / 3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

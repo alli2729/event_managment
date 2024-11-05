@@ -18,6 +18,7 @@ class RegisterScreen extends GetView<RegisterController> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  _image(context),
                   _names(),
                   const SizedBox(height: 16),
                   _username(),
@@ -37,6 +38,14 @@ class RegisterScreen extends GetView<RegisterController> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _image(BuildContext context) {
+    return Image.asset(
+      'assets/images/register.png',
+      package: 'event_managment',
+      width: pageWidth(context) / 1.5,
     );
   }
 
@@ -224,4 +233,6 @@ class RegisterScreen extends GetView<RegisterController> {
       ),
     );
   }
+
+  double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
 }
