@@ -207,6 +207,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.15.0"
+  number_picker:
+    dependency: transitive
+    description:
+      path: "../number_picker"
+      relative: true
+    source: path
+    version: "0.0.1"
   path:
     dependency: transitive
     description:

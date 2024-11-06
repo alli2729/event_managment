@@ -38,7 +38,7 @@ class MyEventWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
             child: Row(
               children: [
-                _editRemove(),
+                _remvoeIcon(),
                 // const SizedBox(width: 6),
                 _avatar(),
                 const SizedBox(width: 10),
@@ -67,7 +67,7 @@ class MyEventWidget extends StatelessWidget {
 
   Widget _title(BuildContext context) {
     return SizedBox(
-      width: (pageWidth(context) / 5),
+      width: (pageWidth(context) / 3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,7 +76,7 @@ class MyEventWidget extends StatelessWidget {
             event.title,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -84,7 +84,7 @@ class MyEventWidget extends StatelessWidget {
             event.description,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               color: Colors.grey,
             ),
           )
@@ -100,7 +100,7 @@ class MyEventWidget extends StatelessWidget {
         Text(
           '${event.price} ${LocaleKeys.event_managment_app_my_event_page_t.tr}',
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: 14,
             color: Color(0xFF41C88E),
           ),
         ),
@@ -108,19 +108,11 @@ class MyEventWidget extends StatelessWidget {
         Text(
           dateTime,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 14,
             color: Color(0xFFA4C3B2),
           ),
-        )
-      ],
-    );
-  }
-
-  Widget _iconNumber() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
+        ),
+        const SizedBox(height: 6),
         Text(
           '${event.attendees} / ${event.capacity}',
           style: const TextStyle(
@@ -132,14 +124,22 @@ class MyEventWidget extends StatelessWidget {
     );
   }
 
-  Widget _editRemove() {
+  Widget _iconNumber() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [],
+    );
+  }
+
+  Widget _remvoeIcon() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        IconButton(
-          onPressed: onRemove,
-          icon: const Icon(
+        GestureDetector(
+          onTap: onRemove,
+          child: const Icon(
             Icons.cancel,
             color: Colors.red,
           ),

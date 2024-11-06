@@ -67,7 +67,7 @@ class EventWidget extends StatelessWidget {
 
   Widget title(BuildContext context) {
     return SizedBox(
-      width: (pageWidth(context) / 3),
+      width: (pageWidth(context) / 3.5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,7 +76,7 @@ class EventWidget extends StatelessWidget {
             event.title,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -84,7 +84,7 @@ class EventWidget extends StatelessWidget {
             event.description,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               color: Colors.grey,
             ),
           ),
@@ -100,7 +100,7 @@ class EventWidget extends StatelessWidget {
         Text(
           '${event.price} ${LocaleKeys.event_managment_app_events_page_t.tr}',
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             color: Color(0xFF41C88E),
           ),
         ),
@@ -108,7 +108,7 @@ class EventWidget extends StatelessWidget {
         Text(
           dateTime,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 14,
             color: Color(0xFFA4C3B2),
           ),
         )

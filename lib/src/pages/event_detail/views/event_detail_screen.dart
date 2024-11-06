@@ -1,5 +1,5 @@
+import 'package:number_picker/number_picker.dart';
 import '../../../../generated/locales.g.dart';
-import '../../../infrastructure/components/buy_counter.dart';
 import '../controllers/event_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,10 +56,12 @@ class EventDetailScreen extends GetView<EventDetailController> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _titleImage(),
+          _image(),
+          const SizedBox(height: 16),
+          _title(),
           const SizedBox(height: 16),
           _box(),
         ],
@@ -112,7 +114,8 @@ class EventDetailScreen extends GetView<EventDetailController> {
               children: [
                 Text(_cap, style: const TextStyle(fontSize: 16)),
                 const Spacer(),
-                BuyCounter(
+                NumberPicker(
+                  numberColor: const Color(0xFF2D5845),
                   minValue: 1,
                   maxValue: controller.maxValue,
                   onChanged: controller.onBuyChange,
@@ -159,7 +162,21 @@ class EventDetailScreen extends GetView<EventDetailController> {
     );
   }
 
-  Widget _titleImage() {
+  Widget _image() {
+    return Obx(
+      () => CircleAvatar(
+        backgroundColor: const Color(0xFFA4C3B2),
+        radius: 55,
+        child: ClipOval(
+          child: (controller.image.value == null)
+              ? const Icon(Icons.event, color: Color(0xFFEAF4F4))
+              : Image.memory(controller.image.value!),
+        ),
+      ),
+    );
+  }
+
+  Widget _title() {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -172,24 +189,13 @@ class EventDetailScreen extends GetView<EventDetailController> {
           )
         ],
       ),
-      child: Padding(
+      child: Container(
+        alignment: Alignment.center,
+        width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child: Row(
-          children: [
-            Obx(
-              () => CircleAvatar(
-                backgroundColor: const Color(0xFFA4C3B2),
-                radius: 35,
-                child: ClipOval(
-                  child: (controller.image.value == null)
-                      ? const Icon(Icons.event, color: Color(0xFFEAF4F4))
-                      : Image.memory(controller.image.value!),
-                ),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Text(_title, style: const TextStyle(fontSize: 28)),
-          ],
+        child: Text(
+          _titleText,
+          style: const TextStyle(fontSize: 28),
         ),
       ),
     );
@@ -200,7 +206,7 @@ class EventDetailScreen extends GetView<EventDetailController> {
   String get _cap =>
       '${controller.event.value.attendees} / ${controller.event.value.capacity}';
   String get _description => controller.event.value.description;
-  String get _title => controller.event.value.title;
+  String get _titleText => controller.event.value.title;
   String get _price => controller.event.value.price.toString();
   String get dateTime =>
       '${controller.event.value.dateTime.year}/${controller.event.value.dateTime.month}/${controller.event.value.dateTime.day}';

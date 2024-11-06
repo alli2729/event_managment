@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+export './np.dart';
 
-class BuyCounter extends StatefulWidget {
-  const BuyCounter({
+class NumberPicker extends StatefulWidget {
+  const NumberPicker({
     super.key,
     required this.maxValue,
     required this.minValue,
     required this.onChanged,
+    required this.numberColor,
   });
 
   final int minValue;
   final int maxValue;
   final void Function(int) onChanged;
+  final Color? numberColor;
 
   @override
-  State<BuyCounter> createState() => _BuyCounterState();
+  State<NumberPicker> createState() => _NumberPickerState();
 }
 
-class _BuyCounterState extends State<BuyCounter> {
+class _NumberPickerState extends State<NumberPicker> {
   late int _currentValue;
 
   @override
@@ -30,20 +33,20 @@ class _BuyCounterState extends State<BuyCounter> {
     return Row(
       children: [
         IconButton(
-          onPressed: _decrement,
+          onPressed: (_currentValue == widget.minValue) ? null : _decrement,
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
         const SizedBox(width: 6),
         Text(
           '$_currentValue',
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 20,
-            color: Color(0xFF2D5845),
+            color: widget.numberColor ?? Colors.black,
           ),
         ),
         const SizedBox(width: 6),
         IconButton(
-          onPressed: _increment,
+          onPressed: (_currentValue == widget.maxValue) ? null : _increment,
           icon: const Icon(Icons.arrow_forward_ios),
         ),
       ],

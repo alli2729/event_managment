@@ -11,6 +11,23 @@ class AppTranslation {
 
 class LocaleKeys {
   LocaleKeys._();
+  static const event_managment_app_dialog_back =
+      'event_managment_app_dialog_back';
+  static const event_managment_app_dialog_price_limit =
+      'event_managment_app_dialog_price_limit';
+  static const event_managment_app_dialog_from =
+      'event_managment_app_dialog_from';
+  static const event_managment_app_dialog_to = 'event_managment_app_dialog_to';
+  static const event_managment_app_dialog_not_filled =
+      'event_managment_app_dialog_not_filled';
+  static const event_managment_app_dialog_not_expired =
+      'event_managment_app_dialog_not_expired';
+  static const event_managment_app_dialog_sort_by_date =
+      'event_managment_app_dialog_sort_by_date';
+  static const event_managment_app_dialog_filter =
+      'event_managment_app_dialog_filter';
+  static const event_managment_app_dialog_reset =
+      'event_managment_app_dialog_reset';
   static const event_managment_app_splash_screen_try_again =
       'event_managment_app_splash_screen_try_again';
   static const event_managment_app_login_page_login =
@@ -85,24 +102,6 @@ class LocaleKeys {
       'event_managment_app_events_page_events';
   static const event_managment_app_events_page_search =
       'event_managment_app_events_page_search';
-  static const event_managment_app_events_page_back =
-      'event_managment_app_events_page_back';
-  static const event_managment_app_events_page_price_limit =
-      'event_managment_app_events_page_price_limit';
-  static const event_managment_app_events_page_from =
-      'event_managment_app_events_page_from';
-  static const event_managment_app_events_page_to =
-      'event_managment_app_events_page_to';
-  static const event_managment_app_events_page_not_filled =
-      'event_managment_app_events_page_not_filled';
-  static const event_managment_app_events_page_not_expired =
-      'event_managment_app_events_page_not_expired';
-  static const event_managment_app_events_page_sort_by_date =
-      'event_managment_app_events_page_sort_by_date';
-  static const event_managment_app_events_page_filter =
-      'event_managment_app_events_page_filter';
-  static const event_managment_app_events_page_reset =
-      'event_managment_app_events_page_reset';
   static const event_managment_app_events_page_t =
       'event_managment_app_events_page_t';
   static const event_managment_app_events_page_cant_search =
@@ -117,24 +116,6 @@ class LocaleKeys {
       'event_managment_app_my_event_page_my_events';
   static const event_managment_app_my_event_page_search =
       'event_managment_app_my_event_page_search';
-  static const event_managment_app_my_event_page_back =
-      'event_managment_app_my_event_page_back';
-  static const event_managment_app_my_event_page_price_limit =
-      'event_managment_app_my_event_page_price_limit';
-  static const event_managment_app_my_event_page_from =
-      'event_managment_app_my_event_page_from';
-  static const event_managment_app_my_event_page_to =
-      'event_managment_app_my_event_page_to';
-  static const event_managment_app_my_event_page_not_filled =
-      'event_managment_app_my_event_page_not_filled';
-  static const event_managment_app_my_event_page_not_expired =
-      'event_managment_app_my_event_page_not_expired';
-  static const event_managment_app_my_event_page_sort_by_date =
-      'event_managment_app_my_event_page_sort_by_date';
-  static const event_managment_app_my_event_page_filter =
-      'event_managment_app_my_event_page_filter';
-  static const event_managment_app_my_event_page_reset =
-      'event_managment_app_my_event_page_reset';
   static const event_managment_app_my_event_page_t =
       'event_managment_app_my_event_page_t';
   static const event_managment_app_my_event_page_cant_delet_non_empty =
@@ -215,24 +196,6 @@ class LocaleKeys {
       'event_managment_app_bookmark_page_bookmarks';
   static const event_managment_app_bookmark_page_search =
       'event_managment_app_bookmark_page_search';
-  static const event_managment_app_bookmark_page_back =
-      'event_managment_app_bookmark_page_back';
-  static const event_managment_app_bookmark_page_price_limit =
-      'event_managment_app_bookmark_page_price_limit';
-  static const event_managment_app_bookmark_page_from =
-      'event_managment_app_bookmark_page_from';
-  static const event_managment_app_bookmark_page_to =
-      'event_managment_app_bookmark_page_to';
-  static const event_managment_app_bookmark_page_not_filled =
-      'event_managment_app_bookmark_page_not_filled';
-  static const event_managment_app_bookmark_page_not_expired =
-      'event_managment_app_bookmark_page_not_expired';
-  static const event_managment_app_bookmark_page_sort_by_date =
-      'event_managment_app_bookmark_page_sort_by_date';
-  static const event_managment_app_bookmark_page_filter =
-      'event_managment_app_bookmark_page_filter';
-  static const event_managment_app_bookmark_page_reset =
-      'event_managment_app_bookmark_page_reset';
   static const event_managment_app_bookmark_page_t =
       'event_managment_app_bookmark_page_t';
   static const event_managment_app_bookmark_page_cant_unbook =
@@ -247,8 +210,17 @@ class LocaleKeys {
 
 class Locales {
   static const en_US = {
+    'event_managment_app_dialog_back': 'Back',
+    'event_managment_app_dialog_price_limit': 'Price Limitaition',
+    'event_managment_app_dialog_from': 'from',
+    'event_managment_app_dialog_to': 'to',
+    'event_managment_app_dialog_not_filled': 'not Filled',
+    'event_managment_app_dialog_not_expired': 'not Expired',
+    'event_managment_app_dialog_sort_by_date': 'Sort By Date',
+    'event_managment_app_dialog_filter': 'Filter',
+    'event_managment_app_dialog_reset': 'Reset',
     'event_managment_app_splash_screen_try_again':
-        'Cant Connect to Server , Try Again',
+        'Couldn\'t Connect to Server , Try Again',
     'event_managment_app_login_page_login': 'Login',
     'event_managment_app_login_page_lang': 'فارسی',
     'event_managment_app_login_page_dont_have_account':
@@ -293,15 +265,6 @@ class Locales {
     'event_managment_app_events_page_settings': 'Settings',
     'event_managment_app_events_page_events': 'Events',
     'event_managment_app_events_page_search': 'Search',
-    'event_managment_app_events_page_back': 'Back',
-    'event_managment_app_events_page_price_limit': 'Price Limitaition',
-    'event_managment_app_events_page_from': 'from',
-    'event_managment_app_events_page_to': 'to',
-    'event_managment_app_events_page_not_filled': 'not Filled',
-    'event_managment_app_events_page_not_expired': 'not Expired',
-    'event_managment_app_events_page_sort_by_date': 'Sort By Date',
-    'event_managment_app_events_page_filter': 'Filter',
-    'event_managment_app_events_page_reset': 'Reset',
     'event_managment_app_events_page_t': 'T',
     'event_managment_app_events_page_cant_search': 'Cant search right now',
     'event_managment_app_events_page_done': 'Done !',
@@ -311,15 +274,6 @@ class Locales {
         'Cant add this event to bookmarks',
     'event_managment_app_my_event_page_my_events': 'My Events',
     'event_managment_app_my_event_page_search': 'Search',
-    'event_managment_app_my_event_page_back': 'Back',
-    'event_managment_app_my_event_page_price_limit': 'Price Limitaition',
-    'event_managment_app_my_event_page_from': 'from',
-    'event_managment_app_my_event_page_to': 'to',
-    'event_managment_app_my_event_page_not_filled': 'not Filled',
-    'event_managment_app_my_event_page_not_expired': 'not Expired',
-    'event_managment_app_my_event_page_sort_by_date': 'Sort By Date',
-    'event_managment_app_my_event_page_filter': 'Filter',
-    'event_managment_app_my_event_page_reset': 'Reset',
     'event_managment_app_my_event_page_t': 'T',
     'event_managment_app_my_event_page_cant_delet_non_empty':
         'cant delete non empty events !',
@@ -372,15 +326,6 @@ class Locales {
     'event_managment_app_edit_event_page_required': 'required',
     'event_managment_app_bookmark_page_bookmarks': 'Bookmarks',
     'event_managment_app_bookmark_page_search': 'Search',
-    'event_managment_app_bookmark_page_back': 'Back',
-    'event_managment_app_bookmark_page_price_limit': 'Price Limitaition',
-    'event_managment_app_bookmark_page_from': 'from',
-    'event_managment_app_bookmark_page_to': 'to',
-    'event_managment_app_bookmark_page_not_filled': 'not Filled',
-    'event_managment_app_bookmark_page_not_expired': 'not Expired',
-    'event_managment_app_bookmark_page_sort_by_date': 'Sort By Date',
-    'event_managment_app_bookmark_page_filter': 'Filter',
-    'event_managment_app_bookmark_page_reset': 'Reset',
     'event_managment_app_bookmark_page_t': 'T',
     'event_managment_app_bookmark_page_cant_unbook': 'Cant unBook this event',
     'event_managment_app_bookmark_page_somthing_went_wrong':
@@ -389,6 +334,15 @@ class Locales {
     'event_managment_app_bookmark_page_cant_search': 'Cant search right now',
   };
   static const fa_IR = {
+    'event_managment_app_dialog_back': 'برگشت',
+    'event_managment_app_dialog_price_limit': 'محدوده قیمت',
+    'event_managment_app_dialog_from': 'از',
+    'event_managment_app_dialog_to': 'تا',
+    'event_managment_app_dialog_not_filled': 'با ظرفیت',
+    'event_managment_app_dialog_not_expired': 'منقضی نشده',
+    'event_managment_app_dialog_sort_by_date': 'مرتب سازی بر اساس تاریخ',
+    'event_managment_app_dialog_filter': 'فیلتر',
+    'event_managment_app_dialog_reset': 'پاک کردن',
     'event_managment_app_splash_screen_try_again':
         'اتصالی برقرار نشد ، لطفا مجددا تلاش کنید',
     'event_managment_app_login_page_login': 'وارد شوید',
@@ -434,15 +388,6 @@ class Locales {
     'event_managment_app_events_page_settings': 'تنظیمات',
     'event_managment_app_events_page_events': 'رویدادها',
     'event_managment_app_events_page_search': 'جست و جو',
-    'event_managment_app_events_page_back': 'برگشت',
-    'event_managment_app_events_page_price_limit': 'محدوده قیمت',
-    'event_managment_app_events_page_from': 'از',
-    'event_managment_app_events_page_to': 'تا',
-    'event_managment_app_events_page_not_filled': 'با ظرفیت',
-    'event_managment_app_events_page_not_expired': 'منقضی نشده',
-    'event_managment_app_events_page_sort_by_date': 'مرتب سازی بر اساس تاریخ',
-    'event_managment_app_events_page_filter': 'فیلتر',
-    'event_managment_app_events_page_reset': 'پاک کردن',
     'event_managment_app_events_page_t': 'ت',
     'event_managment_app_events_page_cant_search':
         'نمی توانید در این لحضه جست و جو کنید',
@@ -452,15 +397,6 @@ class Locales {
         'نمی توانید این رویداد را به نشان ها اضافه کنید',
     'event_managment_app_my_event_page_my_events': 'رویدادهای من',
     'event_managment_app_my_event_page_search': 'جست و جو',
-    'event_managment_app_my_event_page_back': 'برگشت',
-    'event_managment_app_my_event_page_price_limit': 'محدوده قیمت',
-    'event_managment_app_my_event_page_from': 'از',
-    'event_managment_app_my_event_page_to': 'تا',
-    'event_managment_app_my_event_page_not_filled': 'با ظرفیت',
-    'event_managment_app_my_event_page_not_expired': 'منقضی نشده',
-    'event_managment_app_my_event_page_sort_by_date': 'مرتب سازی بر اساس تاریخ',
-    'event_managment_app_my_event_page_filter': 'فیلتر',
-    'event_managment_app_my_event_page_reset': 'پاک کردن',
     'event_managment_app_my_event_page_t': 'ت',
     'event_managment_app_my_event_page_cant_delet_non_empty':
         'نمی توانید رویدادهای حاوی حاضرین را حذف کنید',
@@ -510,15 +446,6 @@ class Locales {
     'event_managment_app_edit_event_page_required': 'ضروری است',
     'event_managment_app_bookmark_page_bookmarks': 'نشان شده ها',
     'event_managment_app_bookmark_page_search': 'جست و جو',
-    'event_managment_app_bookmark_page_back': 'برگشت',
-    'event_managment_app_bookmark_page_price_limit': 'محدوده قیمت',
-    'event_managment_app_bookmark_page_from': 'از',
-    'event_managment_app_bookmark_page_to': 'تا',
-    'event_managment_app_bookmark_page_not_filled': 'دارای ظرفیت',
-    'event_managment_app_bookmark_page_not_expired': 'منقضی نشده',
-    'event_managment_app_bookmark_page_sort_by_date': 'مرتب سازی بر اساس تاریخ',
-    'event_managment_app_bookmark_page_filter': 'فیلتر',
-    'event_managment_app_bookmark_page_reset': 'پاک کردن',
     'event_managment_app_bookmark_page_t': 'ت',
     'event_managment_app_bookmark_page_cant_unbook':
         'نمی توانید نشان این رویداد را حذف کنید',

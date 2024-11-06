@@ -17,7 +17,8 @@ class SplashView extends GetView<SplashController> {
                 Image.asset(
                   'assets/images/loading.png',
                   package: 'event_managment',
-                  width: pageWidth(context),
+                  // width: pageWidth(context),
+                  height: pageHeight(context) / 2,
                 ),
                 (controller.isFailed.value)
                     ? IconButton(
@@ -36,4 +37,5 @@ class SplashView extends GetView<SplashController> {
   }
 
   double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
+  double pageHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
 }

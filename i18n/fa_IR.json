@@ -1,22 +1,33 @@
 {
   "event_managment_app": {
-    "splash_screen" :{
-      "try_again" : "اتصالی برقرار نشد ، لطفا مجددا تلاش کنید"
+    "dialog": {
+      "back": "برگشت",
+      "price_limit": "محدوده قیمت",
+      "from": "از",
+      "to": "تا",
+      "not_filled": "با ظرفیت",
+      "not_expired": "منقضی نشده",
+      "sort_by_date": "مرتب سازی بر اساس تاریخ",
+      "filter": "فیلتر",
+      "reset": "پاک کردن"
     },
-    "login_page" : {
+    "splash_screen": {
+      "try_again": "اتصالی برقرار نشد ، لطفا مجددا تلاش کنید"
+    },
+    "login_page": {
       "login": "وارد شوید",
-      "lang" : "English",
+      "lang": "English",
       "dont_have_account": "حساب کاربری ندارید؟ ",
       "register_now": "هم اکنون ثبت نام کنید",
       "remember_me": "مرا به خاطر بسپار",
       "username": "نام کاربری",
       "password": "رمز عبور",
       "required": "ضروری است",
-      "no_space": "نمی تواند حاوی فاصله باشد"    ,
-      "user_not_found" : "کاربر یافت نشد",
-      "password_incorrect" : "رمز عبور اشتباه می باشد",
-      "somthing_went_wrong" : "مشکلی پیش آمده"
-   },
+      "no_space": "نمی تواند حاوی فاصله باشد",
+      "user_not_found": "کاربر یافت نشد",
+      "password_incorrect": "رمز عبور اشتباه می باشد",
+      "somthing_went_wrong": "مشکلی پیش آمده"
+    },
     "register_page": {
       "already_have_acc": "آیا حساب کاربری دارید؟ ",
       "login_now": "اکنون وارد شوید",
@@ -28,113 +39,86 @@
       "password": "رمز عبور",
       "lastname": "نام خانوادگی",
       "firstname": "نام",
-      "password_not_match" : "رمز عبور همخوانی ندارد",
-      "choose_gender" : "لطفا جنسیت خود را انتخاب کنید",
-      "required" : "ضروری است",
-      "longer_than_6" : "باید طولانی تر از 6 حرف باشد",
-      "longer_than_8" : "باید طولانی تر از 8 حرف باشد",
-      "no_space" : "نمی تواند حاوی فاصله باشد",
-      "error" : "ارور",
-      "somthing_went_wrong" : "مشکلی پیش آمده",
-      "username_already_taken" : "این نام کاربری در دسترس نمی باشد"
+      "password_not_match": "رمز عبور همخوانی ندارد",
+      "choose_gender": "لطفا جنسیت خود را انتخاب کنید",
+      "required": "ضروری است",
+      "longer_than_6": "باید طولانی تر از 6 حرف باشد",
+      "longer_than_8": "باید طولانی تر از 8 حرف باشد",
+      "no_space": "نمی تواند حاوی فاصله باشد",
+      "error": "ارور",
+      "somthing_went_wrong": "مشکلی پیش آمده",
+      "username_already_taken": "این نام کاربری در دسترس نمی باشد"
     },
-    "events_page" : {
-      "my_events" : "رویدادهای من",
-      "bookmarks" : "نشان شده ها",
-      "settings" : "تنظیمات",
-      "events" : "رویدادها",
-      "search" : "جست و جو",
-      "back" : "برگشت",
-      "price_limit" : "محدوده قیمت",
-      "from" : "از",
-      "to" : "تا",
-      "not_filled" : "با ظرفیت",
-      "not_expired" : "منقضی نشده",
-      "sort_by_date" : "مرتب سازی بر اساس تاریخ",
-      "filter" : "فیلتر",
-      "reset" : "پاک کردن",
-      "t" : "ت",
-      "cant_search" : "نمی توانید در این لحضه جست و جو کنید",
-      "done" : "انجام شد !",
-      "somthing_went_wrong" : "مشکلی پیش آمده",
-      "cant_add_bookmark" : "نمی توانید این رویداد را به نشان ها اضافه کنید"
+    "events_page": {
+      "my_events": "رویدادهای من",
+      "bookmarks": "نشان شده ها",
+      "settings": "تنظیمات",
+      "events": "رویدادها",
+      "search": "جست و جو",
+      "t": "ت",
+      "cant_search": "نمی توانید در این لحضه جست و جو کنید",
+      "done": "انجام شد !",
+      "somthing_went_wrong": "مشکلی پیش آمده",
+      "cant_add_bookmark": "نمی توانید این رویداد را به نشان ها اضافه کنید"
     },
-    "my_event_page" : {
-      "my_events" : "رویدادهای من",
-      "search" : "جست و جو",
-      "back" : "برگشت",
-      "price_limit" : "محدوده قیمت",
-      "from" : "از",
-      "to" : "تا",
-      "not_filled" : "با ظرفیت",
-      "not_expired" : "منقضی نشده",
-      "sort_by_date" : "مرتب سازی بر اساس تاریخ",
-      "filter" : "فیلتر",
-      "reset" : "پاک کردن",
-      "t" : "ت",
-      "cant_delet_non_empty" : "نمی توانید رویدادهای حاوی حاضرین را حذف کنید",
-      "successfully_deleted" : "با موفقیت حذف شد",
-      "cant_search" : "نمی توانید در این لحضه جست و جو کنید",
-      "somthing_went_wrong" : "مشکلی پیش آمده",
-      "cant_delete_event" : "نمی توانید در این لحظه این رویداد را حذف کنید"
+    "my_event_page": {
+      "my_events": "رویدادهای من",
+      "search": "جست و جو",
+      "t": "ت",
+      "cant_delet_non_empty": "نمی توانید رویدادهای حاوی حاضرین را حذف کنید",
+      "successfully_deleted": "با موفقیت حذف شد",
+      "cant_search": "نمی توانید در این لحضه جست و جو کنید",
+      "somthing_went_wrong": "مشکلی پیش آمده",
+      "cant_delete_event": "نمی توانید در این لحظه این رویداد را حذف کنید"
     },
-    "detail_page" : {
-      "event_detail" : "جزئیات رویداد",
-      "opening_date" : "تاریخ برگزاری:",
-      "price" : "قیمت",
-      "toman" : "تومان",
-      "event_is_filled" : "این رویداد پر شده است",
-      "buy" : "خرید",
-      "cant_buy" : "نمی توانید این رویداد را خریداری کنید",
-      "somthing_went_wrong" : "مشکلی پیش آمده"
+    "detail_page": {
+      "event_detail": "جزئیات رویداد",
+      "opening_date": "تاریخ برگزاری:",
+      "price": "قیمت",
+      "toman": "تومان",
+      "event_is_filled": "ظرفیت این رویداد تکمیل شده است",
+      "buy": "خرید",
+      "cant_buy": "نمی توانید این رویداد را خریداری کنید",
+      "somthing_went_wrong": "مشکلی پیش آمده"
     },
-    "settings_page" : {
-      "settings" : "تنظیمات",
-      "change_lang" : "تغییر زبان به انگلیسی EN",
-      "logout" : "خروج از حساب کاربری"
+    "settings_page": {
+      "settings": "تنظیمات",
+      "change_lang": "تغییر زبان به انگلیسی EN",
+      "logout": "خروج از حساب کاربری"
     },
-    "add_event_page" : {
-      "add_event" : "اضافه کردن رویداد",
-      "capacity" : "ظرفیت",
-      "price" : "قیمت",
-      "description" : "توضیحات",
-      "title" : "عنوان",
-      "somthing_went_wrong" : "مشکلی پیش آمده",
-      "cant_add" : "نمی توانید در این لحظه رویداد اضافه کنید",
-      "date_error" : "تاریخ انتخابی باید از امروز گذشته باشد",
-      "failed" : "خطا",
-      "required" : "ضروری است"
+    "add_event_page": {
+      "add_event": "اضافه کردن رویداد",
+      "capacity": "ظرفیت",
+      "price": "قیمت",
+      "description": "توضیحات",
+      "title": "عنوان",
+      "somthing_went_wrong": "مشکلی پیش آمده",
+      "cant_add": "نمی توانید در این لحظه رویداد اضافه کنید",
+      "date_error": "تاریخ انتخابی باید از امروز گذشته باشد",
+      "failed": "خطا",
+      "required": "ضروری است"
     },
-    "edit_event_page" : {
-      "edit_event" : "ویرایش رویداد",
-      "fetching_data" : "خواندن اطلاعات",
-      "capacity" : "ظرفیت",
-      "price" : "قیمت",
-      "description" : "توضیحات",
-      "title" : "عنوان",
-      "somthing_went_wrong" : "مشکلی پیش آمده",
-      "cant_edit" : "نمی توانید در این لحظه ویرایش کنید",
-      "date_error" : "تاریخ انتخابی باید از امروز گذشته باشد",
-      "failed" : "خطا",
-      "required" : "ضروری است"
+    "edit_event_page": {
+      "edit_event": "ویرایش رویداد",
+      "fetching_data": "خواندن اطلاعات",
+      "capacity": "ظرفیت",
+      "price": "قیمت",
+      "description": "توضیحات",
+      "title": "عنوان",
+      "somthing_went_wrong": "مشکلی پیش آمده",
+      "cant_edit": "نمی توانید در این لحظه ویرایش کنید",
+      "date_error": "تاریخ انتخابی باید از امروز گذشته باشد",
+      "failed": "خطا",
+      "required": "ضروری است"
     },
-    "bookmark_page" : {
-      "bookmarks" : "نشان شده ها",
-      "search" : "جست و جو",
-      "back" : "برگشت",
-      "price_limit" : "محدوده قیمت",
-      "from" : "از",
-      "to" : "تا",
-      "not_filled" : "دارای ظرفیت",
-      "not_expired" : "منقضی نشده",
-      "sort_by_date" : "مرتب سازی بر اساس تاریخ",
-      "filter" : "فیلتر",
-      "reset" : "پاک کردن",
-      "t" : "ت",
-      "cant_unbook" : "نمی توانید نشان این رویداد را حذف کنید",
-      "somthing_went_wrong" : "مشکلی پیش آمده",
-      "done" : "انجام شد !",
-      "cant_search" : "نمی توانید در این لحضه جست و جو کنید"
+    "bookmark_page": {
+      "bookmarks": "نشان شده ها",
+      "search": "جست و جو",
+      "t": "ت",
+      "cant_unbook": "نمی توانید نشان این رویداد را حذف کنید",
+      "somthing_went_wrong": "مشکلی پیش آمده",
+      "done": "انجام شد !",
+      "cant_search": "نمی توانید در این لحضه جست و جو کنید"
     }
   }
 }
