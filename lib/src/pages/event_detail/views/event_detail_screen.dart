@@ -19,7 +19,12 @@ class EventDetailScreen extends GetView<EventDetailController> {
             title: Text(
           LocaleKeys.event_managment_app_detail_page_event_detail.tr,
         )),
-        body: Obx(() => _pageContent()),
+        body: Center(
+          child: SizedBox(
+            width: width(context),
+            child: Obx(() => _pageContent()),
+          ),
+        ),
       ),
     );
   }
@@ -200,6 +205,11 @@ class EventDetailScreen extends GetView<EventDetailController> {
       ),
     );
   }
+
+  double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
+  double pageHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
+  double width(BuildContext context) =>
+      (pageWidth(context) > 800) ? 800 : double.infinity;
 
   String get _priceToman =>
       '${LocaleKeys.event_managment_app_detail_page_price.tr} $_price ${LocaleKeys.event_managment_app_detail_page_toman.tr}';

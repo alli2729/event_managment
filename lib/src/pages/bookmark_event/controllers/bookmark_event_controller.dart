@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../generated/locales.g.dart';
+import '../../../infrastructure/routes/route_names.dart';
 import '../models/bookmark_user_dto.dart';
 import '../models/event_model.dart';
 import '../../../infrastructure/utils/utils.dart';
@@ -93,6 +94,14 @@ class BookmarkEventController extends GetxController {
         bookmarkedEvents.removeWhere((element) => element.id == eventId);
       },
     );
+  }
+
+  Future<void> onViewEvent({required int eventId}) async {
+    await Get.toNamed(
+      RouteNames.eventDetailFromBookmark,
+      parameters: {"eventId": "$eventId"},
+    );
+    getBookmarked();
   }
 
   Future<void> onSearch(String title) async {

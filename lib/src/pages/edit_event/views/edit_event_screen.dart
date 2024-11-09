@@ -18,9 +18,14 @@ class EditEventScreen extends GetView<EditEventController> {
             title: Text(
           LocaleKeys.event_managment_app_edit_event_page_edit_event.tr,
         )),
-        body: Form(
-          key: controller.addFormKey,
-          child: Obx(() => _pageContent()),
+        body: Center(
+          child: SizedBox(
+            width: width(context),
+            child: Form(
+              key: controller.addFormKey,
+              child: Obx(() => _pageContent()),
+            ),
+          ),
         ),
       ),
     );
@@ -216,4 +221,9 @@ class EditEventScreen extends GetView<EditEventController> {
       ),
     );
   }
+
+  double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
+  double pageHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
+  double width(BuildContext context) =>
+      (pageWidth(context) > 800) ? 800 : double.infinity;
 }

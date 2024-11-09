@@ -12,7 +12,12 @@ class BookmarkEventScreen extends GetView<BookmarkEventController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Obx(() => _pageContent()),
+        body: Center(
+          child: SizedBox(
+            width: width(context),
+            child: Obx(() => _pageContent()),
+          ),
+        ),
       ),
     );
   }
@@ -67,7 +72,9 @@ class BookmarkEventScreen extends GetView<BookmarkEventController> {
                 onBookmark: () => controller.onBookmark(
                   eventId: controller.bookmarkedEvents[index].id,
                 ),
-                onView: () {},
+                onView: () => controller.onViewEvent(
+                  eventId: controller.bookmarkedEvents[index].id,
+                ),
               ),
               separatorBuilder: (_, __) => const SizedBox(height: 12),
             ),
@@ -150,4 +157,9 @@ class BookmarkEventScreen extends GetView<BookmarkEventController> {
       ),
     );
   }
+
+  double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
+  double pageHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
+  double width(BuildContext context) =>
+      (pageWidth(context) > 800) ? 800 : double.infinity;
 }

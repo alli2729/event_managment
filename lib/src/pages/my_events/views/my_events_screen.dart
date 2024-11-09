@@ -13,7 +13,12 @@ class MyEventsScreen extends GetView<MyEventsController> {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: _fab(),
-        body: Obx(() => _pageContent()),
+        body: Center(
+          child: SizedBox(
+            width: width(context),
+            child: Obx(() => _pageContent()),
+          ),
+        ),
       ),
     );
   }
@@ -157,4 +162,9 @@ class MyEventsScreen extends GetView<MyEventsController> {
       ),
     );
   }
+
+  double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
+  double pageHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
+  double width(BuildContext context) =>
+      (pageWidth(context) > 800) ? 800 : double.infinity;
 }

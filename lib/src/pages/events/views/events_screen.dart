@@ -14,7 +14,12 @@ class EventsScreen extends GetView<EventsController> {
     return SafeArea(
       child: Scaffold(
         endDrawer: _drawer(),
-        body: Obx(() => _pageContent()),
+        body: Center(
+          child: SizedBox(
+            width: width(context),
+            child: Obx(() => _pageContent()),
+          ),
+        ),
       ),
     );
   }
@@ -168,4 +173,9 @@ class EventsScreen extends GetView<EventsController> {
       ),
     );
   }
+
+  double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
+  double pageHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
+  double width(BuildContext context) =>
+      (pageWidth(context) > 800) ? 800 : double.infinity;
 }

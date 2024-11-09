@@ -11,30 +11,39 @@ class RegisterScreen extends GetView<RegisterController> {
     return SafeArea(
       child: Scaffold(
         appBar: _appBar(),
-        body: Form(
-          key: controller.registerFormKey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  _image(context),
-                  _names(),
-                  const SizedBox(height: 16),
-                  _username(),
-                  const SizedBox(height: 16),
-                  _password(),
-                  const SizedBox(height: 16),
-                  _repeatPassword(),
-                  const SizedBox(height: 16),
-                  _genders(),
-                  const SizedBox(height: 16),
-                  _registerButton(),
-                  const SizedBox(height: 36),
-                  _login(),
-                ],
-              ),
-            ),
+        body: Center(
+          child: SizedBox(
+            width: width(context),
+            child: _body(context),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _body(BuildContext context) {
+    return Form(
+      key: controller.registerFormKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _image(context),
+              _names(),
+              const SizedBox(height: 16),
+              _username(),
+              const SizedBox(height: 16),
+              _password(),
+              const SizedBox(height: 16),
+              _repeatPassword(),
+              const SizedBox(height: 16),
+              _genders(),
+              const SizedBox(height: 16),
+              _registerButton(),
+              const SizedBox(height: 36),
+              _login(),
+            ],
           ),
         ),
       ),
@@ -45,7 +54,8 @@ class RegisterScreen extends GetView<RegisterController> {
     return Image.asset(
       'assets/images/register.png',
       package: 'event_managment',
-      width: pageWidth(context) / 1.5,
+      // width: pageWidth(context) / 1.5,
+      height: pageHeight(context) / 3.5,
     );
   }
 
@@ -235,4 +245,7 @@ class RegisterScreen extends GetView<RegisterController> {
   }
 
   double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
+  double pageHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
+  double width(BuildContext context) =>
+      (pageWidth(context) > 800) ? 800 : double.infinity;
 }

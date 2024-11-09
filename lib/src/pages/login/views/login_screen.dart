@@ -10,29 +10,38 @@ class LoginScreen extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Form(
-          key: controller.formKey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  _lang(),
-                  _loginText(),
-                  _image(context),
-                  const SizedBox(height: 48),
-                  _username(),
-                  const SizedBox(height: 16),
-                  _password(),
-                  const SizedBox(height: 10),
-                  _rememberMe(),
-                  const SizedBox(height: 16),
-                  _loginButton(),
-                  const SizedBox(height: 24),
-                  _register()
-                ],
-              ),
-            ),
+        body: Center(
+          child: SizedBox(
+            width: width(context),
+            child: _body(context),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _body(BuildContext context) {
+    return Form(
+      key: controller.formKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _lang(),
+              _loginText(),
+              _image(context),
+              const SizedBox(height: 48),
+              _username(),
+              const SizedBox(height: 16),
+              _password(),
+              const SizedBox(height: 10),
+              _rememberMe(),
+              const SizedBox(height: 16),
+              _loginButton(),
+              const SizedBox(height: 24),
+              _register()
+            ],
           ),
         ),
       ),
@@ -53,7 +62,8 @@ class LoginScreen extends GetView<LoginController> {
     return Image.asset(
       'assets/images/login.png',
       package: 'event_managment',
-      width: pageWidth(context) / 2,
+      // width: pageWidth(context) / 2,
+      height: pageHeight(context) / 3,
     );
   }
 
@@ -171,4 +181,7 @@ class LoginScreen extends GetView<LoginController> {
   }
 
   double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
+  double pageHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
+  double width(BuildContext context) =>
+      (pageWidth(context) > 800) ? 800 : double.infinity;
 }

@@ -59,6 +59,13 @@ class RoutePages {
           name: RoutePath.bookmark,
           page: () => const BookmarkEventScreen(),
           binding: BookmarkEventBinding(),
+          children: [
+            GetPage(
+              name: RoutePath.eventDetail,
+              page: () => const EventDetailScreen(),
+              binding: EventDetailBindings(),
+            ),
+          ],
         ),
         GetPage(
           name: RoutePath.myEvents,

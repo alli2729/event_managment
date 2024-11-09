@@ -2,7 +2,7 @@ class UrlRepository {
   UrlRepository._();
 
   // Base
-  static const String _baseUrl = 'http://10.0.0.7:3000';
+  static const String _baseUrl = 'http://10.0.0.9:3000';
   static const String _users = '/users';
   static const String _events = '/events';
 

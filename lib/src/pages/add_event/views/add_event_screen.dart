@@ -18,29 +18,38 @@ class AddEventScreen extends GetView<AddEventController> {
             title: Text(
           LocaleKeys.event_managment_app_add_event_page_add_event.tr,
         )),
-        body: Form(
-          key: controller.addFormKey,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Obx(
-                () => Column(
-                  children: [
-                    Obx(() => _image()),
-                    const SizedBox(height: 24),
-                    _title(),
-                    const SizedBox(height: 12),
-                    _description(),
-                    const SizedBox(height: 12),
-                    _price(),
-                    const SizedBox(height: 12),
-                    _capacity(),
-                    const SizedBox(height: 12),
-                    Obx(() => _date()),
-                    const SizedBox(height: 12),
-                  ],
-                ),
-              ),
+        body: Center(
+          child: SizedBox(
+            width: width(context),
+            child: _body(),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _body() {
+    return Form(
+      key: controller.addFormKey,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Obx(
+            () => Column(
+              children: [
+                Obx(() => _image()),
+                const SizedBox(height: 24),
+                _title(),
+                const SizedBox(height: 12),
+                _description(),
+                const SizedBox(height: 12),
+                _price(),
+                const SizedBox(height: 12),
+                _capacity(),
+                const SizedBox(height: 12),
+                Obx(() => _date()),
+                const SizedBox(height: 12),
+              ],
             ),
           ),
         ),
@@ -199,4 +208,9 @@ class AddEventScreen extends GetView<AddEventController> {
       ),
     );
   }
+
+  double pageWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
+  double pageHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
+  double width(BuildContext context) =>
+      (pageWidth(context) > 800) ? 800 : double.infinity;
 }
