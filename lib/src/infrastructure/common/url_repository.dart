@@ -1,8 +1,11 @@
 class UrlRepository {
   UrlRepository._();
 
+  static const String _ip = '10.0.0.7';
+  static const String _port = '3000';
+
   // Base
-  static const String _baseUrl = 'http://10.0.0.9:3000';
+  static const String _baseUrl = 'http://$_ip:$_port';
   static const String _users = '/users';
   static const String _events = '/events';
 
