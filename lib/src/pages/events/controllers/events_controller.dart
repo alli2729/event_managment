@@ -157,6 +157,7 @@ class EventsController extends GetxController {
     if (events.isEmpty) {
       isLoading.value = false;
       isRetry.value = false;
+      isSearch.value = false;
       return;
     }
 

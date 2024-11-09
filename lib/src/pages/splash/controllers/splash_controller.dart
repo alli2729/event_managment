@@ -1,12 +1,15 @@
+import 'package:get_storage/get_storage.dart';
+import 'package:get/get.dart';
 import '../../../../generated/locales.g.dart';
+import '../../../../localization_service.dart';
 import '../../../infrastructure/utils/utils.dart';
 import '../repositories/splash_repository.dart';
 import '../../../infrastructure/routes/route_names.dart';
-import 'package:get/get.dart';
 
 class SplashController extends GetxController {
   final _repository = SplashRepository();
   final RxBool isFailed = false.obs;
+  final _box = GetStorage();
 
   Future<void> checkServer() async {
     isFailed.value = false;
@@ -25,9 +28,20 @@ class SplashController extends GetxController {
     }
   }
 
+  Future<void> reciveData() async {
+    final String? lang = _box.read('lang_conde');
+    final String? country = _box.read('country_code');
+    if (lang != null && country != null) {
+      LocalizationService.changeLangByCode(lang, country);
+    } else {
+      LocalizationService.changeLangByCode('en', 'US');
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
+    reciveData();
     checkServer();
   }
 }

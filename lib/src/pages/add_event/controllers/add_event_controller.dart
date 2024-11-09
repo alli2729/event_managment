@@ -83,6 +83,7 @@ class AddEventController extends GetxController {
         }
       },
       (imageBase64) {
+        print(imageBase64);
         image.value = base64Decode(imageBase64);
         this.imageBase64 = imageBase64;
       },

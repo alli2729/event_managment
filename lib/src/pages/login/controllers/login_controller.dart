@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../../../generated/locales.g.dart';
+import '../../../../localization_service.dart';
 import '../../../infrastructure/utils/utils.dart';
 import '../../../infrastructure/routes/route_names.dart';
 import '../repositories/login_repository.dart';
 
-class LoginController {
+class LoginController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final userController = TextEditingController();
   final passController = TextEditingController();
   final _repository = LoginRepository();
+  final _box = GetStorage();
 
   final RxBool isRemember = false.obs;
   final RxBool isVisible = false.obs;
@@ -35,8 +38,21 @@ class LoginController {
         Utils.showFailSnackBar(message: exception.tr);
         isLoading.value = false;
       },
-      (user) {
+      (user) async {
         isLoading.value = false;
+
+        // writing user info to local storage
+        if (isRemember.value == true) {
+          await _box.write(
+            'credential',
+            {
+              "username": userController.text,
+              "password": passController.text,
+              "userId": user["id"],
+            },
+          );
+        }
+
         // got user info from server
         Get.offNamed(
           RouteNames.events,
@@ -54,10 +70,17 @@ class LoginController {
     }
   }
 
-  void onChangeLanguage() {
-    (Get.locale == const Locale('en', 'US'))
-        ? Get.updateLocale(const Locale('fa', 'IR'))
-        : Get.updateLocale(const Locale('en', "US"));
+  void onChangeLanguage() => LocalizationService.changeLang();
+
+  Future<void> readData() async {
+    final Map? cred = _box.read('credential');
+    if (cred == null) return;
+    final int userId = await cred["userId"];
+
+    await Get.offNamed(
+      RouteNames.events,
+      parameters: {"userId": '$userId'},
+    );
   }
 
   //* Validations ----------------------------------------------------
@@ -73,5 +96,11 @@ class LoginController {
       return LocaleKeys.event_managment_app_login_page_no_space.tr;
     }
     return null;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    readData();
   }
 }
