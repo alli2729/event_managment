@@ -1,4 +1,14 @@
 {
-  "users": [],
+  "users": [
+    {
+      "firstname": "Ali ",
+      "lastname": "Karimi",
+      "gender": "male",
+      "username": "aligit",
+      "password": "gitgitgit",
+      "bookmarked": [],
+      "id": 1
+    }
+  ],
   "events": []
 }

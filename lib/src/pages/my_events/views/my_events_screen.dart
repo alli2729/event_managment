@@ -82,6 +82,7 @@ class MyEventsScreen extends GetView<MyEventsController> {
                     controller.onRemove(eventId: controller.myEvents[index].id),
                 onEdit: () =>
                     controller.onEdit(eventId: controller.myEvents[index].id),
+                removeLoading: controller.removeLoadings,
               ),
               separatorBuilder: (_, __) => const SizedBox(height: 12),
             ),

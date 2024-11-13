@@ -24,6 +24,7 @@ class EventsController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isRetry = false.obs;
   RxBool isSearch = false.obs;
+  RxMap<int, bool> bookmarksLoadings = RxMap({});
 
   Rx<RangeValues> priceLimits = Rx(const RangeValues(0, 1));
   double max = 1;
@@ -175,18 +176,45 @@ class EventsController extends GetxController {
     isSearch.value = false;
   }
 
-  Future<void> onBookmark(int eventId) async {
+  void onBookmark(int eventId) {
     (bookmarkedEvents.contains(eventId))
-        ? bookmarkedEvents.remove(eventId)
-        : bookmarkedEvents.add(eventId);
+        ? removeBookamrk(eventId)
+        : addBookamrk(eventId);
+  }
 
+  Future<void> removeBookamrk(int eventId) async {
+    bookmarksLoadings[eventId] = true;
+    final List newBookmarks = bookmarkedEvents;
     final EventsUserDto dto = EventsUserDto(bookmarked: bookmarkedEvents);
     final result = await _repository.editBookmarked(dto: dto, userId: userId);
     result.fold(
       (exception) {
         Utils.showFailSnackBar(message: exception.tr);
+        bookmarksLoadings[eventId] = false;
       },
       (_) {
+        bookmarksLoadings[eventId] = false;
+        newBookmarks.remove(eventId);
+        Utils.showSuccessSnackBar(
+          message: LocaleKeys.event_managment_app_events_page_done.tr,
+        );
+      },
+    );
+  }
+
+  Future<void> addBookamrk(int eventId) async {
+    bookmarksLoadings[eventId] = true;
+    final List newBookmarks = bookmarkedEvents;
+    final EventsUserDto dto = EventsUserDto(bookmarked: bookmarkedEvents);
+    final result = await _repository.editBookmarked(dto: dto, userId: userId);
+    result.fold(
+      (exception) {
+        bookmarksLoadings[eventId] = false;
+        Utils.showFailSnackBar(message: exception.tr);
+      },
+      (_) {
+        bookmarksLoadings[eventId] = false;
+        newBookmarks.add(eventId);
         Utils.showSuccessSnackBar(
           message: LocaleKeys.event_managment_app_events_page_done.tr,
         );

@@ -97,13 +97,13 @@ class EventsScreen extends GetView<EventsController> {
           : SliverList.separated(
               itemCount: controller.events.length,
               itemBuilder: (_, index) => EventWidget(
-                event: controller.events[index],
-                bookmarked: controller.bookmarkedEvents,
-                onView: () =>
-                    controller.onViewEvent(controller.events[index].id),
-                onBookmark: () =>
-                    controller.onBookmark(controller.events[index].id),
-              ),
+                  event: controller.events[index],
+                  bookmarked: controller.bookmarkedEvents,
+                  onView: () =>
+                      controller.onViewEvent(controller.events[index].id),
+                  onBookmark: () =>
+                      controller.onBookmark(controller.events[index].id),
+                  bookmarkLoading: controller.bookmarksLoadings),
               separatorBuilder: (_, __) => const SizedBox(height: 12),
             ),
     );

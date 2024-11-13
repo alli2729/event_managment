@@ -60,16 +60,18 @@ class EventDetailScreen extends GetView<EventDetailController> {
   Widget _body() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _image(),
-          const SizedBox(height: 16),
-          _title(),
-          const SizedBox(height: 16),
-          _box(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _image(),
+            const SizedBox(height: 16),
+            _title(),
+            const SizedBox(height: 16),
+            _box(),
+          ],
+        ),
       ),
     );
   }

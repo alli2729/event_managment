@@ -22,6 +22,7 @@ class MyEventsController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSearch = false.obs;
   RxBool isRetry = false.obs;
+  RxMap<int, bool> removeLoadings = RxMap({});
 
   Rx<RangeValues> priceLimits = Rx(const RangeValues(0, 1));
   double max = 1;
@@ -79,12 +80,15 @@ class MyEventsController extends GetxController {
       );
       return;
     }
+    removeLoadings[eventId] = true;
     final result = await _repository.deleteEventById(eventId: eventId);
     result.fold(
       (exception) {
+        removeLoadings[eventId] = false;
         Utils.showFailSnackBar(message: exception.tr);
       },
       (_) {
+        removeLoadings[eventId] = false;
         myEvents.removeAt(index);
         Utils.showSuccessSnackBar(
           message: LocaleKeys

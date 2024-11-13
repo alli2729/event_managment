@@ -10,12 +10,14 @@ class BookmarkEventWidget extends StatelessWidget {
     required this.onView,
     required this.onBookmark,
     required this.bookmarked,
+    required this.bookamrkLoading,
   });
 
   final EventModel event;
   final void Function() onView;
   final void Function() onBookmark;
   final List<EventModel> bookmarked;
+  final RxMap<int, bool> bookamrkLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -121,12 +123,7 @@ class BookmarkEventWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        GestureDetector(
-          onTap: onBookmark,
-          child: (isBookmarked)
-              ? const Icon(Icons.bookmark, color: Colors.red)
-              : const Icon(Icons.bookmark_outline),
-        ),
+        Obx(() => _bookmarkIcon()),
         const SizedBox(height: 12),
         Text(
           '${event.attendees} / ${event.capacity}',
@@ -137,6 +134,20 @@ class BookmarkEventWidget extends StatelessWidget {
         )
       ],
     );
+  }
+
+  Widget _bookmarkIcon() {
+    return (isRemoveLoading)
+        ? Transform.scale(
+            scale: 0.4,
+            child: const CircularProgressIndicator(),
+          )
+        : GestureDetector(
+            onTap: onBookmark,
+            child: (isBookmarked)
+                ? const Icon(Icons.bookmark, color: Colors.red)
+                : const Icon(Icons.bookmark_outline),
+          );
   }
 
   double pageWidth(BuildContext context) {
@@ -154,4 +165,6 @@ class BookmarkEventWidget extends StatelessWidget {
     }
     return false;
   }
+
+  bool get isRemoveLoading => bookamrkLoading[event.id] ?? false;
 }

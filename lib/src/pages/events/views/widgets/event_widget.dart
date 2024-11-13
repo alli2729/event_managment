@@ -10,10 +10,12 @@ class EventWidget extends StatelessWidget {
     required this.onView,
     required this.onBookmark,
     required this.bookmarked,
+    required this.bookmarkLoading,
   });
 
   final EventModel event;
   final RxList bookmarked;
+  final RxMap<int, bool> bookmarkLoading;
   final void Function() onView;
   final void Function() onBookmark;
 
@@ -121,14 +123,7 @@ class EventWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Obx(
-          () => GestureDetector(
-            onTap: onBookmark,
-            child: (isBookmarked)
-                ? const Icon(Icons.bookmark, color: Colors.red)
-                : const Icon(Icons.bookmark_outline),
-          ),
-        ),
+        _bookmarkIcon(),
         const SizedBox(height: 12),
         Text(
           '${event.attendees} / ${event.capacity}',
@@ -141,6 +136,22 @@ class EventWidget extends StatelessWidget {
     );
   }
 
+  Widget _bookmarkIcon() {
+    return Obx(
+      () => (isBookmarkLoading)
+          ? Transform.scale(
+              scale: 0.4,
+              child: const CircularProgressIndicator(),
+            )
+          : GestureDetector(
+              onTap: onBookmark,
+              child: (isBookmarked)
+                  ? const Icon(Icons.bookmark, color: Colors.red)
+                  : const Icon(Icons.bookmark_outline),
+            ),
+    );
+  }
+
   double pageWidth(BuildContext context) {
     return MediaQuery.sizeOf(context).width;
   }
@@ -149,4 +160,5 @@ class EventWidget extends StatelessWidget {
       '${event.dateTime.year}/${event.dateTime.month}/${event.dateTime.day}';
 
   bool get isBookmarked => (bookmarked.contains(event.id));
+  bool get isBookmarkLoading => bookmarkLoading[event.id] ?? false;
 }

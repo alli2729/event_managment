@@ -9,9 +9,11 @@ class MyEventWidget extends StatelessWidget {
     required this.event,
     required this.onRemove,
     required this.onEdit,
+    required this.removeLoading,
   });
 
   final EventModel event;
+  final RxMap<int, bool> removeLoading;
   final void Function() onRemove;
   final void Function() onEdit;
 
@@ -45,8 +47,6 @@ class MyEventWidget extends StatelessWidget {
                 _title(context),
                 const Spacer(),
                 _priceDate(),
-                const SizedBox(width: 12),
-                _iconNumber(),
               ],
             ),
           ),
@@ -124,25 +124,26 @@ class MyEventWidget extends StatelessWidget {
     );
   }
 
-  Widget _iconNumber() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [],
-    );
-  }
-
   Widget _remvoeIcon() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        GestureDetector(
-          onTap: onRemove,
-          child: const Icon(
-            Icons.cancel,
-            color: Colors.red,
-          ),
+        Obx(
+          () => (isRemoveLoading)
+              ? Transform.scale(
+                  scale: 0.4,
+                  child: const CircularProgressIndicator(
+                    color: Colors.red,
+                  ),
+                )
+              : GestureDetector(
+                  onTap: onRemove,
+                  child: const Icon(
+                    Icons.cancel,
+                    color: Colors.red,
+                  ),
+                ),
         ),
       ],
     );
@@ -154,4 +155,6 @@ class MyEventWidget extends StatelessWidget {
 
   String get dateTime =>
       '${event.dateTime.year}/${event.dateTime.month}/${event.dateTime.day}';
+
+  bool get isRemoveLoading => removeLoading[event.id] ?? false;
 }

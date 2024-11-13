@@ -75,6 +75,7 @@ class BookmarkEventScreen extends GetView<BookmarkEventController> {
                 onView: () => controller.onViewEvent(
                   eventId: controller.bookmarkedEvents[index].id,
                 ),
+                bookamrkLoading: controller.bookmarkLoading,
               ),
               separatorBuilder: (_, __) => const SizedBox(height: 12),
             ),
