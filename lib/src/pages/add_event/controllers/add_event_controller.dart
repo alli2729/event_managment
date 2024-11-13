@@ -20,6 +20,8 @@ class AddEventController extends GetxController {
   final priceController = TextEditingController();
   final capacityController = TextEditingController();
 
+  RxString minute = '00'.obs;
+  RxString hour = '00'.obs;
   RxString day = '01'.obs;
   RxString month = '01'.obs;
   RxString year = '2022'.obs;
@@ -30,6 +32,8 @@ class AddEventController extends GetxController {
   RxBool isLoading = false.obs;
 
   // functions
+  void selectMinute(String? selectedMinute) => minute.value = selectedMinute!;
+  void selectHour(String? selectedHour) => hour.value = selectedHour!;
   void selectDay(String? selectedDay) => day.value = selectedDay!;
   void selectMonth(String? selectedMonth) => month.value = selectedMonth!;
   void selectYear(String? selectedYear) => year.value = selectedYear!;
@@ -37,7 +41,7 @@ class AddEventController extends GetxController {
   Future<void> onAddEvent() async {
     if (!(addFormKey.currentState?.validate() ?? false)) return;
 
-    final String dateTime = "$year-$month-$day";
+    final String dateTime = "$year-$month-$day $hour:$minute:00";
 
     if (!validDate(dateTime)) {
       Utils.showFailSnackBar(

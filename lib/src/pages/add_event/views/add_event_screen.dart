@@ -1,10 +1,11 @@
 import '../../../../generated/locales.g.dart';
-import 'widgets/drop_button.dart';
 import 'package:flutter/services.dart';
 import '../../../infrastructure/common/date_values.dart';
 import '../controllers/add_event_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'widgets/drop_button.dart';
 
 class AddEventScreen extends GetView<AddEventController> {
   const AddEventScreen({super.key});
@@ -49,6 +50,7 @@ class AddEventScreen extends GetView<AddEventController> {
                 const SizedBox(height: 12),
                 Obx(() => _date()),
                 const SizedBox(height: 12),
+                Obx(() => _time()),
               ],
             ),
           ),
@@ -136,6 +138,35 @@ class AddEventScreen extends GetView<AddEventController> {
               onChanged: controller.selectYear,
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _time() {
+    return SizedBox(
+      width: double.infinity,
+      child: Row(
+        children: [
+          const Expanded(flex: 1, child: SizedBox(width: 10)),
+          Expanded(
+            flex: 1,
+            child: DropButton(
+              value: controller.hour.value,
+              items: DateValues.hours,
+              onChanged: controller.selectHour,
+            ),
+          ),
+          const Text(' : '),
+          Expanded(
+            flex: 1,
+            child: DropButton(
+              value: controller.minute.value,
+              items: DateValues.minutes,
+              onChanged: controller.selectMinute,
+            ),
+          ),
+          const Expanded(flex: 1, child: SizedBox(width: 10)),
         ],
       ),
     );

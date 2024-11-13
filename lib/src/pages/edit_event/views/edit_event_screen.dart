@@ -63,6 +63,7 @@ class EditEventScreen extends GetView<EditEventController> {
             const SizedBox(height: 12),
             Obx(() => _date()),
             const SizedBox(height: 12),
+            Obx(() => _time()),
           ],
         ),
       ),
@@ -148,6 +149,35 @@ class EditEventScreen extends GetView<EditEventController> {
               onChanged: controller.selectYear,
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _time() {
+    return SizedBox(
+      width: double.infinity,
+      child: Row(
+        children: [
+          const Expanded(flex: 1, child: SizedBox(width: 10)),
+          Expanded(
+            flex: 1,
+            child: DropButton(
+              value: controller.hour.value,
+              items: DateValues.hours,
+              onChanged: controller.selectHour,
+            ),
+          ),
+          const Text(' : '),
+          Expanded(
+            flex: 1,
+            child: DropButton(
+              value: controller.minute.value,
+              items: DateValues.minutes,
+              onChanged: controller.selectMinute,
+            ),
+          ),
+          const Expanded(flex: 1, child: SizedBox(width: 10)),
         ],
       ),
     );

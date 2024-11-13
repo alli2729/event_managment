@@ -22,6 +22,8 @@ class EditEventController extends GetxController {
   final priceController = TextEditingController();
   final capacityController = TextEditingController();
 
+  RxString minute = '00'.obs;
+  RxString hour = '00'.obs;
   RxString day = '01'.obs;
   RxString month = '01'.obs;
   RxString year = '2024'.obs;
@@ -45,6 +47,8 @@ class EditEventController extends GetxController {
   );
 
   // functions
+  void selectMinute(String? selectedMinute) => minute.value = selectedMinute!;
+  void selectHour(String? selectedHour) => hour.value = selectedHour!;
   void selectDay(String? selectedDay) => day.value = selectedDay!;
   void selectMonth(String? selectedMonth) => month.value = selectedMonth!;
   void selectYear(String? selectedYear) => year.value = selectedYear!;
@@ -73,6 +77,8 @@ class EditEventController extends GetxController {
     descriptionController.text = event.description;
     priceController.text = event.price.toString();
     capacityController.text = event.capacity.toString();
+    hour.value = twoDigit(event.dateTime.hour.toString());
+    minute.value = twoDigit(event.dateTime.minute.toString());
     day.value = twoDigit(event.dateTime.day.toString());
     month.value = twoDigit(event.dateTime.month.toString());
     year.value = event.dateTime.year.toString();
@@ -82,7 +88,7 @@ class EditEventController extends GetxController {
   Future<void> onEdit() async {
     if (!(addFormKey.currentState?.validate() ?? false)) return;
 
-    final String dateTime = "$year-$month-$day";
+    final String dateTime = "$year-$month-$day $hour:$minute:00";
 
     if (!validDate(dateTime)) {
       Utils.showFailSnackBar(
