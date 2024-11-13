@@ -95,7 +95,12 @@ class EventDetailScreen extends GetView<EventDetailController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${LocaleKeys.event_managment_app_detail_page_opening_date.tr} $dateTime',
+            '${LocaleKeys.event_managment_app_detail_page_opening_date.tr} $date',
+            style: const TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            '${LocaleKeys.event_managment_app_detail_page_opening_time.tr} $time',
             style: const TextStyle(fontSize: 20),
           ),
           const SizedBox(height: 16),
@@ -220,6 +225,8 @@ class EventDetailScreen extends GetView<EventDetailController> {
   String get _description => controller.event.value.description;
   String get _titleText => controller.event.value.title;
   String get _price => controller.event.value.price.toString();
-  String get dateTime =>
+  String get date =>
       '${controller.event.value.dateTime.year}/${controller.event.value.dateTime.month}/${controller.event.value.dateTime.day}';
+  String get time =>
+      '${controller.event.value.dateTime.hour} : ${controller.event.value.dateTime.minute}';
 }

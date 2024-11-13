@@ -6,7 +6,9 @@
       "gender": "male",
       "username": "aligit",
       "password": "gitgitgit",
-      "bookmarked": [],
+      "bookmarked": [
+        1
+      ],
       "id": 1
     }
   ],

@@ -132,6 +132,8 @@ class LocaleKeys {
       'event_managment_app_detail_page_event_detail';
   static const event_managment_app_detail_page_opening_date =
       'event_managment_app_detail_page_opening_date';
+  static const event_managment_app_detail_page_opening_time =
+      'event_managment_app_detail_page_opening_time';
   static const event_managment_app_detail_page_price =
       'event_managment_app_detail_page_price';
   static const event_managment_app_detail_page_toman =
@@ -286,6 +288,7 @@ class Locales {
         'cant delete this event at this time',
     'event_managment_app_detail_page_event_detail': 'Event Detail',
     'event_managment_app_detail_page_opening_date': 'Opening Date:',
+    'event_managment_app_detail_page_opening_time': 'Opening Time:',
     'event_managment_app_detail_page_price': 'Price',
     'event_managment_app_detail_page_toman': 'Toman',
     'event_managment_app_detail_page_event_is_filled': 'This Event is Filled',
@@ -409,9 +412,11 @@ class Locales {
         'نمی توانید در این لحظه این رویداد را حذف کنید',
     'event_managment_app_detail_page_event_detail': 'جزئیات رویداد',
     'event_managment_app_detail_page_opening_date': 'تاریخ برگزاری:',
+    'event_managment_app_detail_page_opening_time': 'زمان برگزاری:',
     'event_managment_app_detail_page_price': 'قیمت',
     'event_managment_app_detail_page_toman': 'تومان',
-    'event_managment_app_detail_page_event_is_filled': 'این رویداد پر شده است',
+    'event_managment_app_detail_page_event_is_filled':
+        'ظرفیت این رویداد تکمیل شده است',
     'event_managment_app_detail_page_buy': 'خرید',
     'event_managment_app_detail_page_cant_buy':
         'نمی توانید این رویداد را خریداری کنید',

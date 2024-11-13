@@ -74,6 +74,7 @@
     "detail_page": {
       "event_detail": "جزئیات رویداد",
       "opening_date": "تاریخ برگزاری:",
+      "opening_time": "زمان برگزاری:",
       "price": "قیمت",
       "toman": "تومان",
       "event_is_filled": "ظرفیت این رویداد تکمیل شده است",

@@ -108,12 +108,20 @@ class EventWidget extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         Text(
-          dateTime,
+          date,
           style: const TextStyle(
             fontSize: 14,
             color: Color(0xFFA4C3B2),
           ),
-        )
+        ),
+        const SizedBox(height: 6),
+        Text(
+          time,
+          style: const TextStyle(
+            fontSize: 14,
+            color: Color(0xFFA4C3B2),
+          ),
+        ),
       ],
     );
   }
@@ -156,8 +164,9 @@ class EventWidget extends StatelessWidget {
     return MediaQuery.sizeOf(context).width;
   }
 
-  String get dateTime =>
+  String get date =>
       '${event.dateTime.year}/${event.dateTime.month}/${event.dateTime.day}';
+  String get time => '${event.dateTime.hour} : ${event.dateTime.minute}';
 
   bool get isBookmarked => (bookmarked.contains(event.id));
   bool get isBookmarkLoading => bookmarkLoading[event.id] ?? false;

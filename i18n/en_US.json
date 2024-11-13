@@ -74,6 +74,7 @@
     "detail_page": {
       "event_detail": "Event Detail",
       "opening_date": "Opening Date:",
+      "opening_time": "Opening Time:",
       "price": "Price",
       "toman": "Toman",
       "event_is_filled": "This Event is Filled",
