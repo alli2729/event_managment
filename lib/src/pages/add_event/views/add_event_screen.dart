@@ -145,7 +145,8 @@ class AddEventScreen extends GetView<AddEventController> {
     return TextFormField(
       enabled: (!controller.isLoading.value),
       controller: controller.capacityController,
-      validator: controller.validate,
+      validator: controller.priceValidate,
+      maxLength: 4,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
@@ -163,7 +164,8 @@ class AddEventScreen extends GetView<AddEventController> {
     return TextFormField(
       enabled: (!controller.isLoading.value),
       controller: controller.priceController,
-      validator: controller.validate,
+      validator: controller.priceValidate,
+      maxLength: 10,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
@@ -182,6 +184,7 @@ class AddEventScreen extends GetView<AddEventController> {
       enabled: (!controller.isLoading.value),
       controller: controller.descriptionController,
       validator: controller.validate,
+      maxLength: 60,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.description),
         labelText: LocaleKeys.event_managment_app_add_event_page_description.tr,
@@ -198,6 +201,7 @@ class AddEventScreen extends GetView<AddEventController> {
       enabled: (!controller.isLoading.value),
       controller: controller.titleController,
       validator: controller.validate,
+      maxLength: 30,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.title),
         labelText: LocaleKeys.event_managment_app_add_event_page_title.tr,

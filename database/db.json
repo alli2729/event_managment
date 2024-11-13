@@ -6,9 +6,24 @@
       "gender": "male",
       "username": "aligit",
       "password": "gitgitgit",
-      "bookmarked": [],
+      "bookmarked": [
+        1
+      ],
       "id": 1
     }
   ],
-  "events": []
+  "events": [
+    {
+      "makerId": 1,
+      "title": "title",
+      "description": "description",
+      "dateTime": "2025-01-01",
+      "capacity": 2,
+      "price": 2000,
+      "attendees": 2,
+      "image": "",
+      "filled": true,
+      "id": 1
+    }
+  ]
 }

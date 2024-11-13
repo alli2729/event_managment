@@ -145,6 +145,26 @@ class EditEventController extends GetxController {
     if (value == null || value.isEmpty) {
       return LocaleKeys.event_managment_app_edit_event_page_required.tr;
     }
+    if (value[0] == '') {
+      return 'cant start with space';
+    }
+
+    return null;
+  }
+
+  String? priceValidate(String? value) {
+    if (value == null || value.isEmpty) {
+      return LocaleKeys.event_managment_app_add_event_page_required.tr;
+    }
+    if (value[0] == '') {
+      return 'cant start with space';
+    }
+    if (value[0] == '0') {
+      return 'cant start with 0';
+    }
+    if (!int.parse(value).isGreaterThan(0)) {
+      return 'cant be empty';
+    }
 
     return null;
   }
