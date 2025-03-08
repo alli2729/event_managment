@@ -30,6 +30,13 @@ jobs:
     - name: Flutter Pub Get
       run: flutter pub get
 
+    - name: Change directory
+      run: cd event_management/example
+
+    - name: Build APK
+      run: flutter build apk --release
+
+
     - name: Build APK
       run: flutter build apk --release
 
