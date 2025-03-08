@@ -30,15 +30,9 @@ jobs:
     - name: Flutter Pub Get
       run: flutter pub get
 
-    - name: Change directory
-      run: cd example
-
     - name: Build APK
       run: flutter build apk --release
-
-
-    - name: Build APK
-      run: flutter build apk --release
+      working-directory: example
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
