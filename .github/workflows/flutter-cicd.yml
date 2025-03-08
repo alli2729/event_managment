@@ -32,7 +32,7 @@ jobs:
       working-directory: example
 
     - name: Build APK
-      run: flutter build apk --release --build-dir=example/build
+      run: flutter build apk --release
       working-directory: example
 
     - name: Upload APK
