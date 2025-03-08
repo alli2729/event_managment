@@ -31,7 +31,7 @@ jobs:
       run: flutter pub get
 
     - name: Change directory
-      run: cd event_management/example
+      run: cd event_management/example/lib
 
     - name: Build APK
       run: flutter build apk --release
